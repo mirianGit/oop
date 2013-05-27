@@ -7,6 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author elene
+ *
+ */
 public class User {
 	private int userId,role;
 	private String name, password;
