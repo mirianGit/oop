@@ -9,25 +9,76 @@
 
 <body background="background.jpg">
 
-<h1> Home page</h1>
-<p><a href = "HomePage.jsp"> Home page </a>
+<table border=1 bgcolor="F3E2A9" width=100% height=100% ALIGN=center>
 
-<p align="right"><a  href = "Login.jsp"> Login </a> </p>
-<p align="right"><a href = "Register.jsp"> Register</a></p>
+<tr height = 20%>
+<td width="20%">
+
+<h1> <a href = "HomePage.jsp"> Homepage </a> </h1>
+</td>
+
+
+<th> 
+<p> <input type="text" name="name" value = "Search..." onclick="if(this.value=='Search...'){this.value=''}" onblur="if(this.value==''){this.value='Search...'}">
+<input type = "submit" value="Search" /></p>
+
+<p><a href = "SearchByIngredients.jsp"> Search By Ingredients </a> </p>
+</th>
+
+
+<td align=right width="30%">
+
+<p align="justify"><a  href = "Login.jsp"> Login </a> </p>
+<p align="justify"><a href = "Register.jsp"> Register</a></p>
+
+</td>
+</tr>
+
+
+<tr height= 100% >
+<td valign=top>
+
+<p><a href = "AllRecipes.jsp"> Most Popular Recipes </a></p>
+<ul>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+</ul>
+
+
+</td>
+
+<td valign="top" bgcolor="white">
+
+<p><a href = "AllRecipes.jsp" > All recipes </a></p>
+
+ 
+</td>
+
+
+<td valign="top"> <p><a href = "AllRecipes.jsp"> Newest Recipes </a></p>
+
+<ul>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+<li><a href = "AllRecipes.jsp"> list </a></li>
+
+</ul>
+
+ </td>
+ 
+</tr>
+
+</table>
+
+
 <p align="right"> Welcome <%=request.getParameter("name")%></p>
 <p align="right"><a href = "HomePage.jsp"> Log Out </a> </p>
 
-<p>Search: <input type="text" name="name" /> 
-<input type = "submit" value="Search" /></p>
-
-
-<p><a href = "AllRecipes.jsp"> All recipes </a></p>
-<p><a href = "SearchByIngredients.jsp"> Search By Ingredients </a> </p>
-
-
-<ul>
-	
-</ul>
 
 </body>
 </html>
