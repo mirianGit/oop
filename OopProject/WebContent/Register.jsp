@@ -4,9 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Register</title>
 </head>
 <body>
+<p><a href = "HomePage.jsp"> Homepage </a></p>
+
+<h1> Create New Account</h1>
+
+
+<form action="Login" method="post">
+<p>User Name: <input type="text" name="name" /> </p> 
+
+<p>Password: <input type="text" name="password" />
+<p>Re-Enter Password: <input type="text" name="password" />
+
+<input type = "submit" value="Create" /></p>
+
+
+</form>
 
 </body>
 </html>

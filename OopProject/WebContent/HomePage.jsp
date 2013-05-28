@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title> Homepage </title>
+<title> Home page </title>
 </head>
 
 <body background="background.jpg">
 
-<h1> Homepage</h1>
-<p><a href = "HomePage.jsp"> Homepage </a>
+<h1> Home page</h1>
+<p><a href = "HomePage.jsp"> Home page </a>
 
 <p align="right"><a  href = "Login.jsp"> Login </a> </p>
 <p align="right"><a href = "Register.jsp"> Register</a></p>
