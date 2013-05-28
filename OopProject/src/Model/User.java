@@ -27,8 +27,8 @@ public class User {
 		this.password=password;
 		this.role=role;
 		if(id == -1){
-			userId = geterateId();
 			addToDatabase();
+			userId=getIdFromDatabase();
 		}
 		else userId = id;
 	
@@ -36,30 +36,29 @@ public class User {
 	public boolean isAdmin(){
 		return role==1;
 	}
-	
+	private int getIdFromDatabase(){
+		String select = "SELECT * FROM USER WHERE USER_NAME = '"+name+"';";
+		int id=-1;
+		try {
+			ResultSet res=stmt.executeQuery(select);
+			if(res.next()) id=res.getInt("USER_ID");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+	}
 	public int getId() {
 		return userId;
 	}
 	public String getName(){
 		return name;
 	}
-	private int geterateId()  {
-		String select= "SELECT COUNT(*) AS num FROM User;";
-		int res=-1;
-		try {
-			ResultSet result = stmt.executeQuery(select);
-			result.next();
-			res = result.getInt("num");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return res;
-	}
+	
 	private void addToDatabase() {
 		
 		try {
-			String sql = "INSERT INTO USER VALUES ("+userId+ ", '"
+			String sql = "INSERT INTO USER VALUES (null , '"
 					+ name + "', '"
 					+ password + "',"
 					+ role + ");";
@@ -163,7 +162,5 @@ public class User {
 		}
 		return false;
 	}
-
-	
 
 }
