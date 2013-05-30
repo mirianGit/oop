@@ -19,7 +19,7 @@ public class Dish {
 	private HashMap<Ingredient, String> ingredients;
 	private Connection con = MyDB.getConnection();
 
-	public Dish(String name, int rate, int userId, int approved, String text, String image, HashMap<Ingredient, String> ingredients) throws SQLException {
+	public Dish(String name, int rate, int userId, int approved, String text, String image, HashMap<Ingredient, String> ingredients) {
 		this.name = name;
 		receiptText = text;
 		picture = image;
@@ -30,17 +30,21 @@ public class Dish {
 	}
 	
 	// amatebs bazashi
-	public void add() throws SQLException{
-		Statement stat = con.createStatement();
-		String sql = "INSERT INTO DISHES VALUES (DISH_NAME,RATE, AUTHOR, APPROVED, RECEIPT, PICTURE)" +
-												" ('" + name + "',"
-													+ rate + ","
-													+ authorId + ","
-													+ approved + ", '"
-													+ receiptText + "', '"
-													+ picture + "');";
-		stat.executeQuery(sql);
-		insertIntoIngredients();
+	public void add() {
+		try {
+			Statement stat = con.createStatement();
+			String sql = "INSERT INTO DISHES (DISH_NAME,RATE, AUTHOR, APPROVED, RECEIPT, PICTURE)" +
+											  " VALUES ('" + name + "', "
+														+ rate + ", "
+														+ authorId + ", "
+														+ approved + ", '"
+														+ receiptText + "', '"
+														+ picture + "');";
+			stat.executeUpdate(sql);
+			insertIntoIngredients();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// returns id or -1 if such dish doesn't exist ot there's problem with database
@@ -58,11 +62,20 @@ public class Dish {
 		return res;
 	}
 	
-	public void approve() throws SQLException{
-		Statement stat = con.createStatement();
-		String sql = "UPDATE DISHES SET APPROVED = 1 WHERE DISH_ID='" + getId() + "';";
-		stat.executeQuery(sql);
-		approved = 1;
+	public void approve() {
+		try {
+			Statement stat = con.createStatement();
+			String sql = "UPDATE DISHES SET APPROVED = 1 WHERE DISH_ID='" + getId() + "';";
+			stat.executeUpdate(sql);
+			approved = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public int getApproved(){
+		return approved;
 	}
 	
 	public HashMap<Ingredient, String> getIngredients(){
@@ -75,8 +88,8 @@ public class Dish {
 		int id = getId();
 		while(in.hasNext()){
 			Ingredient tmp = in.next();
-			String insert = "INSERT INTO INGREDIENTS VALUES (" + id + ", " + tmp.getId() + ", " + ingredients.get(tmp) + ");";
-			stat.executeQuery(insert);
+			String insert = "INSERT INTO INGREDIENTS VALUES (" + id + ", " + tmp.getId() + ", '" + ingredients.get(tmp) + "');";
+			stat.executeUpdate(insert);
 		}
 	}
 
@@ -135,5 +148,4 @@ public class Dish {
 		}
 		return res;
 	}
-
 }

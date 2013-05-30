@@ -7,26 +7,35 @@ import java.sql.Statement;
 
 public class Ingredient {
 	private int id = -1;
+	private String name = "";
 	private Connection con = MyDB.getConnection();
 
 	// aqac dish-is msgavsad
 	public Ingredient(String name, String picture) {
 		try {
 			addToDatabase(name, picture);
+			this.name = name;
 		} catch (SQLException e) {
 			System.out.println("problems with inserting ingredient!");
+			e.printStackTrace();
 		}
 	}
 	
+	public String getName(){
+		return name;
+	}
 	// amatebs bazashi
 	private void addToDatabase(String name, String picture) throws SQLException{
 		Statement stat = con.createStatement();
 		String select = "SELECT * FROM INGREDIENT WHERE INGREDIENT_NAME = '" + name + "';";
 		ResultSet s = stat.executeQuery(select);
 		if(!s.next()){
-			String insert = "INSERT INTO INGREDIENT (INGREDIENT_NAME, PICTURE) VALUES ('" + name + "', " + picture + "');";
-			stat.executeQuery(insert);
+			String insert = "INSERT INTO INGREDIENT (INGREDIENT_NAME, PICTURE) VALUES ('" + name + "', '" + picture + "');";
+			stat.executeUpdate(insert);
 		}
+		ResultSet s1 = stat.executeQuery(select);
+		s1.next();
+		this.id = s1.getInt("INGREDIENT_ID");
 	}
 	
 	public int getId(){
