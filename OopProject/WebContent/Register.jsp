@@ -6,20 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register</title>
 </head>
-<body>
+<body bgcolor="#FBF2EF">
 <p><a href = "HomePage.jsp"> Homepage </a></p>
 
-<h1> Create New Account</h1>
+<h1> Create New Account
+<img src="kitchenWelcome.jpg" align="right" width="200">
 
-
-<form action="Login" method="post">
+</h1>
+<form action="RegisterServlet" method="get">
 <p>User Name: <input type="text" name="name" /> </p> 
 
-<p>Password: <input type="text" name="password" />
-<p>Re-Enter Password: <input type="text" name="password" />
+<p>Password: <input type="password" name="password" />
+<p>Re-Enter Password: <input type="password" name="password" />
 
 <input type = "submit" value="Create" /></p>
 
+<p><a href= "Login.jsp"> Do you already have an account? </a></p>
 
 </form>
 
