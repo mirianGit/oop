@@ -6,19 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
 </head>
-<body>
+<body bgcolor="#E0F8F7">
 
 <p><a href = "HomePage.jsp"> Homepage </a></p>
 
-<h1> Please log in.</h1>
+<h1 style="color:#FF8000"> Please log in. <img src="happy-chicken.jpg" align="right" width="200">
+</h1>
 
-<form action="Login" method="post">
+<form action="LoginServlet" method="get">
 <p>User Name: <input type="text" name="name" /> </p> 
 
-<p>Password: <input type="text" name="password" />
+<p>Password: <input type="password" name="password"  />
 <input type = "submit" value="Login" /></p>
 
-<p><a href= "Login.jsp"> Do you already have an account? </a></p>
+
+<p><a href= "Register.jsp"> You don't have an account? Register now! :) </a></p>
+
 </form>
 
 
