@@ -38,6 +38,8 @@ public class userServlet extends HttpServlet {
 		User us= User.getUserById(id);
 		List<Dish> wishlist = us.wishList(); 
 		request.setAttribute("wishlist", wishlist);
+		List<Dish> dishes = us.uploadedDishes(); 
+		request.setAttribute("dishes", dishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Profile.jsp");
 		dispatch.forward(request, response);
 	}
