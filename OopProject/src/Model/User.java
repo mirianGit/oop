@@ -135,7 +135,12 @@ public class User {
 		}
 		return username;
 	}
-
+	public static User getUserById(int id){
+		String name=getColumnInfo(id, "USER_NAME");
+		String password=getColumnInfo(id, "USER_PASSWORD");
+		int role=Integer.parseInt(getColumnInfo(id, "ROLE"));
+		return new User(id,name,password,role);
+	}
 	public static boolean exsistsAccount(String username){
 		ResultSet res =null;
 		try {
@@ -162,5 +167,6 @@ public class User {
 		}
 		return false;
 	}
+	
 
 }
