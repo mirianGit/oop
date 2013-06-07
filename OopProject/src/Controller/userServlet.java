@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -33,15 +34,23 @@ public class userServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer id=1;
+		Integer id=10;
 		request.setAttribute("id", id);
 		User us= User.getUserById(id);
-		List<Dish> wishlist = us.wishList(); 
-		request.setAttribute("wishlist", wishlist);
+		
 		List<Dish> dishes = us.uploadedDishes(); 
 		request.setAttribute("dishes", dishes);
+		if(us.isAdmin()){
+			Collection c= Dish.GetNotApprovedDishes();
+			request.setAttribute("Not approved", c);
+			RequestDispatcher dispatch = request.getRequestDispatcher("AdminProfile.jsp");
+			dispatch.forward(request, response);
+		}else{
+			List<Dish> wishlist = us.wishList(); 
+			request.setAttribute("wishlist", wishlist);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Profile.jsp");
 		dispatch.forward(request, response);
+		}
 	}
 
 	/**
