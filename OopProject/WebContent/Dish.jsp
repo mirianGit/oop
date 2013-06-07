@@ -17,7 +17,7 @@
 			<p>text</p>
 		</blockquote>
 		<p>
-			<img src="nayini1.jpg" alt="Smiley face" height="160" width="160"
+			<img src="cream.jpg" alt="Smiley face" height="160" width="160"
 				align="left">
 		</p>
 		<p>
