@@ -42,7 +42,9 @@
 <p align="justify"><a  href = "Profile.jsp"> Hello, <%= request.getSession().getAttribute("name") %></a> </p>
 
 
-<p align="justify"><a href = "HomePage.jsp" > Sign Out </a></p>
+
+<p align="justify"><a href = "LogOut"> Sign Out </a></p>
+
 
 <%  } %> 
 
