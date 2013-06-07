@@ -2,8 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashSet;
-
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,9 +31,9 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HashSet<Dish> dishes = null;
+		ArrayList<Dish> dishes = null;
 		try {
-			dishes = (HashSet<Dish>) Dish.GetAllDishes();
+			dishes = (ArrayList<Dish>) Dish.GetAllDishes();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
