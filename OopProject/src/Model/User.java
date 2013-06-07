@@ -98,7 +98,7 @@ public class User {
 	}
 	public List<Dish> uploadedDishes(){
 		List<Dish> dishes=new ArrayList<Dish>();
-		String select = "SELECT * FROM DISHES WHERE USER_ID = "+userId+";";
+		String select = "SELECT * FROM DISHES WHERE AUTHOR = "+userId+";";
 		try {
 			ResultSet result = stmt.executeQuery(select);
 			while(result.next()){
