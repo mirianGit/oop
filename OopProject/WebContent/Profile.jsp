@@ -20,11 +20,23 @@
 	ArrayList<Dish> dishes = (ArrayList<Dish>) request
 			.getAttribute("dishes");
 %>
-<title><%=name%></title>
+<title><%=name%>'s profile</title>
 
 </head>
-<body style="height: 100%;">
-<table style="height: 100%;"border="1"cellpadding="10">
+<body style="height: 100%;width:  100%;" bgcolor="F8F6F7" >
+
+<table style="height: 100%;width:  100%;"border="0"  >
+     <tr bgcolor=FF7F50 >
+   <td width="35%" height="5"valign="top">
+      <p><a href = "HomePage.jsp"> <font color="white">Back to Homepage</font> </a></p>
+      </td>
+      <td width="30%" align="center">
+      <img src=cupcakes.jpg  height=54 width=136 >
+      </td>
+      <td width=\"35%\" valign=\"top\">
+      <p><font color="white"><%= name%>'s profile </font></p>
+      </td>
+      </tr >
 
 <tr >
 	
@@ -50,7 +62,7 @@
  	<a><%=name %></a>
  </td>
  <td width="35%" valign="top">
- <p>uploaded dishes</p>
+ <p>my recipes</p>
 	<ul>
 	<%
 		for (int i = 0; i < dishes.size(); i++) {
