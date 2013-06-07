@@ -28,7 +28,7 @@ public class LogOut extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("signed", false);
+		request.getSession().setAttribute("signed", null);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Home");
 		dispatch.forward(request, response);
 	}
