@@ -47,6 +47,9 @@ public class Dish {
 		}
 	}
 	
+	public String getName(){
+		return name;
+	}
 	// returns id or -1 if such dish doesn't exist ot there's problem with database
 	public int getId(){
 		int res = -1;

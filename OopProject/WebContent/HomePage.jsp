@@ -30,8 +30,24 @@
 
 <td align=right width="30%">
 
+
+
+<% if (request.getSession().getAttribute("name") == null) { %>
+
 <p align="justify"><a  href = "Login.jsp"> Login </a> </p>
 <p align="justify"><a href = "Register.jsp"> Register</a></p>
+
+<% } else { %>
+
+<p align="justify"><a  href = "Profile.jsp"> Hello, <%= request.getSession().getAttribute("name") %></a> </p>
+
+
+
+<p align="justify"><a href = "LogOut"> Sign Out </a></p>
+
+
+<%  } %> 
+
 
 </td>
 </tr>
@@ -54,9 +70,7 @@
 
 <td valign="top" bgcolor="#FBFBEF">
 
-<p><a href = "AllRecipes.jsp" > All recipes </a></p>
-
- 
+<p><a href = "AllRecipes.jsp" > All recipes </a></p> 
 </td>
 
 

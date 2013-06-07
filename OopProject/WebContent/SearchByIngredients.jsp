@@ -11,9 +11,15 @@
 
 <p><a href = "HomePage.jsp"> Homepage </a></p>
 
-<p>Search: <input type="text" name="name" /> 
+<p>Ingredient: <input type="text" name="name" /> 
+<p>Ingredient: <input type="text" name="name" /> 
+<p>Ingredient: <input type="text" name="name" /> 
+<p>Ingredient: <input type="text" name="name" /> 
+<p>Ingredient: <input type="text" name="name" /> 
+
 <input type = "submit" value="Add more ingredients" /></p> 
 <input type = "submit" value="Search" />
+
 
 
 
