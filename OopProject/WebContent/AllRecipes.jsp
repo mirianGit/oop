@@ -14,7 +14,7 @@
 
 <p>Search: <input type="text" name="name" /> 
 <input type = "submit" value="Search" /></p>
-
+<%  %>
 <ul>
 	<li><a href = "HomePage.jsp" > pizza </a> </li>
 	<li><a href = "HomePage.jsp" > salad </a> </li>

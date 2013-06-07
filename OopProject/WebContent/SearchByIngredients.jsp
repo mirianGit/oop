@@ -17,8 +17,8 @@
 <p>Ingredient: <input type="text" name="name" /> 
 <p>Ingredient: <input type="text" name="name" /> 
 
-<input type = "submit" value="Add more ingredients" /></p> 
-<input type = "submit" value="Search" />
+<input type = "submit" value= "Add more ingredients"/></p> 
+<input type = "submit" value= "Search" />
 
 
 
