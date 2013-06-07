@@ -124,12 +124,12 @@ public class Dish {
 		return result;
 	}
 	
-	public static Collection<Dish> GetApprovedDishes(){
+	public static Collection<Dish> GetNotApprovedDishes(){
 		Collection<Dish> result = new ArrayList<Dish>();
 		try {
 			Connection con = MyDB.getConnection();
 			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1;";
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 0;";
 			ResultSet rows = stat.executeQuery(selectAll);
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));
