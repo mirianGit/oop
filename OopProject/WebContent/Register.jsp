@@ -16,8 +16,8 @@
 <form action="RegisterServlet" method="get">
 <p>User Name: <input type="text" name="name" /> </p> 
 
-<p>Password: <input type="password" name="password" />
-<p>Re-Enter Password: <input type="password" name="password" />
+<p>Password: <input type="password" name="password1" />
+<p>Re-Enter Password: <input type="password" name="password2" />
 
 <input type = "submit" value="Create" /></p>
 
