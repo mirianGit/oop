@@ -33,8 +33,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatch = null;
 		HttpSession curr = request.getSession();
-		String name = (String) curr.getAttribute("name");
-		String pass = (String) curr.getAttribute("password");
+		String name = (String) request.getParameter("name");
+		String pass = (String) request.getParameter("password");
 		if(User.exsistsAccount(name)){
 			if(User.passwordIsCorrect(name, pass)){
 				curr.setAttribute("name", name);
