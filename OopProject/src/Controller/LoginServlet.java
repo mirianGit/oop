@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Model.User;
 
 /**
  * Servlet implementation class Login
@@ -28,9 +31,26 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("signed", "true");
-		RequestDispatcher dispatch = request.getRequestDispatcher("HomePage.jsp");
-		dispatch.forward(request, response);
+		RequestDispatcher dispatch = null;
+		HttpSession curr = request.getSession();
+		String name = (String) curr.getAttribute("name");
+		String pass = (String) curr.getAttribute("password");
+		if(User.exsistsAccount(name)){
+			if(User.passwordIsCorrect(name, pass)){
+				curr.setAttribute("name", name);
+				request.setAttribute("signed", "true");
+				dispatch = request.getRequestDispatcher("HomePage.jsp");
+				dispatch.forward(request, response);
+			} else {
+				curr.setAttribute("problem", "password is incorrect");
+				dispatch = request.getRequestDispatcher("Login.jsp");
+				dispatch.forward(request, response);
+			}
+		}else{
+			curr.setAttribute("problem", "account doesn't exist");
+			dispatch = request.getRequestDispatcher("Login.jsp");
+			dispatch.forward(request, response);
+		}
 	}
 
 	/**

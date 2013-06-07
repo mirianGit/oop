@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Register
@@ -28,9 +29,21 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("signed", "true");
-		RequestDispatcher dispatch = request.getRequestDispatcher("HomePage.jsp");
-		dispatch.forward(request, response);
+		RequestDispatcher dispatch = null;
+		HttpSession curr = request.getSession();
+		String name = (String) curr.getAttribute("name");
+		String pass1 = (String) curr.getAttribute("password1");
+		String pass2 = (String) curr.getAttribute("password2");
+		if(pass1.equals(pass2)){
+			curr.setAttribute("signed", "true");
+			curr.setAttribute("name", name);
+			dispatch = request.getRequestDispatcher("HomePage.jsp");
+			dispatch.forward(request, response);
+		}else{
+			curr.setAttribute("problem", "passwords must be the same");
+			dispatch = request.getRequestDispatcher("Register.jsp");
+			dispatch.forward(request, response);
+		}
 	}
 
 	/**
