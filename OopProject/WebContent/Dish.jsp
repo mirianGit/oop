@@ -7,7 +7,6 @@
 <title>Dish</title>
 </head>
 <body>
-
 	<div
 		class="post-1450 post type-post status-publish format-standard hentry category-59"
 		id="post-1450">
