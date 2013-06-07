@@ -20,7 +20,7 @@ public class Comment {
 		this.text = text;
 	}
 
-	//gamoaqvs komentaristvis sachiro vizualuri informacia	
+	//gamoaqvs komentaristvis sachiro vizualuri  informacia	
 	public Comment(String userName, String txt) throws SQLException {
 		Statement stat = con.createStatement();
 		String sql = "SELECT * FROM USERS WHERE USER-ID = '" + authorId + "';";
