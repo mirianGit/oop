@@ -11,7 +11,7 @@
 
 
 
-<table border=1 bgcolor="F3E2A9" width=100% height=100% ALIGN=center style="height: 100%;" cellpadding="10">
+<table border=1 bgcolor="F3E2A9" width=100%  ALIGN=center style="height: 100%;" cellpadding="10">
 
 <tr height = 20%>
 <td width="20%">
@@ -33,8 +33,7 @@
 <td align=right width="30%">
 
 
-
-<% if (!request.getSession().getAttribute("signed").equals("true")) { %>
+<% if (request.getSession().getAttribute("signed") == null ){ %>
 
 <p align="justify"><a  href = "Login.jsp"> Login </a> </p>
 <p align="justify"><a href = "Register.jsp"> Register</a></p>
@@ -42,9 +41,7 @@
 <% } else { %>
 
 <p align="justify"><a  href = "userServlet"> Hello, <%= request.getSession().getAttribute("name") %></a> </p>
-
 <p align="justify"><a href = "LogOut"> Sign Out </a></p>
-
 
 <%  } %> 
 
