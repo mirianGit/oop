@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Model.User;
+
 /**
  * Servlet implementation class Register
  */
@@ -31,12 +33,13 @@ public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatch = null;
 		HttpSession curr = request.getSession();
-		String name = (String) curr.getAttribute("name");
-		String pass1 = (String) curr.getAttribute("password1");
-		String pass2 = (String) curr.getAttribute("password2");
+		String name = (String) request.getParameter("name");
+		String pass1 = (String) request.getParameter("password1");
+		String pass2 = (String) request.getParameter("password2");
 		if(pass1.equals(pass2)){
 			curr.setAttribute("signed", "true");
 			curr.setAttribute("name", name);
+			User newone = new User(-1, name, pass1, 0);
 			dispatch = request.getRequestDispatcher("HomePage.jsp");
 			dispatch.forward(request, response);
 		}else{
