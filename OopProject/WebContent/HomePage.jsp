@@ -70,9 +70,7 @@
 
 <td valign="top" bgcolor="#FBFBEF">
 
-<p><a href = "AllRecipes.jsp" > All recipes </a></p>
-
- 
+<p><a href = "AllRecipes.jsp" > All recipes </a></p> 
 </td>
 
 
