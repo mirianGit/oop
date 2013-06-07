@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		if(User.exsistsAccount(name)){
 			if(User.passwordIsCorrect(name, pass)){
 				curr.setAttribute("name", name);
-				request.setAttribute("signed", "true");
+				curr.setAttribute("signed", "true");
 				dispatch = request.getRequestDispatcher("HomePage.jsp");
 				dispatch.forward(request, response);
 			} else {
