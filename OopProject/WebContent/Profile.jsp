@@ -28,7 +28,7 @@
 
 <tr >
 	
-	<td width="35%" >
+	<td width="35%" valign="top">
 
 	
 	<p>wishlist</p>
@@ -45,11 +45,11 @@
  
  </ul>
   </td>
- <td width="30%">
+ <td width="30%" valign="top">
  	<p>User Information</p>
  	<a><%=name %></a>
  </td>
- <td width="35%">
+ <td width="35%" valign="top">
  <p>uploaded dishes</p>
 	<ul>
 	<%
