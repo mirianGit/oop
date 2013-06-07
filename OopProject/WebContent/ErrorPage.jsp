@@ -4,18 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Error Page</title>
 </head>
-<body>
+<body bgcolor="#EFF2FB">
 
+<h2 style="color:#3B0B2E"> UserName or password is incorrect, please try again. </h2>
 
-<p><a href = "HomePage.jsp"> Homepage </a></p>
-
-<p>Search: <input type="text" name="name" /> 
-<input type = "submit" value="Add more ingredients" /></p> 
-<input type = "submit" value="Search" />
-
-
+<ul> 
+<li><p align="justify"><a  href = "Login.jsp"> Login </a> </p>
+<li><p align="justify"><a href = "Register.jsp"> Register</a></p>
+</ul>
 
 </body>
 </html>

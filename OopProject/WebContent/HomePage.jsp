@@ -18,9 +18,11 @@
 </td>
 
 
-<th> 
+<th>
+<form action="SearchServlet" method="get">
 <p> <input type="text" name="name" value = "Search..." onclick="if(this.value=='Search...'){this.value=''}" onblur="if(this.value==''){this.value='Search...'}">
 <input type = "submit" value="Search" /></p>
+</form>
 
 <p><a href = "SearchByIngredients.jsp"> Search By Ingredients </a> </p>
 </th>
@@ -50,7 +52,7 @@
 
 </td>
 
-<td valign="top" bgcolor="white">
+<td valign="top" bgcolor="#FBFBEF">
 
 <p><a href = "AllRecipes.jsp" > All recipes </a></p>
 
@@ -75,9 +77,6 @@
 
 </table>
 
-
-<p align="right"> Welcome <%=request.getParameter("name")%></p>
-<p align="right"><a href = "HomePage.jsp"> Log Out </a> </p>
 
 
 </body>
