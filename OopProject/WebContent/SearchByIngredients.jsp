@@ -6,19 +6,49 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="#F7F8E0">
 
 
-<p><a href = "HomePage.jsp"> Homepage </a></p>
+<h3><a href = "HomePage.jsp"> Homepage </a></h3>
+
 
 <p>Ingredient: <input type="text" name="name" /> 
 <p>Ingredient: <input type="text" name="name" /> 
-<p>Ingredient: <input type="text" name="name" /> 
-<p>Ingredient: <input type="text" name="name" /> 
-<p>Ingredient: <input type="text" name="name" /> 
+<p>Ingredient: <input type="text" name="name" />
 
-<input type = "submit" value= "Add more ingredients"/></p> 
-<input type = "submit" value= "Search" />
+
+
+<% Integer num = (Integer)request.getSession().getAttribute("numAdded");
+	if(num != null){
+		for(int i = 0; i < num; i++){%>
+			<p>Ingredient: <input type="text" name="name" />
+		<% }
+	}
+%>
+
+
+
+<form action="AddMoreIngredients" method="post" >
+<input type = "submit" value= "Add more ingredients" /></p>
+</form>
+
+<form action="SearchByIngredients" method="get">
+
+<p><input type = "submit" value= "Search" /></p>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

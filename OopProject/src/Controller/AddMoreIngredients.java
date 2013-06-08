@@ -1,6 +1,5 @@
 package Controller;
 
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SearchByIngredients
+ * Servlet implementation class AddMoreIngredients
  */
-@WebServlet("/SearchByIngredients")
-public class SearchByIngredients extends HttpServlet {
+@WebServlet("/AddMoreIngredients")
+public class AddMoreIngredients extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchByIngredients() {
+    public AddMoreIngredients() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +28,27 @@ public class SearchByIngredients extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("numAdded", 0);
-		RequestDispatcher dispatch = request.getRequestDispatcher("SearchByIngredients.jsp");
-		dispatch.forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+	    Integer numAdded = 
+	      (Integer)request.getSession().getAttribute("numAdded");
+	    if( numAdded == null || numAdded == 0 ){
+	       /* First visit */
+	       numAdded = 1;
+	    }else{
+	       /* return visit */
+	       numAdded += 1;
+	    }
+	    request.getSession().setAttribute("numAdded", numAdded);
+	
+		RequestDispatcher dispatch = request.getRequestDispatcher("SearchByIngredients.jsp");
+		dispatch.forward(request, response);
 	}
 
 }
