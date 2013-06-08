@@ -1,3 +1,5 @@
+<%@page import="Model.Dish"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,13 +9,12 @@
 <title> Home page </title>
 </head>
 
-<body background="background.jpg" style="height: 100%;">
+<body style="height: 100%;" bgcolor="#FFF8F0">
 
 
+<table border= 0  width=100%  ALIGN=center style="height: 100%;" cellpadding="10">
 
-<table border=1 bgcolor="F3E2A9" width=100%  ALIGN=center style="height: 100%;" cellpadding="10">
-
-<tr height = 20%>
+<tr height = 20% bgcolor="#FAF1E8">
 <td width="20%">
 
 <h1> <a href = "HomePage.jsp"> Homepage </a> </h1>
@@ -29,9 +30,7 @@
 <p><a href = "SearchByIngredients.jsp"> Search By Ingredients </a> </p>
 </th>
 
-
 <td align=right width="30%">
-
 
 <% if (request.getSession().getAttribute("signed") == null ){ %>
 
@@ -51,34 +50,62 @@
 
 
 <tr height= 100% >
-<td valign=top>
+<td valign=top align="center">
 
-<p><a href = "AllRecipes.jsp"> Most Popular Recipes </a></p>
-<ul>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-</ul>
+<h4 align="center"><a href = "AllRecipes.jsp"> Most Popular Recipes </a></h4>
+
+<% ArrayList <Dish> dishes = (ArrayList<Dish>) request.getSession().getAttribute("allDishes"); 
+ 	if(dishes != null){%>
+ 		<input name="all" type="hidden" value= <%= dishes %>/>
+ 		
+ 	<% 	if(dishes.size() > 10){ 
+			for(int i = 0; i < 10; i++){ 
+	 			out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
+						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+	 		}
+ 		}else{
+ 			for(int i = 0; i < dishes.size(); i++){
+ 				out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
+						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+ 			}
+ 		}
+ 	}
+ 		
+ %>
 
 
 </td>
 
-<td valign="top" bgcolor="#FBFBEF">
+<td valign="top" align="center">
 
-<p><a href = "AllRecipes.jsp" > All recipes </a></p> 
+<h4><a href = "AllRecipes.jsp" > All recipes </a></h4> 
 </td>
 
 
-<td valign="top"> <p><a href = "AllRecipes.jsp"> Newest Recipes </a></p>
+<td valign="top" align="center">
+
+ <h4><a href = "AllRecipes.jsp"> Newest Recipes </a></h4>
 
 <ul>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
-<li><a href = "AllRecipes.jsp"> list </a></li>
+	
+<%  
+ 	if(dishes != null){
+ 		if(dishes.size() > 10){ 
+			for(int i = 0; i < 10; i++){ 
+	 			out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
+						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+	 		}
+ 		}else{
+ 			for(int i = 0; i < dishes.size(); i++){
+ 				out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
+						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+ 			}
+ 		}
+ 	}
+ 		
+ %>
+
+
 
 </ul>
 
