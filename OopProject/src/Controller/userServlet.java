@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.Dish;
 import Model.User;
@@ -34,20 +35,21 @@ public class userServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer id=10;
-		request.setAttribute("id", id);
+		HttpSession curr = request.getSession();
+		Integer id=User.getIdByName((String) request.getSession().getAttribute("name"));
+		curr.setAttribute("id", id);
 		User us= User.getUserById(id);
 		
 		List<Dish> dishes = us.uploadedDishes(); 
-		request.setAttribute("dishes", dishes);
+		curr.setAttribute("dishes", dishes);
 		if(us.isAdmin()){
-			Collection c= Dish.GetNotApprovedDishes();
-			request.setAttribute("Not approved", c);
+			Collection<Dish> c= Dish.GetNotApprovedDishes();
+			curr.setAttribute("notApproved", c);
 			RequestDispatcher dispatch = request.getRequestDispatcher("AdminProfile.jsp");
 			dispatch.forward(request, response);
 		}else{
 			List<Dish> wishlist = us.wishList(); 
-			request.setAttribute("wishlist", wishlist);
+			curr.setAttribute("wishlist", wishlist);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Profile.jsp");
 		dispatch.forward(request, response);
 		}

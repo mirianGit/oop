@@ -12,13 +12,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%
-	Integer id = (Integer) request.getAttribute("id");
+	Integer id = (Integer) request.getSession().getAttribute("id");
 	User us = User.getUserById(id);
 	String name = us.getName();
 	ArrayList<Dish> wishlist = (ArrayList<Dish>) request
-			.getAttribute("wishlist");
+			.getSession().getAttribute("wishlist");
 	ArrayList<Dish> dishes = (ArrayList<Dish>) request
-			.getAttribute("dishes");
+			.getSession().getAttribute("dishes");
 %>
 <title><%=name%>'s profile</title>
 
@@ -33,7 +33,7 @@
       <td width="30%" align="center">
       <img src=cupcakes.jpg  height=54 width=136 >
       </td>
-      <td width=\"35%\" valign=\"top\">
+      <td width="35%" valign="top">
       <p><font color="white"><%= name%>'s profile </font></p>
       </td>
       </tr >

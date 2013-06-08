@@ -10,11 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%
-	Integer id = (Integer) request.getAttribute("id");
+	Integer id = (Integer) request.getSession().getAttribute("id");
 	User us = User.getUserById(id);
 	String name = us.getName();
-	Collection<Dish> c =(Collection) request.getAttribute("notApproved");
-	ArrayList<Dish> dishes = (ArrayList<Dish>) request
+	Collection<Dish> c =(Collection) request.getSession().getAttribute("notApproved");
+	ArrayList<Dish> dishes = (ArrayList<Dish>) request.getSession()
 			.getAttribute("dishes");
 %>
 <title><%=name%>'s profile</title>
