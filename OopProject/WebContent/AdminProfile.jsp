@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%
 	Integer id = (Integer) request.getSession().getAttribute("id");
+	int dish_id=-1;
 	User us = User.getUserById(id);
 	String name = us.getName();
 	Collection<Dish> c =(Collection) request.getSession().getAttribute("notApproved");
@@ -19,6 +20,12 @@
 %>
 <title><%=name%>'s profile</title>
 </head>
+<script>
+ function Approve(key) {
+	document.getElementById("frm1").hidden.value=key;
+	document.getElementById("frm1").submit();
+}
+</script>
 <body style="height: 100%;width:  100%;" bgcolor="F8F6F7">
 <div id="container" style="width:100%;height:100%;">
 <div id="header" style="background-color:#FF7F50;">
@@ -39,18 +46,25 @@ edit Users<br>
 
 	
 	<p>Non Approved recipes</p>
+	<form id="frm1"  method="get" action="ApproveServlet" >
+	<input type="hidden" name="hidden">
+	
 	<ul >
+	
 	<%
 		for(Dish d:c){
 		
 			String dish_name= d.getName();
-			%><li><a><%=dish_name %>&nbsp;<input	type="submit" value="Approve" /></a><% 
+			 dish_id=d.getId();
+			%><li><a><%=dish_name %>&nbsp;<input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /></a><% 
 	
  	}
 	
  %>
+  </ul>
+</form>
  
- </ul>
+
   </td>
  <td width="25%" valign="top">
  	<p>User Information</p>
