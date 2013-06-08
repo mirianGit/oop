@@ -14,6 +14,12 @@
 
 </h1>
 <form action="RegisterServlet" method="get">
+
+ <% String cout = (String)request.getSession().getAttribute("problem");
+ if(cout != null){%>
+	 <h4><%= cout %>!!! Please Be Careful! :) </h4>
+<%  } %>
+
 <p>User Name: <input type="text" name="name" /> </p> 
 
 <p>Password: <input type="password" name="password1" />

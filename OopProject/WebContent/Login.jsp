@@ -14,11 +14,19 @@
 </h1>
 
 <form action="LoginServlet" method="get">
-<p>User Name: <input type="text" name="name" /> </p> 
+
+ <% String cout = (String)request.getSession().getAttribute("problem");
+ if(cout != null){%>
+	 <h4><%= cout %>!!! Please Try Again! :) </h4>
+<%  } %>
+
+<p>User Name: <input type="text" name="name" /> </p>
 
 <p>Password: <input type="password" name="password"  />
 <input type = "submit" value="Login" /></p>
 
+
+ 
 
 <p><a href= "Register.jsp"> You don't have an account? Register now! :) </a></p>
 
