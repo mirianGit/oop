@@ -135,6 +135,20 @@ public class User {
 		}
 		return username;
 	}
+	
+	public static int getIdByName(String name){
+		int id=-1;
+		ResultSet res =null;
+		try {
+			Statement stat = MyDB.getConnection().createStatement();
+			String sql = "SELECT USER_ID FROM USER WHERE USER_NAME ='" + name	+ "';";
+			res = stat.executeQuery(sql);
+			if(res.next()) id=Integer.parseInt(res.getString("USER_ID"));
+		}catch (SQLException e) {
+			
+		}
+		return id;
+	}
 	public static User getUserById(int id){
 		String name=getColumnInfo(id, "USER_NAME");
 		String password=getColumnInfo(id, "USER_PASSWORD");
@@ -167,6 +181,5 @@ public class User {
 		}
 		return false;
 	}
-
 
 }
