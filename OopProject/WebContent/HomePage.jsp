@@ -55,10 +55,11 @@
 <h4 align="center"><a href = "AllRecipes.jsp"> Most Popular Recipes </a></h4>
 
 <% ArrayList <Dish> dishes = (ArrayList<Dish>) request.getSession().getAttribute("allDishes"); 
- 	if(dishes != null){%>
- 		<input name="all" type="hidden" value= <%= dishes %>/>
+ 	if(dishes != null){
+ 	
+ 		request.setAttribute("all", dishes);
  		
- 	<% 	if(dishes.size() > 10){ 
+ 	 	if(dishes.size() > 10){ 
 			for(int i = 0; i < 10; i++){ 
 	 			out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
 						+ "\">" +  dishes.get(i).getName()  + "</a>"); 

@@ -1,3 +1,5 @@
+<%@page import="Model.Dish"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,22 +14,20 @@
 
 <h1> All Recipes </h1>
 
+<form action="Search" method = "get">
 <p>Search: <input type="text" name="name" /> 
 <input type = "submit" value="Search" /></p>
-<%  %>
-<ul>
-	<li><a href = "HomePage.jsp" > pizza </a> </li>
-	<li><a href = "HomePage.jsp" > salad </a> </li>
-	<li><a href = "HomePage.jsp" > potatoes </a> </li>
-	<li><a href = "HomePage.jsp" > steak </a> </li>
-	<li><a href = "HomePage.jsp" > cake </a> </li>
-	<li><a href = "HomePage.jsp" > ice-cream </a> </li>
-	<li><a href = "HomePage.jsp" > egg </a> </li>
-	<li><a href = "HomePage.jsp" > sausage</a> </li>
-	<li><a href = "HomePage.jsp" > sandwich </a></li>
-	<li><a href = "HomePage.jsp" > pasta</a></li>
-	
-</ul>
+</form>
+
+
+<% ArrayList <Dish> dishes = (ArrayList<Dish>)request.getSession().getAttribute("allDishes");
+ 	if(dishes != null){	
+ 		for(int i = 0; i < dishes.size(); i++){
+ 				out.println("<p><li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
+						+ "\">" +  dishes.get(i).getName()  + "</a></p>"); 
+ 				}
+ 		}
+ 	%>
 
 
 </body>
