@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,12 +30,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Dish> dishes = null;
-		try {
-			dishes = (ArrayList<Dish>) Dish.GetAllDishes();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		ArrayList<Dish> dishes = (ArrayList<Dish>) Dish.GetDishes(1);
 		request.getSession().setAttribute("allDishes", dishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("HomePage.jsp");
 		dispatch.forward(request, response);
