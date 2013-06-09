@@ -28,6 +28,9 @@
 </form>
 
 <p><a href = "SearchByIngredients"> Search By Ingredients </a> </p>
+
+<p><a href = "AddNewRecipe"> Add New Recipe </a> </p>
+
 </th>
 
 <td align=right width="30%">
@@ -113,8 +116,6 @@
 </tr>
 
 </table>
-
-
 
 </body>
 </html>

@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddMoreIngredients
+ * Servlet implementation class AddNewRecipe
  */
-@WebServlet("/AddMoreIngredients")
-public class AddMoreIngredients extends HttpServlet {
+@WebServlet("/AddNewRecipe")
+public class AddNewRecipe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddMoreIngredients() {
+    public AddNewRecipe() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,8 @@ public class AddMoreIngredients extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		RequestDispatcher dispatch = request.getRequestDispatcher("AddNewRecipe.jsp");
+		dispatch.forward(request, response);
 	}
 
 	/**
@@ -36,21 +37,6 @@ public class AddMoreIngredients extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	    Integer numAdded = 
-	      (Integer)request.getSession().getAttribute("numAdded");
-	    if( numAdded == null){
-	       /* First visit */
-	       numAdded = 1;
-	    }else{
-	       /* return visit */
-	       numAdded += 1;
-	    }
-	    request.getSession().setAttribute("numAdded", numAdded);
-	
-	    String jsp = request.getParameter("jsp");
-	    
-		RequestDispatcher dispatch = request.getRequestDispatcher(jsp);
-		dispatch.forward(request, response);
 	}
 
 }

@@ -8,11 +8,33 @@
 </head>
 <body>
 
-<h1> Add new recipe</h1>
+<div id="container" style="width:800px">
 
+<div id="header" style="background-color:#FFA500;">
+<h1 align="left"><a href="HomePage.jsp"> Homepage</a></h1>
+<h1 style="margin-bottom:0;" align="center">  Add new recipe </h1></div>
+
+<div id="menu" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
 
 
 <p> Name: <input type="text" name="name" /> 
+<p> How to prepare:  
+
+<p> <TEXTAREA Name="recipe" ROWS= 4 COLS= 40></TEXTAREA></p>
+
+<p>
+
+Upload Image: <br />
+<form action="UploadServlet" method="post"
+                        enctype="multipart/form-data">
+<input type="file" name="file" size="40" />
+<br />
+<input type="submit" value="Upload Image" />
+</form>
+
+</div>
+
+<div id="content" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
 
 <% for (int i = 0; i < 3; i++){ %>
 	<p>Ingredient: <input type="text" name="name" + i /> 
@@ -24,24 +46,19 @@
 		int a = 3;%>
 		<% for(int j = 0; j < num; j++){
 		%>
-			<p>Ingredient: <input type="text" name="name" + (a++) />
+			<p> Ingredient: <input type="text" name="name" + (a++) />
 		<% }
 	}
 %>
 
 <form action="AddMoreIngredients" method="post" >
 <input name="jsp" type="hidden" value= "AddNewRecipe.jsp"/>
-<input type = "submit" value= "Add more ingredients" />
+<p><input type = "submit" value= "Add more ingredients" /></p>
 </form>
 
-<p> How to prepare:  
+</div>
 
-
-<TEXTAREA Name="recipe" ROWS= 4 COLS= 50></TEXTAREA>
-
-
-
-
+</div>
 
 </body>
 </html>
