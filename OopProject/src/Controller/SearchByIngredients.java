@@ -30,8 +30,16 @@ public class SearchByIngredients extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("numAdded", 0);
-		RequestDispatcher dispatch = request.getRequestDispatcher("SearchByIngredients.jsp");
-		dispatch.forward(request, response);
+		if (request.getSession().getAttribute("signed") == null){
+			request.setAttribute("problem", "For searching by ingredients you have to log in first:)");
+			RequestDispatcher dispatch = request.getRequestDispatcher("Login.jsp");
+			dispatch.forward(request, response);
+		}else{
+			RequestDispatcher dispatch = request.getRequestDispatcher("SearchByIngredients.jsp");
+			dispatch.forward(request, response);
+			
+		}
+		
 	}
 
 	/**

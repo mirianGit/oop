@@ -42,12 +42,12 @@ public class LoginServlet extends HttpServlet {
 				dispatch = request.getRequestDispatcher("HomePage.jsp");
 				dispatch.forward(request, response);
 			} else {
-				request.setAttribute("problem", "password is incorrect");
+				request.setAttribute("problem", "Password is incorrect. Please, be careful");
 				dispatch = request.getRequestDispatcher("Login.jsp");
 				dispatch.forward(request, response);
 			}
 		}else{
-			request.setAttribute("problem", "account doesn't exist");
+			request.setAttribute("problem", "Account doesn't exist. Please register at first ;)");
 			dispatch = request.getRequestDispatcher("Login.jsp");
 			dispatch.forward(request, response);
 		}

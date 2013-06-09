@@ -44,12 +44,12 @@ public class RegisterServlet extends HttpServlet {
 				dispatch = request.getRequestDispatcher("HomePage.jsp");
 				dispatch.forward(request, response);
 			}else{
-				request.setAttribute("problem", "passwords must be the same");
+				request.setAttribute("problem", "Passwords must be the same. Try again :> ");
 				dispatch = request.getRequestDispatcher("Register.jsp");
 				dispatch.forward(request, response);
 			}
 		}else{
-			request.setAttribute("problem", name + " is already used");
+			request.setAttribute("problem", name + " is already used. Choose other one...");
 			dispatch = request.getRequestDispatcher("Register.jsp");
 			dispatch.forward(request, response);
 		}

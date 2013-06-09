@@ -33,6 +33,10 @@ Upload Image: <br />
 <input type="submit" value="Upload Image" />
 </form>
 
+<form action="Home" >
+<p align="right"><input type="submit" value="Add Recipe"/></p>
+
+</form>
 </div>
 
 <div id="content" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">

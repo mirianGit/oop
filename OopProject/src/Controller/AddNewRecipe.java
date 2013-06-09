@@ -28,8 +28,16 @@ public class AddNewRecipe extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatch = request.getRequestDispatcher("AddNewRecipe.jsp");
-		dispatch.forward(request, response);
+		
+		if (request.getSession().getAttribute("signed") == null){
+			request.setAttribute("problem", "For adding your recipe you have to log in first:)");
+			RequestDispatcher dispatch = request.getRequestDispatcher("Login.jsp");
+			dispatch.forward(request, response);
+		}else{
+			RequestDispatcher dispatch = request.getRequestDispatcher("AddNewRecipe.jsp");
+			dispatch.forward(request, response);
+			
+		}
 	}
 
 	/**
