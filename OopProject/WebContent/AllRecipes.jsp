@@ -20,11 +20,11 @@
 </form>
 
 
-<% ArrayList <Dish> dishes = (ArrayList<Dish>)request.getSession().getAttribute("allDishes");
- 	if(dishes != null){	
- 		for(int i = 0; i < dishes.size(); i++){
- 				out.println("<p><li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
-						+ "\">" +  dishes.get(i).getName()  + "</a></p>"); 
+<% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>)request.getSession().getAttribute("allApprovedDishes");
+ 	if(allApprovedDishes != null){	
+ 		for(int i = 0; i < allApprovedDishes.size(); i++){
+ 				out.println("<p><li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
+						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a></p>"); 
  				}
  		}
  	%>
