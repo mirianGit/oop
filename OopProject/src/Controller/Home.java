@@ -30,8 +30,10 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Dish> dishes = (ArrayList<Dish>) Dish.GetDishes(1);
-		request.getSession().setAttribute("allDishes", dishes);
+		ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) Dish.GetDishes(1);
+		ArrayList<Dish> lastApprovedDishes = (ArrayList<Dish>) Dish.GetLastApprovedDishes();
+		request.getSession().setAttribute("allApprovedDishes", allApprovedDishes);
+		request.getSession().setAttribute("lastApprovedDishes", lastApprovedDishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("HomePage.jsp");
 		dispatch.forward(request, response);
 	}

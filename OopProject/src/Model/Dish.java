@@ -129,6 +129,22 @@ public class Dish {
 		return result;
 	}
 	
+	public static Collection<Dish> GetLastApprovedDishes(){
+		Collection<Dish> result = new ArrayList<Dish>();
+		try {
+			Connection con = MyDB.getConnection();
+			Statement stat = con.createStatement();
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 ORDER BY DISH_ID LIMIT 10;";
+			ResultSet rows = stat.executeQuery(selectAll);
+			while(rows.next()){
+				Dish tmp = getDish(rows.getString("DISH_NAME"));
+				result.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	public static String getName(int int1) {
 		String res = "";
