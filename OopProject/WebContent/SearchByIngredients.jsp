@@ -15,8 +15,7 @@
 
 <h3><a href = "HomePage.jsp"> Homepage </a></h3>
 
- 
-
+ <form action="SearchByIngredientsServlet">
 <% for (int i = 0; i < 3; i++){ %>
 	<p>Ingredient: <input type="text" name="ingredient" + i /> 
 <% } %>
@@ -34,7 +33,7 @@
 	}
 %>
 
-
+</form>
 
 <form action="AddMoreIngredients" method="post" >
 <input name="jsp" type="hidden" value= "SearchByIngredients.jsp"/>

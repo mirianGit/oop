@@ -16,12 +16,13 @@
 
 <div id="menu" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
 
-
+<form action="AddNewRecipe" method="post">
 <p> Name: <input type="text" name="name" /> 
 <p> How to prepare:  
 
 <p> <TEXTAREA Name="recipe" ROWS= 4 COLS= 40></TEXTAREA></p>
 
+</form>
 <p>
 
 Upload Image: <br />
@@ -36,6 +37,7 @@ Upload Image: <br />
 
 <div id="content" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
 
+<form action="AddNewRecipe" method="post">
 <% for (int i = 0; i < 3; i++){ %>
 	<p>Ingredient: <input type="text" name="name" + i /> 
 <% } %>
@@ -50,6 +52,7 @@ Upload Image: <br />
 		<% }
 	}
 %>
+</form>
 
 <form action="AddMoreIngredients" method="post" >
 <input name="jsp" type="hidden" value= "AddNewRecipe.jsp"/>
