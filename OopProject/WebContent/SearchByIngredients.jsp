@@ -38,7 +38,7 @@
 <input type = "submit" value= "Add more ingredients" />
 </form>
 
-<form action="SearchByIngredients" method="get">
+<form action="SearchByIngredientsServlet" method="get">
 
 <p><input type = "submit" value= "Search" /></p>
 
