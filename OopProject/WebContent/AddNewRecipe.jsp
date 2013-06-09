@@ -11,14 +11,12 @@
 <h1> Add new recipe</h1>
 
 
+
 <p> Name: <input type="text" name="name" /> 
-<p> Ingredient: <input type="text" name="name" /> 
 
 <% for (int i = 0; i < 3; i++){ %>
 	<p>Ingredient: <input type="text" name="name" + i /> 
 <% } %>
-
-
 
 
 <% Integer num = (Integer)request.getSession().getAttribute("numAdded");
@@ -30,6 +28,14 @@
 		<% }
 	}
 %>
+
+<form action="AddMoreIngredients" method="post" >
+<input name="jsp" type="hidden" value= "AddNewRecipe.jsp"/>
+<input type = "submit" value= "Add more ingredients" />
+</form>
+
+<p> How to prepare:  <input type="text" name="recipe" /> 
+
 
 
 </body>

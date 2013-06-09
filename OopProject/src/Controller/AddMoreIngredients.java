@@ -47,7 +47,10 @@ public class AddMoreIngredients extends HttpServlet {
 	    }
 	    request.getSession().setAttribute("numAdded", numAdded);
 	
-		RequestDispatcher dispatch = request.getRequestDispatcher("SearchByIngredients.jsp");
+	    String jsp = request.getParameter("jsp");
+	    System.out.println(jsp + "sfhaf");
+	    
+		RequestDispatcher dispatch = request.getRequestDispatcher(jsp);
 		dispatch.forward(request, response);
 	}
 
