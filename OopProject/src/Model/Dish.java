@@ -134,7 +134,7 @@ public class Dish {
 		try {
 			Connection con = MyDB.getConnection();
 			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 ORDER BY DISH_ID LIMIT 10;";
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 ORDER BY DISH_ID DESC LIMIT 10;";
 			ResultSet rows = stat.executeQuery(selectAll);
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));
@@ -150,7 +150,7 @@ public class Dish {
 		try {
 			Connection con = MyDB.getConnection();
 			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 ORDER BY DISH_ID LIMIT 10;";
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 ORDER BY RATE DESC LIMIT 10;";
 			ResultSet rows = stat.executeQuery(selectAll);
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));

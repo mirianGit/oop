@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.Dish;
 
@@ -30,10 +31,13 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sess = request.getSession();
 		ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) Dish.GetDishes(1);
 		ArrayList<Dish> lastApprovedDishes = (ArrayList<Dish>) Dish.GetLastApprovedDishes();
-		request.getSession().setAttribute("allApprovedDishes", allApprovedDishes);
-		request.getSession().setAttribute("lastApprovedDishes", lastApprovedDishes);
+		ArrayList<Dish> topTen = (ArrayList<Dish>) Dish.GetTopTenDishes();
+		sess.setAttribute("allApprovedDishes", allApprovedDishes);
+		sess.setAttribute("lastApprovedDishes", lastApprovedDishes);
+		sess.setAttribute("topTen", topTen);
 		RequestDispatcher dispatch = request.getRequestDispatcher("HomePage.jsp");
 		dispatch.forward(request, response);
 	}
