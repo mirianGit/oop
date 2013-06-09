@@ -11,18 +11,30 @@
 <% ArrayList<User> users = (ArrayList<User>) request
 			.getAttribute("users");%>
 </head>
+<script>
+ function Delete(key) {
+	document.getElementById("frm1").hidden.value=key;
+	document.getElementById("frm1").submit();
+}
+</script>
+
 <body>
-<h1>All recipes</h1>
+<form id="frm1"  method="get" action="DeleteUserServlet" >
+<input type="hidden" name="hidden">
+<h1>All users</h1>
+
 		<ul>
 	<%
 		for (int i = 0; i < users.size(); i++) {
 			User us = users.get(i);
 			String name= us.getName();
-			%><li><a><%=name %>&nbsp; &nbsp;<input type="button" value="delete"></a><% 
+			int id=us.getId();
+			%><li><a><%=name %>&nbsp; &nbsp;<input type="button" value="delete" onclick="Delete(<%=id %>)"></a><% 
 	
  	}
 	
  %>
  </ul>
+ </form>
 </body>
 </html>
