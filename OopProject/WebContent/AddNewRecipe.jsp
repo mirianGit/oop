@@ -34,7 +34,12 @@
 <input type = "submit" value= "Add more ingredients" />
 </form>
 
-<p> How to prepare:  <input type="text" name="recipe" /> 
+<p> How to prepare:  
+
+
+<TEXTAREA Name="recipe" ROWS= 4 COLS= 50></TEXTAREA>
+
+
 
 
 
