@@ -111,25 +111,13 @@ public class Dish {
 		return result;
 	}
 	
-	public static Collection<Dish> GetAllDishes() throws SQLException{
-		Collection<Dish> result = new ArrayList<Dish>();
-		Connection con = MyDB.getConnection();
-		Statement stat = con.createStatement();
-		String selectAll = "SELECT * FROM DISHES";
-		ResultSet rows = stat.executeQuery(selectAll);
-		while(rows.next()){
-			Dish tmp = getDish(rows.getString("DISH_NAME"));
-			result.add(tmp);
-		}
-		return result;
-	}
-	
-	public static Collection<Dish> GetNotApprovedDishes(){
+
+	public static Collection<Dish> GetDishes(int approved){
 		Collection<Dish> result = new ArrayList<Dish>();
 		try {
 			Connection con = MyDB.getConnection();
 			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 0;";
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = " + approved + ";";
 			ResultSet rows = stat.executeQuery(selectAll);
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));
