@@ -15,7 +15,7 @@
 </h1>
 <form action="RegisterServlet" method="get">
 
- <% String cout = (String)request.getSession().getAttribute("problem");
+ <% String cout = (String)request.getAttribute("problem");
  if(cout != null){%>
 	 <h4><%= cout %>!!! Please Be Careful! :) </h4>
 <%  } %>

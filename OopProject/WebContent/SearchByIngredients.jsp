@@ -16,7 +16,7 @@
 <h3><a href = "HomePage.jsp"> Homepage </a></h3>
 
 <% for (int i = 0; i < 3; i++){ %>
-	<p>Ingredient: <input type="text" name="name" + i /> 
+	<p>Ingredient: <input type="text" name="ingredient" + i /> 
 <% } %>
 
 
@@ -27,7 +27,7 @@
 		int a = 3;%>
 		<% for(int j = 0; j < num; j++){
 		%>
-			<p>Ingredient: <input type="text" name="name" + (a++) />
+			<p>Ingredient: <input type="text" name="ingredient" + (a++) />
 		<% }
 	}
 %>

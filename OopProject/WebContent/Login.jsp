@@ -15,7 +15,7 @@
 
 <form action="LoginServlet" method="get">
 
- <% String cout = (String)request.getSession().getAttribute("problem");
+ <% String cout = (String)request.getAttribute("problem");
  if(cout != null){%>
 	 <h4><%= cout %>!!! Please Try Again! :) </h4>
 <%  } %>

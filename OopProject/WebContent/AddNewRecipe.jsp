@@ -13,7 +13,23 @@
 
 <p> Name: <input type="text" name="name" /> 
 <p> Ingredient: <input type="text" name="name" /> 
-<p>Ingredient: <input type="text" name="name" />
+
+<% for (int i = 0; i < 3; i++){ %>
+	<p>Ingredient: <input type="text" name="name" + i /> 
+<% } %>
+
+
+
+
+<% Integer num = (Integer)request.getSession().getAttribute("numAdded");
+	if(num != null){ 
+		int a = 3;%>
+		<% for(int j = 0; j < num; j++){
+		%>
+			<p>Ingredient: <input type="text" name="name" + (a++) />
+		<% }
+	}
+%>
 
 
 </body>
