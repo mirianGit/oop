@@ -54,20 +54,20 @@
 
 <h4 align="center"><a href = "AllRecipes.jsp"> Most Popular Recipes </a></h4>
 
-<% ArrayList <Dish> dishes = (ArrayList<Dish>) request.getSession().getAttribute("allDishes"); 
- 	if(dishes != null){
+<% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>) request.getSession().getAttribute("allApprovedDishes"); 
+ 	if(allApprovedDishes != null){
  	
- 		request.setAttribute("all", dishes);
+ 		request.setAttribute("all", allApprovedDishes);
  		
- 	 	if(dishes.size() > 10){ 
+ 	 	if(allApprovedDishes.size() > 10){ 
 			for(int i = 0; i < 10; i++){ 
-	 			out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
-						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+	 			out.println("<li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
+						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a>"); 
 	 		}
  		}else{
- 			for(int i = 0; i < dishes.size(); i++){
- 				out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
-						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+ 			for(int i = 0; i < allApprovedDishes.size(); i++){
+ 				out.println("<li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
+						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a>"); 
  			}
  		}
  	}
@@ -89,17 +89,18 @@
 
 <ul>
 	
-<%  
- 	if(dishes != null){
- 		if(dishes.size() > 10){ 
+<%  ArrayList <Dish> lastApprovedDishes = (ArrayList<Dish>) request.getSession().getAttribute("lastApprovedDishes"); 
+
+ 	if(lastApprovedDishes != null){
+ 		if(lastApprovedDishes.size() > 10){ 
 			for(int i = 0; i < 10; i++){ 
-	 			out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
-						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+	 			out.println("<li> <a href= \"Dish.jsp?id=" + lastApprovedDishes.get(i).getId()
+						+ "\">" +  lastApprovedDishes.get(i).getName()  + "</a>"); 
 	 		}
  		}else{
- 			for(int i = 0; i < dishes.size(); i++){
- 				out.println("<li> <a href= \"Dish.jsp?id=" + dishes.get(i).getId()
-						+ "\">" +  dishes.get(i).getName()  + "</a>"); 
+ 			for(int i = 0; i < lastApprovedDishes.size(); i++){
+ 				out.println("<li> <a href= \"Dish.jsp?id=" + lastApprovedDishes.get(i).getId()
+						+ "\">" +  lastApprovedDishes.get(i).getName()  + "</a>"); 
  			}
  		}
  	}

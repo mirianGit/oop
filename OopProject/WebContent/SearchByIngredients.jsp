@@ -36,7 +36,8 @@ function add() {
 <p>Ingredient: <input type="text" name="name" />
 
 <p id = "new"></p>
-<p><span id="fooBar"> <br/></span></p>
+<p><span id="fooBar"> </span></p>
+
 
 
 
