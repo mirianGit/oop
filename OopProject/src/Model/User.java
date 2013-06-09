@@ -181,5 +181,22 @@ public class User {
 		}
 		return false;
 	}
-
+	public static List<User> allUsers(){
+		List<User> users=  new ArrayList<User>();
+		String select = "SELECT USER_ID FROM USER WHERE ROLE = 0;";
+		ResultSet res= null;
+		try {
+			Statement stat = MyDB.getConnection().createStatement();	
+			res = stat.executeQuery(select);
+			while(res.next()){
+				int user_id = res.getInt("USER_ID");
+				User us = User.getUserById(user_id);
+				users.add(us);
+			}
+		}catch (SQLException e) {
+			
+		}
+		
+		return users;
+	}
 }
