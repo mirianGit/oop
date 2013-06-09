@@ -12,12 +12,13 @@
 			.getAttribute("users");%>
 </head>
 <body>
+<h1>All recipes</h1>
 		<ul>
 	<%
 		for (int i = 0; i < users.size(); i++) {
 			User us = users.get(i);
 			String name= us.getName();
-			%><li><a><%=name %></a><% 
+			%><li><a><%=name %>&nbsp; &nbsp;<input type="button" value="delete"></a><% 
 	
  	}
 	
