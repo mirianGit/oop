@@ -145,6 +145,22 @@ public class Dish {
 		}
 		return result;
 	}
+	public static Collection<Dish> getDishesByName(String name){
+		Collection<Dish> result = new ArrayList<Dish>();
+		try {
+			Connection con = MyDB.getConnection();
+			Statement stat = con.createStatement();
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 AND DISH_NAME like '%"+ name +"%';";
+			ResultSet rows = stat.executeQuery(selectAll);
+			while(rows.next()){
+				Dish tmp = getDish(rows.getString("DISH_NAME"));
+				result.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public static Collection<Dish> GetTopTenDishes(){
 		Collection<Dish> result = new ArrayList<Dish>();
 		try {
