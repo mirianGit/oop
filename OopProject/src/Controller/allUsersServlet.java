@@ -33,7 +33,6 @@ public class allUsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> users = User.allUsers();
 		request.setAttribute("users", users);
-		System.out.println(users.size());
 		RequestDispatcher dispatch = request.getRequestDispatcher("AllUsers.jsp");
 		dispatch.forward(request, response);
 	}

@@ -32,7 +32,6 @@ public class DeleteUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id=Integer.parseInt(request.getParameter("hidden"));
 		User.deleteUser(id);
-		
 		RequestDispatcher dispatch = request.getRequestDispatcher("allUsersServlet");
 		dispatch.forward(request, response);
 	}

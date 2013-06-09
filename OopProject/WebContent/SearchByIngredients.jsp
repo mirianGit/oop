@@ -15,17 +15,19 @@
 
 <h3><a href = "HomePage.jsp"> Homepage </a></h3>
 
+<% for (int i = 0; i < 3; i++){ %>
+	<p>Ingredient: <input type="text" name="name" + i /> 
+<% } %>
 
-<p>Ingredient: <input type="text" name="name" /> 
-<p>Ingredient: <input type="text" name="name" /> 
-<p>Ingredient: <input type="text" name="name" />
 
 
 
 <% Integer num = (Integer)request.getSession().getAttribute("numAdded");
-	if(num != null){ %>
-		<% for(int i = 0; i < num; i++){%>
-			<p>Ingredient: <input type="text" name="name" />
+	if(num != null){ 
+		int a = 3;%>
+		<% for(int j = 0; j < num; j++){
+		%>
+			<p>Ingredient: <input type="text" name="name" + (a++) />
 		<% }
 	}
 %>
@@ -36,7 +38,7 @@
 <input type = "submit" value= "Add more ingredients" />
 </form>
 
-<form action="SearchByIngredients" method="get">
+<form action="SearchByIngredientsServlet" method="get">
 
 <p><input type = "submit" value= "Search" /></p>
 

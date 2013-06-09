@@ -76,7 +76,11 @@
 		for (int i = 0; i < dishes.size(); i++) {
 			Dish d = dishes.get(i);
 			String dish_name= d.getName();
-			%><li><a><%=dish_name %></a><% 
+			int approved=d.getApproved();
+			String status;
+			if(approved==1) status="approved";
+			else status ="not approved yet";
+			%><li><a><%=dish_name %></a> <a><%=status %></a><% 
 	
  	}
 	
