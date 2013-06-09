@@ -196,7 +196,17 @@ public class User {
 		}catch (SQLException e) {
 			
 		}
-		
 		return users;
 	}
+	public static void deleteUser(int id){
+		String select = "DELETE FROM user WHERE user_id="+id+";";
+		try {
+			Statement stat = MyDB.getConnection().createStatement();	
+			stat.executeUpdate(select);
+			
+		}catch (SQLException e) {
+			
+		}
+	}
+
 }
