@@ -34,9 +34,8 @@
 </div>
 <div id="menu" style="background-color:#F8F6F7;height:  100%;width:20%;float:left;">
 <b>Menu </b><br>
-<a href = "AllRecipes.jsp">edit Recipes<br></a>
 edit Users<br>
-<a href = "HomePage.jsp"> Back to Homepage</a>
+<a href = "Home"> Back to Homepage</a>
 </div>
 <div id="content" style="height:100%;width:80%;float:left;">
 <table style="height: 100%;width:  100%;"border="0"  >
@@ -45,13 +44,13 @@ edit Users<br>
 	<td width="30%" valign="top">
 
 	
-	<p>Non Approved recipes</p>
+	<p ><b><font size="4"color=FF7F50>Non Approved recipes </font></b></p>
 	<form id="frm1"  method="get" action="ApproveServlet" >
 	<input type="hidden" name="hidden">
-	
+	<%	if(c.isEmpty()) %> <a>there is nothing to approve</a>
 	<ul >
 	
-	<%
+	<%	
 		for(Dish d:c){
 		
 			String dish_name= d.getName();
@@ -67,11 +66,11 @@ edit Users<br>
 
   </td>
  <td width="25%" valign="top">
- 	<p>User Information</p>
+ 	<p><b><font size="4" color=FF7F50>User Information</font></b></p>
  	<a><%=name %></a>
  </td>
  <td width="25%" valign="top">
- <p>my recipes</p>
+ <p><b><font size="4" color=FF7F50>my recipes</font></b></p>
 	<ul>
 	<%
 		for (int i = 0; i < dishes.size(); i++) {

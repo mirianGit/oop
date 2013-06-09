@@ -28,7 +28,7 @@
 <table style="height: 100%;width:  100%;"border="0"  >
      <tr bgcolor=FF7F50 >
    <td width="35%" height="5"valign="top">
-      <p><a href = "HomePage.jsp"> <font color="white">Back to Homepage</font> </a></p>
+      <p><a href = "Home"> <font color="white">Back to Homepage</font> </a></p>
       </td>
       <td width="30%" align="center">
       <img src=cupcakes.jpg  height=54 width=136 >
