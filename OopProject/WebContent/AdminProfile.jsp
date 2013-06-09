@@ -34,7 +34,7 @@
 </div>
 <div id="menu" style="background-color:#F8F6F7;height:  100%;width:20%;float:left;">
 <b>Menu </b><br>
-edit Users<br>
+<a href = "allUsersServlet">edit Users</a><br>
 <a href = "Home"> Back to Homepage</a>
 </div>
 <div id="content" style="height:100%;width:80%;float:left;">
