@@ -54,20 +54,17 @@
 
 <h4 align="center"><a href = "AllRecipes.jsp"> Most Popular Recipes </a></h4>
 
-<% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>) request.getSession().getAttribute("allApprovedDishes"); 
- 	if(allApprovedDishes != null){
- 	
- 		request.setAttribute("all", allApprovedDishes);
- 		
- 	 	if(allApprovedDishes.size() > 10){ 
+<% ArrayList <Dish> topTen = (ArrayList<Dish>) request.getSession().getAttribute("topTen"); 
+ 	if(topTen != null){	
+ 	 	if(topTen.size() > 10){ 
 			for(int i = 0; i < 10; i++){ 
-	 			out.println("<li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
-						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a>"); 
+	 			out.println("<li> <a href= \"Dish.jsp?id=" + topTen.get(i).getId()
+						+ "\">" +  topTen.get(i).getName()  + "</a>"); 
 	 		}
  		}else{
- 			for(int i = 0; i < allApprovedDishes.size(); i++){
- 				out.println("<li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
-						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a>"); 
+ 			for(int i = 0; i < topTen.size(); i++){
+ 				out.println("<li> <a href= \"Dish.jsp?id=" + topTen.get(i).getId()
+						+ "\">" +  topTen.get(i).getName()  + "</a>"); 
  			}
  		}
  	}

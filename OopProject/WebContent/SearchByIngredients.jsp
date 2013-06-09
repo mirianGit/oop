@@ -7,26 +7,11 @@
 <title>Insert title here</title>
 
 
-<SCRIPT language="javascript">
-function add() {
-	
-       //Create an input type dynamically.
-       var element = document.createElement("input");
-     
-       
-       document.getElementById("new").innerHTML = "Ingredient:";
-       
-       var foo = document.getElementById("fooBar");
-     
-        //Append the element in page (in span).
-       foo.appendChild(element);
-
-}
-</SCRIPT>
 </head>
 <body bgcolor="#F7F8E0">
 
 <BODY>
+
 
 <h3><a href = "HomePage.jsp"> Homepage </a></h3>
 
@@ -35,19 +20,21 @@ function add() {
 <p>Ingredient: <input type="text" name="name" /> 
 <p>Ingredient: <input type="text" name="name" />
 
-<p id = "new"></p>
-<p><span id="fooBar"> </span></p>
+
+
+<% Integer num = (Integer)request.getSession().getAttribute("numAdded");
+	if(num != null){ %>
+		<% for(int i = 0; i < num; i++){%>
+			<p>Ingredient: <input type="text" name="name" />
+		<% }
+	}
+%>
 
 
 
-
-
-
-<FORM>
-
-<INPUT type="button" value="Add More Ingredients" onclick="add()"/>
-
-</FORM>
+<form action="AddMoreIngredients" method="post" >
+<input type = "submit" value= "Add more ingredients" />
+</form>
 
 <form action="SearchByIngredients" method="get">
 
@@ -55,7 +42,6 @@ function add() {
 
 </form>
 
-     
 
 
 </body>

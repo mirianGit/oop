@@ -38,7 +38,7 @@ public class AddMoreIngredients extends HttpServlet {
 		
 	    Integer numAdded = 
 	      (Integer)request.getSession().getAttribute("numAdded");
-	    if( numAdded == null || numAdded == 0 ){
+	    if( numAdded == null){
 	       /* First visit */
 	       numAdded = 1;
 	    }else{
