@@ -32,9 +32,11 @@
 			%><li><a><%=name %>&nbsp; &nbsp;<input type="button" value="delete" onclick="Delete(<%=id %>)"></a><% 
 	
  	}
-	
+
  %>
  </ul>
+ <p><a href = "Home"> Back to Homepage</a></p>
+ <p><a href = "userServlet"> Back to my profile</a></p>
  </form>
 </body>
 </html>
