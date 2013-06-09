@@ -48,8 +48,9 @@
 	<%
 		for (int i = 0; i < wishlist.size(); i++) {
 			Dish d = wishlist.get(i);
+			int dishId=d.getId();
 			String dish_name= d.getName();
-			%><li><a><%=dish_name %></a><% 
+			%><li><a href= "Dish.jsp?id="<%=dishId %>><%=dish_name %></a><% 
 	
  	}
 	
@@ -66,9 +67,11 @@
 	<ul>
 	<%
 		for (int i = 0; i < dishes.size(); i++) {
+			
 			Dish d = dishes.get(i);
+			int dishId=d.getId();
 			String dish_name= d.getName();
-			%><li><a><%=dish_name %></a><% 
+			%><li><a href= "Dish.jsp?id="<%=dishId %>><%=dish_name %></a><% 
 	
  	}
 	
