@@ -27,7 +27,7 @@
 <input type = "submit" value="Search" /></p>
 </form>
 
-<p><a href = "SearchByIngredients.jsp"> Search By Ingredients </a> </p>
+<p><a href = "SearchByIngredients"> Search By Ingredients </a> </p>
 </th>
 
 <td align=right width="30%">
