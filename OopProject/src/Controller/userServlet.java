@@ -43,15 +43,15 @@ public class userServlet extends HttpServlet {
 		List<Dish> dishes = us.uploadedDishes(); 
 		curr.setAttribute("dishes", dishes);
 		if(us.isAdmin()){
-			Collection<Dish> c= Dish.GetNotApprovedDishes();
+			Collection<Dish> c= Dish.GetDishes(0);
 			curr.setAttribute("notApproved", c);
 			RequestDispatcher dispatch = request.getRequestDispatcher("AdminProfile.jsp");
 			dispatch.forward(request, response);
 		}else{
 			List<Dish> wishlist = us.wishList(); 
 			curr.setAttribute("wishlist", wishlist);
-		RequestDispatcher dispatch = request.getRequestDispatcher("Profile.jsp");
-		dispatch.forward(request, response);
+			RequestDispatcher dispatch = request.getRequestDispatcher("Profile.jsp");
+			dispatch.forward(request, response);
 		}
 	}
 
