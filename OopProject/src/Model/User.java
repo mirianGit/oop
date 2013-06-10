@@ -198,9 +198,11 @@ public class User {
 		}
 		return false;
 	}
-	public static List<User> allUsers(){
+	public static List<User> allUsers(String name){
 		List<User> users=  new ArrayList<User>();
-		String select = "SELECT USER_ID FROM USER WHERE ROLE = 0;";
+		String select;
+		if(name==null) select = "SELECT USER_ID FROM USER WHERE ROLE = 0;";
+		else select="SELECT USER_ID FROM USER WHERE ROLE = 0 AND USER_NAME like '%"+ name +"%';";
 		ResultSet res= null;
 		try {
 			Statement stat = MyDB.getConnection().createStatement();	
