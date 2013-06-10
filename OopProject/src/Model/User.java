@@ -96,7 +96,7 @@ public class User {
 		}
 		return wishList;
 	}
-	private boolean wishListContains(int dish_id){
+	public boolean wishListContains(int dish_id){
 		ArrayList<Dish> wishList=(ArrayList<Dish>) wishList();
 		for(Dish d:wishList){
 			if(d.getId()==dish_id) return true;
