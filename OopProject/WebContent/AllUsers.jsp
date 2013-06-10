@@ -20,6 +20,13 @@
 </script>
 
 <body>
+
+<form action="allUsersServlet" method = "get">
+<p>Search: <input type="text" name="name" /> 
+<input type = "submit" value="Search" /></p>
+</form>
+
+
 <form id="frm1"  method="get" action="DeleteUserServlet" >
 
 <input type="hidden" name="hidden">
