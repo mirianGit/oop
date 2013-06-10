@@ -2,6 +2,7 @@ package Controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.Dish;
 import Model.User;
 
 /**
@@ -31,12 +33,15 @@ public class DishServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nam=(String)request.getSession().getAttribute("name");
+		String name=(String)request.getSession().getAttribute("name");
 		int id=Integer.parseInt(request.getParameter("id"));
-		User us=User.getUserById(User.getIdByName("elene"));
+		User us=User.getUserById(User.getIdByName(name));
 		int isAdmin=0;
 		if(us.isAdmin()) isAdmin=1;
 		request.setAttribute("isAdmin", isAdmin);
+		int contains=0;
+		if(us.wishListContains(id))contains=1;
+		request.setAttribute("contains", contains);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Dish.jsp"+"?id="+id);
 		dispatch.forward(request, response);
 	}
