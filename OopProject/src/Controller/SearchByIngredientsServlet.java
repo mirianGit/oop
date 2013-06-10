@@ -19,7 +19,7 @@ import Model.Ingredient;
 /**
  * Servlet implementation class SearchByIngredientServlet
  */
-@WebServlet("/SearchByIngredientServlet")
+@WebServlet("/SearchByIngredientsServlet")
 public class SearchByIngredientsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,6 +41,7 @@ public class SearchByIngredientsServlet extends HttpServlet {
 		while(it.hasNext()){
 			ingredients.add(new Ingredient(it.next()[0], ""));
 		}
+		System.out.println(ingredients.size());
 		ArrayList<Dish> foundDishes = (ArrayList<Dish>)Dish.getDishesByIngredients(ingredients);
 		request.setAttribute("foundDishes", foundDishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("SearchResults.jsp");

@@ -42,6 +42,7 @@ public class Ingredient {
 		return id;
 	}
 	
+	
 	// unda abrunebdes ukve bazashi arsebul ingredientis obieqts
 	public static Ingredient getIngredient(int ingredient_id) {
 		Ingredient result = null;
