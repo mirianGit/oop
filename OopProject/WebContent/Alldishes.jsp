@@ -24,7 +24,7 @@
 				stuffing. Add pepper and sal..</td>
 		</tr>
 		<tr>
-		<td><a href="Dish.jsp">More..</a></td>
+		<td><a href="DishServlet">More..</a></td>
 		</tr>
 	</table>
 

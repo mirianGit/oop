@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style>p, a {text-decoration: none} </style>
 <title>Login</title>
 </head>
 <body bgcolor="#E0F8F7">
 
-<p><a href = "HomePage.jsp"> Homepage </a></p>
+<p><a href = "Home"> Homepage </a></p>
 
 <h1 style="color:#FF8000"> Please log in. <img src="happy-chicken.jpg" align="right" width="200">
 </h1>

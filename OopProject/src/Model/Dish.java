@@ -96,6 +96,14 @@ public class Dish {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean res = false;
+		if(this.getId() == ((Dish)obj).getId()){
+			res = true;
+		}
+		return res;
+	}
 	public static Dish getDish(String name){
 		Dish result = null;
 		try {
@@ -161,6 +169,40 @@ public class Dish {
 		}
 		return result;
 	}
+	
+	public static Collection<Dish> getDishesByIngredients(Collection<Ingredient> ingredients){
+		Collection<Dish> result = new ArrayList<Dish>();
+		MyMap<Dish, Integer> mapping = new MyMap<Dish, Integer>();
+		try {
+			Connection con = MyDB.getConnection();
+			Statement stat = con.createStatement();
+			for(int i=0; i<ingredients.size(); i++){
+				String name = ((ArrayList<Ingredient>)ingredients).get(i).getName();
+				String selectForOne = "SELECT * FROM DISHES WHERE DISH_ID IN " + 
+						"(SELECT DISTINCT DISH_ID FROM INGREDIENTS WHERE INGREDIENT_ID = "+ 
+					"(SELECT INGREDIENT_ID FROM INGREDIENT WHERE INGREDIENT_NAME LIKE '%" + name + "%'))";
+				ResultSet rows = stat.executeQuery(selectForOne);
+				while(rows.next()){
+					Dish tmp = getDish(rows.getString("DISH_NAME"));
+					if(mapping.containsKey(tmp)){
+						mapping.put(tmp, mapping.get(tmp)+1);
+					}else{
+						mapping.put(tmp, 1);
+					}
+				}
+			}
+			for(int i=0; i<mapping.keySet().size();i++){
+				Dish tmp = mapping.keySet().get(i);
+				if(mapping.get(tmp) == ingredients.size()){
+					result.add(tmp);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public static Collection<Dish> GetTopTenDishes(){
 		Collection<Dish> result = new ArrayList<Dish>();
 		try {
@@ -205,3 +247,4 @@ public class Dish {
 		return res;
 	}
 }
+

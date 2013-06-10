@@ -33,19 +33,30 @@ public class DishServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name=(String)request.getSession().getAttribute("name");
-		int id=Integer.parseInt(request.getParameter("id"));
+		
+		int id=-1;
+		if(request.getParameter("id")!=null)
+		id=Integer.parseInt(request.getParameter("id"));
 		request.setAttribute("id", id);
-		User us=User.getUserById(User.getIdByName(name));
+		User us=null;
 		int isAdmin=0;
 		int signed=0;
-		if(request.getSession().getAttribute("signed").equals("true")) signed=1; 
-		request.setAttribute("signed", signed);
-		if(us.isAdmin()) isAdmin=1;
-		request.setAttribute("isAdmin", isAdmin);
 		int contains=0;
+		if(request.getSession().getAttribute("signed")!=null && request.getSession().getAttribute("signed").equals("true")){
+			signed=1; 
+			String name=(String)request.getSession().getAttribute("name");
+			us=User.getUserById(User.getIdByName(name));
+		}
+		if(us!=null){
+		
+		if(us.isAdmin()) isAdmin=1;
+		
+		
 		if(us.wishListContains(id))contains=1;
+		}
+		request.setAttribute("isAdmin", isAdmin);
 		request.setAttribute("contains", contains);
+		request.setAttribute("signed", signed);
 		RequestDispatcher dispatch = request.getRequestDispatcher("Dish.jsp"+"?id="+id);
 		dispatch.forward(request, response);
 	}

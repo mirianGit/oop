@@ -11,7 +11,8 @@
 <div id="container" style="width:800px">
 
 <div id="header" style="background-color:#FFA500;">
-<h1 align="left"><a href="HomePage.jsp"> Homepage</a></h1>
+<h1 align="left"><a href="Home"> Homepage</a></h1>
+
 <h1 style="margin-bottom:0;" align="center">  Add new recipe </h1></div>
 
 <div id="menu" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
