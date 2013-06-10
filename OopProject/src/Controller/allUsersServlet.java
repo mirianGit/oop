@@ -31,7 +31,8 @@ public class allUsersServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> users = User.allUsers("null");
+		System.out.println(request.getParameter("name"));
+		List<User> users = User.allUsers(request.getParameter("name"));
 		request.setAttribute("users", users);
 		RequestDispatcher dispatch = request.getRequestDispatcher("AllUsers.jsp");
 		dispatch.forward(request, response);
