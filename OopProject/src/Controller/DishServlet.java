@@ -35,8 +35,12 @@ public class DishServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=(String)request.getSession().getAttribute("name");
 		int id=Integer.parseInt(request.getParameter("id"));
+		request.setAttribute("id", id);
 		User us=User.getUserById(User.getIdByName(name));
 		int isAdmin=0;
+		int signed=0;
+		if(request.getSession().getAttribute("signed").equals("true")) signed=1; 
+		request.setAttribute("signed", signed);
 		if(us.isAdmin()) isAdmin=1;
 		request.setAttribute("isAdmin", isAdmin);
 		int contains=0;
