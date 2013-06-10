@@ -36,6 +36,16 @@ public class User {
 	public boolean isAdmin(){
 		return role==1;
 	}
+	public void makeAdmin(){
+		try {
+			Statement stat = con.createStatement();
+			String sql = "UPDATE User SET role = 1 WHERE User_ID='" + getId() + "';";
+			stat.executeUpdate(sql);
+			role = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	private int getIdFromDatabase(){
 		String select = "SELECT * FROM USER WHERE USER_NAME = '"+name+"';";
 		int id=-1;
