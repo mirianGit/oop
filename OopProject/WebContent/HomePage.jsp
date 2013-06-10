@@ -82,12 +82,12 @@
   	if(topTen != null){	
   	 	if(topTen.size() > 10){ 
  	for(int i = 0; i < 10; i++){ 
- 	 			out.println("<li> <a href= \"Dish.jsp?id=" + topTen.get(i).getId()
+ 	 			out.println("<li> <a href= \"DishServlet?id=" + topTen.get(i).getId()
  				+ "\">" +  topTen.get(i).getName()  + "</a>"); 
  	 		}
   		}else{
   			for(int i = 0; i < topTen.size(); i++){
-  				out.println("<li> <a href= \"Dish.jsp?id=" + topTen.get(i).getId()
+  				out.println("<li> <a href= \"DishServlet?id=" + topTen.get(i).getId()
  				+ "\">" +  topTen.get(i).getName()  + "</a>"); 
   			}
   		}
@@ -121,13 +121,13 @@
 						if (lastApprovedDishes != null) {
 							if (lastApprovedDishes.size() > 10) {
 								for (int i = 0; i < 10; i++) {
-									out.println("<li> <a href= \"Dish.jsp?id="
+									out.println("<li> <a href= \"DishServlet?id="
 											+ lastApprovedDishes.get(i).getId() + "\">"
 											+ lastApprovedDishes.get(i).getName() + "</a>");
 								}
 							} else {
 								for (int i = 0; i < lastApprovedDishes.size(); i++) {
-									out.println("<li> <a href= \"Dish.jsp?id="
+									out.println("<li> <a href= \"DishServlet?id="
 											+ lastApprovedDishes.get(i).getId() + "\">"
 											+ lastApprovedDishes.get(i).getName() + "</a>");
 								}

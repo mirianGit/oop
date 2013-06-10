@@ -23,7 +23,7 @@
 <% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>)request.getSession().getAttribute("allApprovedDishes");
  	if(allApprovedDishes != null){	
  		for(int i = 0; i < allApprovedDishes.size(); i++){
- 				out.println("<p><li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
+ 				out.println("<p><li> <a href= \"DishServlet?id=" + allApprovedDishes.get(i).getId()
 						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a></p>"); 
  				}
  		}
