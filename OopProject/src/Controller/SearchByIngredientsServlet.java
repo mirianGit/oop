@@ -41,7 +41,6 @@ public class SearchByIngredientsServlet extends HttpServlet {
 		while(it.hasNext()){
 			ingredients.add(new Ingredient(it.next()[0], ""));
 		}
-		System.out.println(ingredients.size());
 		ArrayList<Dish> foundDishes = (ArrayList<Dish>)Dish.getDishesByIngredients(ingredients);
 		request.setAttribute("foundDishes", foundDishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("SearchResults.jsp");

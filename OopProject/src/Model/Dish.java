@@ -180,7 +180,7 @@ public class Dish {
 				String name = ((ArrayList<Ingredient>)ingredients).get(i).getName();
 				String selectForOne = "SELECT * FROM DISHES WHERE DISH_ID IN " + 
 						"(SELECT DISTINCT DISH_ID FROM INGREDIENTS WHERE INGREDIENT_ID = "+ 
-					"(SELECT INGREDIENT_ID FROM INGREDIENT WHERE INGREDIENT_NAME like '%" + name + "%'))";
+					"(SELECT INGREDIENT_ID FROM INGREDIENT WHERE INGREDIENT_NAME LIKE '%" + name + "%'))";
 				ResultSet rows = stat.executeQuery(selectForOne);
 				while(rows.next()){
 					Dish tmp = getDish(rows.getString("DISH_NAME"));
@@ -246,33 +246,5 @@ public class Dish {
 		}
 		return res;
 	}
-/*	public static void main(String[] args) {
-		HashMap<Ingredient, String> res = new HashMap<Ingredient, String>();
-		res.put(new Ingredient("stafilo", "bla"), "AA");
-		res.put(new Ingredient("kombosto", ""), "AAA");
-		res.put(new Ingredient("xasho", ""), "aaa");
-		res.put(new Ingredient("wyali", "asd"), "asddads");
-		res.put(new Ingredient("kitri", "asd"), "asddads");
-
-		Dish d = new Dish("borchiii", 0, 1, 1, "a", "", res);
-		d.add();
-		HashMap<Ingredient, String> a = new HashMap<Ingredient, String>();
-		a.put(new Ingredient("stafilo", "bla"), "AA");
-		a.put(new Ingredient("kombosto", ""), "AAA");
-		a.put(new Ingredient("prasi", ""), "AAA");
-		a.put(new Ingredient("wyali", "asd"), "asda");
-		a.put(new Ingredient("kitri", "asd"), "asda");
-		Dish b = new Dish("chashushuliii", 0, 1, 1, "", "", a);
-		b.add(); 
-		ArrayList<Ingredient> w = new ArrayList<Ingredient>();
-	//	w.add(new Ingredient("stafilo", "bla"));
-	//	w.add(new Ingredient("kombosto", ""));
-		w.add(new Ingredient("kitri", "asd"));
-		w.add(new Ingredient("wyali", "asd"));
-		System.out.println(((ArrayList<Dish>)Dish.getDishesByIngredients(w)).size());
-	/*	HashMap<Ingredient, String> a = new HashMap<Ingredient, String>();
-		a.put(new Ingredient("ghvino", "AA"), "A");
-		System.out.println(a.containsKey(new Ingredient("ghvino", "AA")));
-	} */
 }
 
