@@ -24,7 +24,7 @@
 <% ArrayList <Dish> foundDishes = (ArrayList<Dish>)request.getAttribute("foundDishes");
  	if(foundDishes != null){	
  		for(int i = 0; i < foundDishes.size(); i++){
- 				out.println("<p><li> <a href= \"Dish.jsp?id=" + foundDishes.get(i).getId()
+ 				out.println("<p><li> <a href= \"DishServlet?id=" + foundDishes.get(i).getId()
 						+ "\">" +  foundDishes.get(i).getName()  + "</a></p>"); 
  				}
  		}
