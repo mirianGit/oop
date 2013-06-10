@@ -10,7 +10,7 @@
 	<h4>:</h4>
 	<table border="0" cellpadding="5" bgcolor=#E1F5A9>
 		<tr height=20%>
-			<th> <a href="Dish.jsp">DISH NAME</a></th>
+			<th> <a href="DishServlet">DISH NAME</a></th>
 			<td>userName</td>
 		</tr>
 		<tr>
