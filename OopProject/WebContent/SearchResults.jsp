@@ -15,7 +15,7 @@
 
 <h1> Found following dishes </h1>
 
-<form action="Search" method = "get">
+<form action="SearchServlet" method = "get">
 <p>Search: <input type="text" name="name" /> 
 <input type = "submit" value="Search" /></p>
 </form>
