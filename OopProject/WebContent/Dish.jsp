@@ -90,8 +90,6 @@
 						drink the broth, hot, fragrant, delicious! And then eat the rest
 						of the khinkali, leaving the tail on the plate.</p>
 				</div>
-
-				
 				<jsp:include page="commentBox.jsp"/>
 
 		
