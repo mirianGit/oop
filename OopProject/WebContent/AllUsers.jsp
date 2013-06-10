@@ -12,7 +12,8 @@
 			.getAttribute("users");%>
 </head>
 <script>
- function Delete(key) {
+ function Function(key,button) {
+	document.getElementById("frm1").button.value=button;
 	document.getElementById("frm1").hidden.value=key;
 	document.getElementById("frm1").submit();
 }
@@ -20,7 +21,9 @@
 
 <body>
 <form id="frm1"  method="get" action="DeleteUserServlet" >
+
 <input type="hidden" name="hidden">
+<input type="hidden" name="button">
 <h1>All users</h1>
 
 		<ul>
@@ -29,7 +32,8 @@
 			User us = users.get(i);
 			String name= us.getName();
 			int id=us.getId();
-			%><li><a><%=name %>&nbsp; &nbsp;<input type="button" value="delete" onclick="Delete(<%=id %>)"></a><% 
+			%><li><a><%=name %>&nbsp; &nbsp;<input type="button" value="delete" onclick="Function(<%=id %>,'delete')">
+			<input type="button" value="make Admin" onclick="Function(<%=id %>,'makeAdmin')"></a><% 
 	
  	}
 
