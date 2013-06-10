@@ -55,7 +55,7 @@
 		
 			String dish_name= d.getName();
 			 dish_id=d.getId();
-			%><li><a href= "Dish.jsp?id="<%=dish_id %>><%=dish_name %>&nbsp;<input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /></a><% 
+			%><li><a href= "DishServlet?id=<%=dish_id %>"><%=dish_name %>&nbsp;<input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /></a><% 
 	
  	}
 	
@@ -81,7 +81,7 @@
 			String status;
 			if(approved==1) status="approved";
 			else status ="not approved yet";
-			%><li><a href= "Dish.jsp?id="<%=dishId %>><%=dish_name %></a> <a><%=status %></a><% 
+			%><li><a href= "DishServlet?id=<%=dishId %>"><%=dish_name %></a> <a><%=status %></a><% 
 	
  	}
 	
