@@ -1,3 +1,4 @@
+<%@page import="Model.User"%>
 <%@page import="Model.Dish"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -8,8 +9,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home page with dishes</title>
 </head>
-
+<%int signed=(Integer)request.getAttribute("signed");
+int id= (Integer)request.getAttribute("id");
+boolean alreadyInWishlist=false;
+int isAdmin=(Integer)request.getAttribute("isAdmin");
+int contains=(Integer)request.getAttribute("contains");%>
 <body style="height: 100%;" bgcolor="#FFF8F0">
+<form action="wishlistOrDeleteServlet" method="get">
+<input type=hidden name=id value=<%=id %>>
+<%if(signed==1){
+	if(isAdmin==0&&contains==0){ %> <p> <input type=submit name="button" value="add to wishlist"></p>
+<% }else if(isAdmin==0){ %> <p> added to wishlist</p>
+<% }else{ %> <p> <input type=submit name="button" value="Delete recipe"></p>
+<%}} %>
+</form>
 				<h4>
 					<a href="AllRecipes.jsp"> All recipes </a>
 				</h4>
