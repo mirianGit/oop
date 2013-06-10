@@ -6,8 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register</title>
 </head>
+<style>p, a {text-decoration: none} </style>
 <body bgcolor="#FBF2EF">
-<p><a href = "HomePage.jsp"> Homepage </a></p>
+<p><a href = "Home"> Homepage </a></p>
 
 <h1> Create New Account
 <img src="kitchenWelcome.jpg" align="right" width="200">
