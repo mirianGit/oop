@@ -33,10 +33,10 @@ public class DishServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("A");
 		int id=-1;
-		if(request.getParameter("id")!=null)
-		id=Integer.parseInt(request.getParameter("id"));
+		if(request.getParameter("id")!=null){
+		id=Integer.parseInt(request.getParameter("id"));}
 		request.setAttribute("id", id);
 		User us=null;
 		int isAdmin=0;
@@ -49,10 +49,10 @@ public class DishServlet extends HttpServlet {
 		}
 		if(us!=null){
 		
-		if(us.isAdmin()) isAdmin=1;
+			if(us.isAdmin()) isAdmin=1;
 		
 		
-		if(us.wishListContains(id))contains=1;
+			if(us.wishListContains(id))contains=1;
 		}
 		request.setAttribute("isAdmin", isAdmin);
 		request.setAttribute("contains", contains);
