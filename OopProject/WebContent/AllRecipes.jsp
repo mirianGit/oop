@@ -10,7 +10,7 @@
 </head>
 <body background="back.jpg">
 
-<p><a href = "HomePage.jsp"> Homepage </a></p>
+<p><a href = "Home"> Homepage </a></p>
 
 <h1> All Recipes </h1>
 

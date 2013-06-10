@@ -13,7 +13,7 @@
 <BODY>
 
 
-<h3><a href = "HomePage"> Homepage </a></h3>
+<h3><a href = "Home"> Homepage </a></h3>
 
 
 <form action="AddMoreIngredients" method="post" >

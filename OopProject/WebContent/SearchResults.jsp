@@ -10,9 +10,9 @@
 </head>
 <body background="back.jpg">
 
-<p><a href = "HomePage.jsp"> Homepage </a></p>
+<p><a href = "Home"> Homepage </a></p>
 
-<h1> Found followig dishes </h1>
+<h1> Found following dishes </h1>
 
 <form action="Search" method = "get">
 <p>Search: <input type="text" name="name" /> 
@@ -20,11 +20,11 @@
 </form>
 
 
-<% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>)request.getAttribute("foundDishes");
- 	if(allApprovedDishes != null){	
- 		for(int i = 0; i < allApprovedDishes.size(); i++){
- 				out.println("<p><li> <a href= \"Dish.jsp?id=" + allApprovedDishes.get(i).getId()
-						+ "\">" +  allApprovedDishes.get(i).getName()  + "</a></p>"); 
+<% ArrayList <Dish> foundDishes = (ArrayList<Dish>)request.getAttribute("foundDishes");
+ 	if(foundDishes != null){	
+ 		for(int i = 0; i < foundDishes.size(); i++){
+ 				out.println("<p><li> <a href= \"Dish.jsp?id=" + foundDishes.get(i).getId()
+						+ "\">" +  foundDishes.get(i).getName()  + "</a></p>"); 
  				}
  		}
  	%>
