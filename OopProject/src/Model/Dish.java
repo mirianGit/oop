@@ -138,11 +138,16 @@ public class Dish {
 			int id = d.getInt("DISH_ID");
 			HashMap<Ingredient, String> ingredients = getIngredientsFromDatabase(id);
 			result = new Dish(name, d.getInt("RATE"), d.getInt("AUTHOR"), d.getInt("APPROVED"), d.getString("RECEIPT"), d.getString("PICTURE"), ingredients);
+			result.setId(id);
 			return result;
 		} catch (SQLException e) {}
 		return result;
 	}
 	
+
+	public void setId(int id2) {
+		this.id = generateId();
+	}
 
 	public static Collection<Dish> GetDishes(int approved){
 		Collection<Dish> result = new ArrayList<Dish>();
