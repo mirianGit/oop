@@ -16,6 +16,7 @@ public class Dish {
 	private int authorId;
 	private int rate;
 	private int approved;
+	private int id;
 	private HashMap<Ingredient, String> ingredients;
 	private Connection con = MyDB.getConnection();
 
@@ -27,8 +28,22 @@ public class Dish {
 		this.rate = rate;
 		this.ingredients =  ingredients;
 		this.approved = approved;
+		this.id = generateId();
 	}
 	
+	private int generateId(){
+		int res = -1;
+		try {
+			Statement stat = con.createStatement();
+			String select = "SELECT * FROM DISHES WHERE DISH_NAME = '" + name + "';";
+			ResultSet result = stat.executeQuery(select);
+			result.next();
+			res = result.getInt("DISH_ID");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	// amatebs bazashi
 	public void add() {
 		try {
@@ -51,19 +66,7 @@ public class Dish {
 		return name;
 	}
 	// returns id or -1 if such dish doesn't exist ot there's problem with database
-	public int getId(){
-		int res = -1;
-		try {
-			Statement stat = con.createStatement();
-			String select = "SELECT * FROM DISHES WHERE DISH_NAME = '" + name + "';";
-			ResultSet result = stat.executeQuery(select);
-			result.next();
-			res = result.getInt("DISH_ID");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return res;
-	}
+	
 	
 	public void approve() {
 		try {
@@ -81,8 +84,23 @@ public class Dish {
 		return approved;
 	}
 	
+	public int getId(){
+		return id;
+	}
 	public HashMap<Ingredient, String> getIngredients(){
 		return  ingredients;
+	}
+	
+	public void delete(){
+		try {
+			Statement stat = con.createStatement();
+			String deletefromdishes = "DELETE FROM DISHES WHERE DISH_ID = '" + getId() + "';";
+			stat.executeUpdate(deletefromdishes);
+			String deletefromingredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = '" + this.id + "';";
+			stat.executeUpdate(deletefromingredients);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	private void insertIntoIngredients() throws SQLException{
@@ -219,7 +237,7 @@ public class Dish {
 		}
 		return result;
 	}
-	
+		
 	public static String getName(int int1) {
 		String res = "";
 		Connection con = MyDB.getConnection();
