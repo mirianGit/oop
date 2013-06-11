@@ -62,7 +62,7 @@ form:after {
 }
 .container { margin: 25px auto; position: relative; width: 900px; }
 #content {
-	background: #f9f9f9;
+	background: #FFDBB8;
 	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
 	background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
 	background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
@@ -83,7 +83,7 @@ form:after {
 	width: 400px;
 }
 #content h1 {
-	color: #7E7E7E;
+	color: #FFDBB8;
 	font: bold 25px Helvetica, Arial, sans-serif;
 	letter-spacing: -0.05em;
 	line-height: 20px;
@@ -117,7 +117,7 @@ form:after {
 }
 #content:after,
 #content:before {
-	background: #f9f9f9;
+	background: #FFDBB8;
 	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
 	background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
 	background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
@@ -283,11 +283,20 @@ form:after {
 			 <% String cout = (String)request.getAttribute("problem");
  if(cout != null){%>
 	 <h4><%= cout %></h4>
+	 <br/>
 <%  } %>
-				<input type="text" placeholder="Username" required="" id="username"  name = "name"/>
+				<input type="text" placeholder="Username" required="" id="username"  name = "name"
+				value="Username"
+							onclick="if(this.value=='Username'){this.value=''}"
+							onblur="if(this.value==''){this.value='Username'}"
+				/>
 			</div>
 			<div>
-				<input type="password" placeholder="Password" required="" id="password" name = "password" />
+				<input type="text" placeholder="Password" required="" id="password" name = "password"
+				value="Password"
+							onclick="if(this.value=='Password'){this.value=''; this.type = 'password'}"
+							onblur="if(this.value==''){this.value='Password'; this.type = 'text'}"
+				 />
 			</div>
 			<div>
 				<input type="submit" value="Log in" />
