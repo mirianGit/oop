@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.Dish;
 import Model.User;
 
 /**
@@ -38,11 +39,16 @@ public class wishlistOrDeleteServlet extends HttpServlet {
 		String button=request.getParameter("button");
 		if(button.equals("add to wishlist")){
 			us.addToWishList(dishId);
+			RequestDispatcher dispatch = request.getRequestDispatcher("DishServlet"+"?id="+dishId);
+			dispatch.forward(request, response);
 		}else{
-			//washlaa
+			
+			Dish d=Dish.getDish(Dish.getName(dishId));
+			d.delete();
+			RequestDispatcher dispatch = request.getRequestDispatcher("Home");
+			dispatch.forward(request, response);
 		}
-		RequestDispatcher dispatch = request.getRequestDispatcher("DishServlet"+"?id="+dishId);
-		dispatch.forward(request, response);
+		
 	}
 
 	/**
