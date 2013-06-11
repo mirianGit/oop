@@ -44,6 +44,11 @@ public class Dish {
 		this.id = res;
 		return res;
 	}
+	
+	public String getPicture(){
+		return picture;
+	}
+	
 	// amatebs bazashi
 	public void add() {
 		try {
@@ -274,6 +279,26 @@ public class Dish {
 			res.put(Ingredient.getIngredient(ingredient_id), s.getString("AMOUNT"));
 		}
 		return res;
+	}
+
+	public static void editDish(int editingDishId, String dishName, String recipeText, HashMap<Ingredient, String> ingredients2) {
+		try {
+			Statement stat = MyDB.getConnection().createStatement();
+			String update = "UPDATE DISHES SET DISH_NAME = '"+dishName+"', RECEIPT = '"+ recipeText +"' WHERE DISH_ID = '"+editingDishId+"';";
+			stat.executeUpdate(update);
+			String removeFromIngredients = "DELETE FROM INGREDIENTS WHERE DISH_ID ='" + editingDishId + "';";
+			stat.executeUpdate(removeFromIngredients);
+			Iterator<Ingredient> it = ingredients2.keySet().iterator();
+			while(it.hasNext()){
+				Ingredient next = it.next();
+				int ingrId = next.getId();
+				String amount = ingredients2.get(next);
+				String insertIntoIngredients = "INSERT INTO INGREDIENTS VALUES ("+editingDishId+", "+ingrId+", '"+amount+"');";
+				stat.executeUpdate(insertIntoIngredients);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 
