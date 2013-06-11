@@ -42,7 +42,6 @@ public class wishlistOrDeleteServlet extends HttpServlet {
 			RequestDispatcher dispatch = request.getRequestDispatcher("DishServlet"+"?id="+dishId);
 			dispatch.forward(request, response);
 		}else{
-			
 			Dish d=Dish.getDish(Dish.getName(dishId));
 			d.delete();
 			RequestDispatcher dispatch = request.getRequestDispatcher("Home");
