@@ -33,7 +33,6 @@ public class DishServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("A");
 		int id=-1;
 		if(request.getParameter("id")!=null){
 		id=Integer.parseInt(request.getParameter("id"));}
