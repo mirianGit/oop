@@ -33,6 +33,7 @@ public class User {
 		else userId = id;
 	
 	}
+	
 	public boolean isAdmin(){
 		return role==1;
 	}
