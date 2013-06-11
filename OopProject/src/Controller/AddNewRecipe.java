@@ -1,6 +1,8 @@
 package Controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Model.Dish;
+import Model.Ingredient;
 import Model.User;
 
 /**
@@ -48,7 +51,23 @@ public class AddNewRecipe extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatch = null;
 		HttpSession curr = request.getSession();
-		System.out.println(request.getParameterMap().size());
+		String dishName = request.getParameter("name");
+		String recipeText = request.getParameter("recipe");
+		int userId = User.getIdByName((String)curr.getAttribute("name"));
+		HashMap<Ingredient, String> ingredients = new HashMap<Ingredient, String>();
+		Iterator<String> it = request.getParameterMap().keySet().iterator();
+		while(it.hasNext()){
+			String next = it.next();
+			if(next.length()>9){
+				if( next.substring(0, 10).equals("INGREDIENT")){
+					ingredients.put(new Ingredient(request.getParameter(next), ""), request.getParameter("amount"+next.substring(10)));
+				}
+			}
+		}
+		Dish newDish = new Dish(dishName, 0, userId, 0, recipeText, "", ingredients);
+		newDish.add();
+		dispatch = request.getRequestDispatcher("HomePage.jsp");
+		dispatch.forward(request, response);
 	}
-
+	
 }
