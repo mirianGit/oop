@@ -1,5 +1,7 @@
 package Model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,14 +28,39 @@ public class User {
 			e.printStackTrace();
 		}
 		this.name = name;
-		this.password = password;
+		
 		this.role = role;
 		if (id == -1) {
+			this.password = HashPassword(password);
 			addToDatabase();
 			userId = getIdFromDatabase();
-		} else
+		} else{
+			this.password=password;
 			userId = id;
+		}
+	}
+	private static String HashPassword(String string) {
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		md.update(string.getBytes());
+		return hexToString(md.digest());
 
+	}
+	public static String hexToString(byte[] bytes) {
+		StringBuffer buff = new StringBuffer();
+		for (int i = 0; i < bytes.length; i++) {
+			int val = bytes[i];
+			val = val & 0xff; // remove higher bits, sign
+			if (val < 16)
+				buff.append('0'); // leading 0
+			buff.append(Integer.toString(val, 16));
+		}
+		return buff.toString();
 	}
 
 	public boolean isAdmin() {
@@ -221,7 +248,8 @@ public class User {
 
 	public static boolean passwordIsCorrect(String username, String password) {
 		try {
-			if (userChecker.getString("USER_PASSWORD").equals(password))
+			String hashed=HashPassword(password);
+			if (userChecker.getString("USER_PASSWORD").equals(hashed))
 				return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
