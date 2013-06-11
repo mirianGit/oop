@@ -276,7 +276,7 @@ form:after {
 <body>
 <div class="container">
 	<section id="content">
-		<form action="RegisterServlet" method="get">
+		<form action="RegisterServlet" method="post">
 			<h1>Register Form</h1>
 			<div>
 			
