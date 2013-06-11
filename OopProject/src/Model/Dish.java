@@ -16,7 +16,7 @@ public class Dish {
 	private int authorId;
 	private int rate;
 	private int approved;
-	private int id;
+	private int id = -1;
 	private HashMap<Ingredient, String> ingredients;
 	private Connection con = MyDB.getConnection();
 
@@ -28,7 +28,6 @@ public class Dish {
 		this.rate = rate;
 		this.ingredients =  ingredients;
 		this.approved = approved;
-		this.id = generateId();
 	}
 	
 	private int generateId(){
@@ -57,6 +56,7 @@ public class Dish {
 														+ picture + "');";
 			stat.executeUpdate(sql);
 			insertIntoIngredients();
+			this.id = generateId();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
