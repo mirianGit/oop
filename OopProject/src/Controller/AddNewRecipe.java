@@ -32,10 +32,6 @@ public class AddNewRecipe extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
 		if (request.getSession().getAttribute("signed") == null){
 			request.setAttribute("problem", "For adding your recipe you have to log in first:)");
 			RequestDispatcher dispatch = request.getRequestDispatcher("Login.jsp");
@@ -43,7 +39,6 @@ public class AddNewRecipe extends HttpServlet {
 		}else{
 			RequestDispatcher dispatch = request.getRequestDispatcher("AddNewRecipe.jsp");
 			dispatch.forward(request, response);
-			
 		}
 	}
 
@@ -53,19 +48,7 @@ public class AddNewRecipe extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatch = null;
 		HttpSession curr = request.getSession();
-		String name = (String) request.getParameter("name");
-		if(name == null || name == "")
-		if(Dish.getDish(name) != null){
-			request.setAttribute("problem", "The dish with this name already exists.");
-			dispatch = request.getRequestDispatcher("AddNewRecipe.jsp");
-			dispatch.forward(request, response);
-		}else{ 
-			String recipe = (String) request.getParameter("recipe");
-			curr.setAttribute(name, "name");
-			curr.setAttribute(recipe, "recipe");
-		}
-		
-		
+		System.out.println(request.getParameterMap().size());
 	}
 
 }

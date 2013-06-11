@@ -3,6 +3,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script>
+var counter = 1;
+var limit = 20;
+function addInput(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Ingredient " + (counter + 1) + " <br><input type='text' name='myInputs[]'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New Recipe</title>
 </head>
@@ -23,7 +38,6 @@
 
 <p> <TEXTAREA Name="recipe" ROWS= 4 COLS= 40></TEXTAREA></p>
 
-</form>
 <p>
 
 Upload Image: <br />
@@ -34,7 +48,7 @@ Upload Image: <br />
 <input type="submit" value="Upload Image" />
 </form>
 
-<form action="Home" >
+<form action="AddNewRecipe" method='post'>
 <p align="right"><input type="submit" value="Add Recipe"/></p>
 
 </form>
@@ -42,31 +56,20 @@ Upload Image: <br />
 
 <div id="content" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
 
-<form action="AddNewRecipe" method="post">
-<% for (int i = 0; i < 3; i++){ %>
-	<p>Ingredient: <input type="text" name="name" + i /> 
-<% } %>
 
 
-<% Integer num = (Integer)request.getSession().getAttribute("numAdded");
-	if(num != null){ 
-		int a = 3;%>
-		<% for(int j = 0; j < num; j++){
-		%>
-			<p> Ingredient: <input type="text" name="name" + (a++) />
-		<% }
-	}
-%>
-</form>
-
-<form action="AddMoreIngredients" method="post" >
-<input name="jsp" type="hidden" value= "AddNewRecipe.jsp"/>
-<p><input type = "submit" value= "Add more ingredients" /></p>
+<script  language="Javascript" type="text/javascript"></script>
+<form method="POST">
+     <div id="dynamicInput">
+          Ingredient 1<br><input type="text" name="myInputs[]">
+     </div>
+     <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
 </form>
 
 </div>
 
 </div>
+</form>
 
 </body>
 </html>
