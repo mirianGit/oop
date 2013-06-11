@@ -65,6 +65,9 @@ public class Dish {
 	public String getName(){
 		return name;
 	}
+	public String getReceipt(){
+		return receiptText;
+	}
 	// returns id or -1 if such dish doesn't exist ot there's problem with database
 	
 	
@@ -98,6 +101,8 @@ public class Dish {
 			stat.executeUpdate(deletefromdishes);
 			String deletefromingredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = '" + this.id + "';";
 			stat.executeUpdate(deletefromingredients);
+			String deleteFromWishList = "DELETE FROM WISH_LIST WHERE DISH_ID = '" + this.id + "';";
+			stat.executeUpdate(deleteFromWishList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -238,12 +243,12 @@ public class Dish {
 		return result;
 	}
 		
-	public static String getName(int int1) {
+	public static String getName(int dish_id) {
 		String res = "";
 		Connection con = MyDB.getConnection();
 		try {
 			Statement stat = con.createStatement();
-			String select = "SELECT * FROM DISHES WHERE DISH_ID = " + int1 + ";";
+			String select = "SELECT * FROM DISHES WHERE DISH_ID = " + dish_id + ";";
 			ResultSet s = stat.executeQuery(select);
 			s.next();
 			res = s.getString("DISH_NAME");
