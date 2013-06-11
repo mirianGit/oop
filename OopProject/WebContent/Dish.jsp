@@ -1,3 +1,7 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="Model.Ingredient"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="Model.User"%>
 <%@page import="Model.Dish"%>
 <%@page import="java.util.ArrayList"%>
@@ -29,11 +33,16 @@ int contains=(Integer)request.getAttribute("contains");%>
 				<div
 					class="post-1450 post type-post status-publish format-standard hentry category-59"
 					id="post-1450">
-					<h1 class="entry-title">dish name</h1>
+					<%
+					int dish_id = Integer.parseInt(request.getParameter("id"));
+					String dish_name = Dish.getName(dish_id);
+					Dish curr_dish = Dish.getDish(dish_name);
+					%>
+					<h1 class="entry-title">  <%=dish_name %></h1>
 
 					<div id="guan-page-code-top"></div>
 					<p>
-						<img src="pizza.jpg" alt="Smiley face" height="200" width="200"
+						<img src=<%=curr_dish.getPicture()%> alt="Smiley face" height="200" width="200"
 							align="left">
 					</p>
 					<p>
@@ -48,6 +57,15 @@ int contains=(Integer)request.getAttribute("contains");%>
 								<th>quantity</th>
 							</tr>
 							<tr>
+							
+							<% 
+							
+							HashMap<Ingredient, String> ingredients = curr_dish.getIngredients();
+							if(ingredients != null){
+								
+								
+							}
+							%>
 							<td>1</td>
 								<td>ingredienti</td>
 								<td>raodenoba</td>
