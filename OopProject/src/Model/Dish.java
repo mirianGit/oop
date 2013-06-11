@@ -41,6 +41,7 @@ public class Dish {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		this.id = res;
 		return res;
 	}
 	// amatebs bazashi
@@ -56,10 +57,10 @@ public class Dish {
 														+ picture + "');";
 			stat.executeUpdate(sql);
 			insertIntoIngredients();
-			this.id = generateId();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		this.id = generateId();
 	}
 	
 	public String getName(){
@@ -88,7 +89,7 @@ public class Dish {
 	}
 	
 	public int getId(){
-		return id;
+		return generateId();
 	}
 	public HashMap<Ingredient, String> getIngredients(){
 		return  ingredients;
@@ -97,7 +98,7 @@ public class Dish {
 	public void delete(){
 		try {
 			Statement stat = con.createStatement();
-			String deletefromdishes = "DELETE FROM DISHES WHERE DISH_ID = '" + getId() + "';";
+			String deletefromdishes = "DELETE FROM DISHES WHERE DISH_ID = '" + this.id + "';";
 			stat.executeUpdate(deletefromdishes);
 			String deletefromingredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = '" + this.id + "';";
 			stat.executeUpdate(deletefromingredients);
@@ -148,7 +149,7 @@ public class Dish {
 		try {
 			Connection con = MyDB.getConnection();
 			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = " + approved + ";";
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = '" + approved + "';";
 			ResultSet rows = stat.executeQuery(selectAll);
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));
