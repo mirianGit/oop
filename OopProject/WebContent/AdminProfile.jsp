@@ -55,7 +55,7 @@
 		
 			String dish_name= d.getName();
 			 dish_id=d.getId();
-			%><li><a href= "DishServlet?id=<%=dish_id %>"><%=dish_name %>&nbsp;<input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /></a><% 
+			%><li><a href= "DishServlet?id=<%=dish_id %>"><%=dish_name %>&nbsp;</a><input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /><% 
 	
  	}
 	
