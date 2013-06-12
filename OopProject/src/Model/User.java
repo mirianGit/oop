@@ -217,7 +217,7 @@ public class User {
 			if (res.next()) {
 				String name = getColumnInfo(id, "USER_NAME", res);
 				String password = getColumnInfo(id, "USER_PASSWORD", res);
-				System.out.println(getColumnInfo(id, "ROLE", res));
+			
 				int role = Integer.parseInt(getColumnInfo(id, "ROLE", res));
 
 				return new User(id, name, password, role);
