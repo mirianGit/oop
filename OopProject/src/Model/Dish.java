@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import com.sun.corba.se.impl.oa.poa.AOMEntry;
+
 public class Dish {
 	private String name;
 	private String receiptText;
@@ -34,9 +36,10 @@ public class Dish {
 	private int generateId(){
 		int res = -1;
 		try {
-			Statement stat = con.createStatement();
-			String select = "SELECT * FROM DISHES WHERE DISH_NAME = '" + name + "';";
-			ResultSet result = stat.executeQuery(select);
+			String select = "SELECT * FROM DISHES WHERE DISH_NAME = ? ;";
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setString(1, name);
+			ResultSet result = stat.executeQuery();
 			result.next();
 			res = result.getInt("DISH_ID");
 		} catch (SQLException e) {
@@ -53,15 +56,17 @@ public class Dish {
 	// amatebs bazashi
 	public void add() {
 		try {
-			Statement stat = con.createStatement();
+			
 			String sql = "INSERT INTO DISHES (DISH_NAME,RATE, AUTHOR, APPROVED, RECEIPT, PICTURE)" +
-											  " VALUES ('" + name + "', "
-														+ rate + ", "
-														+ authorId + ", "
-														+ approved + ", '"
-														+ receiptText + "', '"
-														+ picture + "');";
-			stat.executeUpdate(sql);
+											  " VALUES (?, ?, ?, ?, ?, ? );";
+			PreparedStatement stat = con.prepareStatement(sql);
+			stat.setString(1, name);
+			stat.setInt(2, rate);
+			stat.setInt(3, authorId);
+			stat.setInt(4, approved);
+			stat.setString(5, receiptText);
+			stat.setString(6, picture);
+			stat.executeUpdate();
 			insertIntoIngredients();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,9 +85,10 @@ public class Dish {
 	
 	public void approve() {
 		try {
-			Statement stat = con.createStatement();
-			String sql = "UPDATE DISHES SET APPROVED = 1 WHERE DISH_ID='" + getId() + "';";
-			stat.executeUpdate(sql);
+			String sql = "UPDATE DISHES SET APPROVED = 1 WHERE DISH_ID = ? ;";
+			PreparedStatement stat = con.prepareStatement(sql);
+			stat.setInt(1, getId());
+			stat.executeUpdate();
 			approved = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,26 +109,36 @@ public class Dish {
 	
 	public void delete(){
 		try {
-			Statement stat = con.createStatement();
-			String deletefromdishes = "DELETE FROM DISHES WHERE DISH_ID = '" + this.id + "';";
-			stat.executeUpdate(deletefromdishes);
-			String deletefromingredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = '" + this.id + "';";
-			stat.executeUpdate(deletefromingredients);
-			String deleteFromWishList = "DELETE FROM WISH_LIST WHERE DISH_ID = '" + this.id + "';";
-			stat.executeUpdate(deleteFromWishList);
+			String deletefromdishes = "DELETE FROM DISHES WHERE DISH_ID = ? ;";
+			PreparedStatement stat = con.prepareStatement(deletefromdishes);
+			stat.setInt(1, this.id);
+			stat.executeUpdate();
+			
+			String deletefromingredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = ? ;";
+			PreparedStatement stat1 = con.prepareStatement(deletefromingredients);
+			stat1.setInt(1, this.id);
+			stat1.executeUpdate();
+			
+			String deleteFromWishList = "DELETE FROM WISH_LIST WHERE DISH_ID = ? ;";
+			PreparedStatement stat2 = con.prepareStatement(deleteFromWishList);
+			stat2.setInt(1, this.id);
+			stat2.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 	}
 	
 	private void insertIntoIngredients() throws SQLException{
-		Statement stat = con.createStatement();
 		Iterator<Ingredient> in = ingredients.keySet().iterator();
 		int id = getId();
 		while(in.hasNext()){
 			Ingredient tmp = in.next();
-			String insert = "INSERT INTO INGREDIENTS VALUES (" + id + ", " + tmp.getId() + ", '" + ingredients.get(tmp) + "');";
-			stat.executeUpdate(insert);
+			String insert = "INSERT INTO INGREDIENTS VALUES (?, ?, ?);";
+			PreparedStatement stat = con.prepareStatement(insert);
+			stat.setInt(1, id);
+			stat.setInt(2, tmp.getId());
+			stat.setString(3, ingredients.get(tmp));
+			stat.executeUpdate();
 		}
 	}
 
@@ -137,9 +153,10 @@ public class Dish {
 	public static Dish getDish(String name){
 		Dish result = null;
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			String sql = "SELECT * FROM DISHES WHERE DISH_NAME = '" + name + "';";
-			ResultSet d = stat.executeQuery(sql);
+			String sql = "SELECT * FROM DISHES WHERE DISH_NAME = ? ;";
+			PreparedStatement stat = MyDB.getConnection().prepareStatement(sql);
+			stat.setString(1, name);
+			ResultSet d = stat.executeQuery();
 			d.next();
 			int id = d.getInt("DISH_ID");
 			HashMap<Ingredient, String> ingredients = getIngredientsFromDatabase(id);
@@ -159,9 +176,10 @@ public class Dish {
 		Collection<Dish> result = new ArrayList<Dish>();
 		try {
 			Connection con = MyDB.getConnection();
-			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = '" + approved + "';";
-			ResultSet rows = stat.executeQuery(selectAll);
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = ? ;";
+			PreparedStatement stat = con.prepareStatement(selectAll);
+			stat.setInt(1, approved);
+			ResultSet rows = stat.executeQuery();
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));
 				result.add(tmp);
@@ -261,9 +279,10 @@ public class Dish {
 		String res = "";
 		Connection con = MyDB.getConnection();
 		try {
-			Statement stat = con.createStatement();
-			String select = "SELECT * FROM DISHES WHERE DISH_ID = " + dish_id + ";";
-			ResultSet s = stat.executeQuery(select);
+			String select = "SELECT * FROM DISHES WHERE DISH_ID = ? ;";
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setInt(1, dish_id);
+			ResultSet s = stat.executeQuery();
 			s.next();
 			res = s.getString("DISH_NAME");
 		} catch (SQLException e) {
@@ -274,9 +293,10 @@ public class Dish {
 	
 	private static HashMap<Ingredient, String> getIngredientsFromDatabase(int id) throws SQLException{
 		HashMap<Ingredient, String> res = new HashMap<Ingredient, String>();
-		Statement stat = MyDB.getConnection().createStatement();
-		String sql = "SELECT * FROM INGREDIENTS WHERE DISH_ID = '" + id + "';";
-		ResultSet s = stat.executeQuery(sql);
+		String sql = "SELECT * FROM INGREDIENTS WHERE DISH_ID = ? ;";
+		PreparedStatement stat = MyDB.getConnection().prepareStatement(sql);
+		stat.setInt(1, id);
+		ResultSet s = stat.executeQuery();
 		while(s.next()){
 			int ingredient_id = s.getInt("INGREDIENT_ID");
 			res.put(Ingredient.getIngredient(ingredient_id), s.getString("AMOUNT"));
@@ -286,18 +306,30 @@ public class Dish {
 
 	public static void editDish(int editingDishId, String dishName, String recipeText, HashMap<Ingredient, String> ingredients2) {
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			String update = "UPDATE DISHES SET DISH_NAME = '"+dishName+"', RECEIPT = '"+ recipeText +"' WHERE DISH_ID = '"+editingDishId+"';";
-			stat.executeUpdate(update);
-			String removeFromIngredients = "DELETE FROM INGREDIENTS WHERE DISH_ID ='" + editingDishId + "';";
-			stat.executeUpdate(removeFromIngredients);
+			Connection con = MyDB.getConnection();
+			String update = "UPDATE DISHES SET DISH_NAME = ?, RECEIPT = ? WHERE DISH_ID = ? ;";
+			PreparedStatement stat = con.prepareStatement(update);
+			stat.setString(1, dishName);
+			stat.setString(2, recipeText);
+			stat.setInt(3, editingDishId);
+			stat.executeUpdate();
+			
+			String removeFromIngredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = ? ;";
+			PreparedStatement stat1 = con.prepareStatement(removeFromIngredients);
+			stat1.setInt(1, editingDishId);
+			stat1.executeUpdate();
+			
 			Iterator<Ingredient> it = ingredients2.keySet().iterator();
 			while(it.hasNext()){
 				Ingredient next = it.next();
 				int ingrId = next.getId();
 				String amount = ingredients2.get(next);
 				String insertIntoIngredients = "INSERT INTO INGREDIENTS VALUES ("+editingDishId+", "+ingrId+", '"+amount+"');";
-				stat.executeUpdate(insertIntoIngredients);
+				PreparedStatement stat2 = con.prepareStatement(insertIntoIngredients);
+				stat2.setInt(1, editingDishId);
+				stat2.setInt(2, ingrId);
+				stat2.setString(3, amount);
+				stat2.executeUpdate();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
