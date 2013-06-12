@@ -32,6 +32,7 @@ public class Receipts extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) Dish.GetDishes(1);
+		request.setAttribute("show", "All");
 		request.setAttribute("alldishes", allApprovedDishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("AllRecipes.jsp");
 		dispatch.forward(request, response);

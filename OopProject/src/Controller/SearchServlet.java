@@ -33,8 +33,9 @@ public class SearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		ArrayList<Dish> dishes = (ArrayList<Dish>) Dish.getDishesByName(name);
-		request.setAttribute("foundDishes", dishes);
-		RequestDispatcher dispatch = request.getRequestDispatcher("SearchResults.jsp");
+		request.setAttribute("show", "Found");
+		request.setAttribute("alldishes", dishes);
+		RequestDispatcher dispatch = request.getRequestDispatcher("AllRecipes.jsp");
 		dispatch.forward(request, response);
 	}
 
