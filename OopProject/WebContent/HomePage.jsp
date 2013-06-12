@@ -185,6 +185,19 @@ a {
 	text-decoration: none;
 	font-size: 20px;
 }
+a.hello {
+
+	font-family: 'Lobster13Regular', cursive;
+	border: none;
+	padding: 4px 47px 9px;
+	position: relative;
+
+		right:60px;
+	text-align: left;
+		
+	text-decoration: none;
+	border-bottom: 0px dotted #9c5959;
+}
 .reservations .button {
 	display: block;
 	width: 60px;
@@ -503,7 +516,7 @@ footer {
  %>
 
 				 <div style="margin-top:20px">
-					<a class=button href="userServlet"> Hello</a></div>
+					<a class=hello href="userServlet"> Hello, <%=request.getSession().getAttribute("name")%></a></div>
 				
 				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> <%
 				
