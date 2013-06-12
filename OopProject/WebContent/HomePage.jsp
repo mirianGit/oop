@@ -610,7 +610,7 @@ footer {
         <div class="border"></div>
         <%for(int i=0;i<3;i++){
         	if(i==randomDishes.size())break;
-        	 Dish d=Dish.getDish("brownie");
+        	 Dish d=randomDishes.get(i);
         	 String text=d.getReceipt();
         	 if(text.length()>250)  text=text.substring(0, 250);
         	%> <div class="home-widget">
