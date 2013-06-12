@@ -35,6 +35,8 @@ public class Home extends HttpServlet {
 		ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) Dish.GetDishes(1);
 		ArrayList<Dish> lastApprovedDishes = (ArrayList<Dish>) Dish.GetLastApprovedDishes();
 		ArrayList<Dish> topTen = (ArrayList<Dish>) Dish.GetTopTenDishes();
+		ArrayList<Dish> randomDishes = (ArrayList<Dish>) Dish.GetRandomTenDishes();
+		sess.setAttribute("randomDishes", allApprovedDishes);
 		sess.setAttribute("allApprovedDishes", allApprovedDishes);
 		sess.setAttribute("lastApprovedDishes", lastApprovedDishes);
 		sess.setAttribute("topTen", topTen);

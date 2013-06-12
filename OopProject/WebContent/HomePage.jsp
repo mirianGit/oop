@@ -1,3 +1,4 @@
+<%@page import="Model.User"%>
 <%@page import="Model.Dish"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -5,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
+<% ArrayList<Dish> randomDishes = (ArrayList<Dish>) request
+								.getSession().getAttribute("randomDishes");%>
 <style>
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, address {
 	margin: 0;
@@ -275,7 +278,8 @@ ul#nav li a.search {
 	display: block;
 		width: 300px;
 	height: 100px;
-	padding: 65px 0 0 0;
+	padding:  65px 0 0 0;
+	
 	margin: 0 32px 0 32px;
 	color: #9c5959;
 	text-decoration: none;
@@ -283,6 +287,60 @@ ul#nav li a.search {
 	border-bottom: 0px dotted #9c5959;
 	
 	
+}
+#tw-form {
+	font-family: Tahoma, Geneva, sans-serif;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: #aaa 1px solid;
+	background: #DDDDDD;
+	background: -moz-linear-gradient(top, #C4C4C4 0%, #EAEAEA 0%, #D3D3D3 100%);
+	/* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #C4C4C4),
+		color-stop(0%, #EAEAEA), color-stop(100%, #D3D3D3) ); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#C4C4C4',
+		endColorstr='#D3D3D3', GradientType=0 ); /* ie */
+	width: 175px;
+	float: left;
+	padding: 0 4px;
+	border-top-left-radius: 4px 4px;
+	border-top-right-radius: 4px 4px;
+	border-bottom-right-radius: 4px 4px;
+	border-bottom-left-radius: 4px 4px;
+}
+
+#tw-form #tw-input-text {
+	width: 145px;
+	float: left;
+	border: 0;
+	background: #DDDDDD;
+	background: -moz-linear-gradient(top, #C4C4C4 0%, #EAEAEA 0%, #D3D3D3 100%);
+	/* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #C4C4C4),
+		color-stop(0%, #EAEAEA), color-stop(100%, #D3D3D3) ); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#C4C4C4',
+		endColorstr='#D3D3D3', GradientType=0 ); /* ie */
+	color: #777;
+	line-height: 100%;
+	font-size: 12px;
+	font-family: Tahoma, Geneva, sans-serif;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	height: 20px;
+}
+
+#tw-form #tw-input-text:focus {
+	outline: none;
+	color: #333;
+}
+
+#tw-form #tw-input-submit {
+	background: url(search-zoom-icon.png) no-repeat 8px 5px;
+	border: 0;
+	float: left;
+	width: 22px;
+	z-index: 100;
+	cursor: pointer;
 }
 ul#nav li a.other {
 	letter-spacing: 2px;
@@ -491,12 +549,15 @@ footer {
            
             
              <li><a class="search">
-             <form action="SearchServlet" method="get">
-						<input type="text" name="name" value="Search..."
-							onclick="if(this.value=='Search...'){this.value=''}"
-							onblur="if(this.value==''){this.value='Search...'}"> <input
-							type="submit" value="Search" />
-							</form>
+             <div id="tw-form-outer">
+		<form action="SearchServlet" method="get" id="tw-form">
+			<input type="text" id="tw-input-text" name="query" value='search'
+				onfocus="if(this.value=='search'){this.value='';}"
+				onblur="if(this.value==''){this.value='search';}" /> <input
+				type="submit" id="tw-input-submit" value="" />
+		</form>
+	</div>
+             
 							</a>
 			
           
@@ -516,7 +577,12 @@ footer {
  %>
 
 				 <div style="margin-top:20px">
-					<a class=hello href="userServlet"> Hello, <%=request.getSession().getAttribute("name")%></a></div>
+				 <%
+				 String name=(String)request.getSession().getAttribute("name");
+				 int id=User.getIdByName(name);
+						 User us=User.getUserById(id);%>
+						 
+					<a class=hello href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
 				
 				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> <%
 				
@@ -538,30 +604,26 @@ footer {
             <li><a href=""><img src="images/home/1.jpg" alt="" /></a></li>
             <li><a href=""><img src="images/home/2.jpg" alt="" /></a></li>
             <li><a href=""><img src="images/home/3.jpg" alt="" /></a></li>
-            <li><a href=""><img src="images/home/4.jpg" alt="" /></a></li>
           </ul>
         </div>
         <div class="clear"></div>
         <div class="border"></div>
-        <div class="home-widget">
-          <h3>Lorem Ipsum</h3>
-          <img src="images/home/3.jpg" width="300" alt="" />
-          <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae.</p>
-        </div>
-        <div class="home-widget">
-          <h3>Lorem Ipsum</h3>
-          <img src="images/home/4.jpg" width="300" alt="" />
-          <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae.</p>
-        </div>
-        <div class="home-widget">
-          <h3>Lorem Ipsum</h3>
-          <img src="images/home/1.jpg" width="300" alt="" />
-          <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae.</p>
-        </div>
-        <div class="border2"></div>
-        <br />
-       
-      </div>
+        <%for(int i=0;i<3;i++){
+        	if(i==randomDishes.size())break;
+        	 Dish d=randomDishes.get(i);
+        	 String text=d.getReceipt();
+        	 if(text.length()>200)  text=text.substring(0, 200);
+        	%> <div class="home-widget">
+        		  <h3><%=d.getName() %></h3>
+        		    <img src="images/home/3.jpg" width="300" alt="" />
+        		    <p><%=text %> </p>
+        		    <a href= "DishServlet?id=<%=d.getId() %>">  See Full Recipe</a>
+        		     </div>
+        	<% 
+        	
+        }%>
+        
+        
       <footer>
         <div class="border"></div>
         <div class="footer-widget">
@@ -588,10 +650,24 @@ footer {
         <div class="footer-widget">
           <h4>random Recipes</h4>
           <ul class="blog">
-            <li><a href="">elene</a></li>
-            <li><a href="">elene</a></li> 
-            <li><a href="">elene</a></li> 
-            <li><a href="">elene</a></li>
+               	<%
+						
+						if (randomDishes != null) {
+							if (randomDishes.size() > 10) {
+								for (int i = 0; i < 10; i++) {
+									out.println("<li> <a href= \"DishServlet?id="
+											+ randomDishes.get(i).getId() + "\">"
+											+ randomDishes.get(i).getName() + "</a>");
+								}
+							} else {
+								for (int i = 0; i < randomDishes.size(); i++) {
+									out.println("<li> <a href= \"DishServlet?id="
+											+ randomDishes.get(i).getId() + "\">"
+											+ randomDishes.get(i).getName() + "</a>");
+								}
+							}
+						}
+					%>
           </ul>
         </div>
         <div class="footer-widget">
