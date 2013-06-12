@@ -21,7 +21,7 @@
 </form>
 
 
-<% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>)request.getSession().getAttribute("allApprovedDishes");
+<% ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>)request.getAttribute("alldishes");
  	if(allApprovedDishes != null){	
  		for(int i = 0; i < allApprovedDishes.size(); i++){
  				out.println("<p><li> <a href= \"DishServlet?id=" + allApprovedDishes.get(i).getId()

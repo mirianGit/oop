@@ -543,7 +543,7 @@ footer {
         <nav>
           <ul id="nav">
             <li><a href="Home" class="current">Home</a></li>
-            <li><a href=AllRecipes.jsp class="other">all recipes</a></li>
+            <li><a href=Receipts class="other">all recipes</a></li>
              <li><a href="SearchByIngredients" class="other">extended Search</a></li>
             <li><a href=AddNewRecipe class="other">add New recipe</a></li>
            
