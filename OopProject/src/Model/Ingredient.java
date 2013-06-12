@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,14 +27,18 @@ public class Ingredient {
 	}
 	// amatebs bazashi
 	private void addToDatabase(String name, String picture) throws SQLException{
-		Statement stat = con.createStatement();
-		String select = "SELECT * FROM INGREDIENT WHERE INGREDIENT_NAME = '" + name + "';";
-		ResultSet s = stat.executeQuery(select);
+		String select = "SELECT * FROM INGREDIENT WHERE INGREDIENT_NAME = ? ;";
+		PreparedStatement stat = con.prepareStatement(select);
+		stat.setString(1, name);
+		ResultSet s = stat.executeQuery();
 		if(!s.next()){
-			String insert = "INSERT INTO INGREDIENT (INGREDIENT_NAME, PICTURE) VALUES ('" + name + "', '" + picture + "');";
-			stat.executeUpdate(insert);
+			String insert = "INSERT INTO INGREDIENT (INGREDIENT_NAME, PICTURE) VALUES (?, ?);";
+			PreparedStatement stat1 = con.prepareStatement(insert);
+			stat1.setString(1, name);
+			stat1.setString(2, picture);
+			stat1.executeUpdate();
 		}
-		ResultSet s1 = stat.executeQuery(select);
+		ResultSet s1 = stat.executeQuery();
 		s1.next();
 		this.id = s1.getInt("INGREDIENT_ID");
 	}
@@ -47,9 +52,10 @@ public class Ingredient {
 	public static Ingredient getIngredient(int ingredient_id) {
 		Ingredient result = null;
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			String select = "SELECT * FROM INGREDIENT WHERE INGREDIENT_ID = " + ingredient_id + ";";
-			ResultSet s = stat.executeQuery(select);
+			String select = "SELECT * FROM INGREDIENT WHERE INGREDIENT_ID = ? ;";
+			PreparedStatement stat = MyDB.getConnection().prepareStatement(select);
+			stat.setInt(1, ingredient_id);
+			ResultSet s = stat.executeQuery();
 			if(s.next()){
 				result = new Ingredient(s.getString("INGREDIENT_NAME"), s.getString("PICTURE"));
 			}
