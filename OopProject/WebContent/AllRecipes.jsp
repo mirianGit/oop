@@ -624,7 +624,11 @@ footer {
 		<header> <nav>
 		<ul id="nav">
 			<li><a href="Home" class="other">Home</a></li>
+			<%if(request.getAttribute("show")==null||request.getAttribute("show").equals("All")){ %>
 			<li><a href="Receipts" class="current">all recipes</a></li>
+			<%}else{ %>
+			<li><a href="Receipts" class="other">all recipes</a></li>
+			<%} %>
 			<li><a href="SearchByIngredients" class="other">extended
 					Search</a></li>
 			<li><a href=AddNewRecipe class="other">add New recipe</a></li>
@@ -641,9 +645,11 @@ footer {
 					</div>
 		</nav> </header>
 		<hgroup class="intro">
-		<h1 class="title">All recipes</h1>
-
-
+		<%if(request.getAttribute("show")==null||request.getAttribute("show").equals("All")){ %>
+		<h1 class="title">All Recipes</h1>
+		<%}else{ %>
+			<h1 class="title">Search Results</h1>
+		<%} %>
 
 		</hgroup>
 		<div class="reservations">

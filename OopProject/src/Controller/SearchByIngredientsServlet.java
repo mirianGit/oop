@@ -42,8 +42,9 @@ public class SearchByIngredientsServlet extends HttpServlet {
 			ingredients.add(new Ingredient(it.next()[0], ""));
 		}
 		ArrayList<Dish> foundDishes = (ArrayList<Dish>)Dish.getDishesByIngredients(ingredients);
-		request.setAttribute("foundDishes", foundDishes);
-		RequestDispatcher dispatch = request.getRequestDispatcher("SearchResults.jsp");
+		request.setAttribute("show", "Found");
+		request.setAttribute("alldishes", foundDishes);
+		RequestDispatcher dispatch = request.getRequestDispatcher("AllRecipes.jsp");
 		dispatch.forward(request, response);
 	}
 
