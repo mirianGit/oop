@@ -184,7 +184,7 @@ public class User {
 	private static ResultSet getUserInfo(int id) {
 		ResultSet res = null;
 		try {
-			String sql = "SELECT * FROM USER WHERE USER_ID =" + id + ";";
+			String sql = "SELECT * FROM USER WHERE USER_ID = ? ;";
 			PreparedStatement stat = MyDB.getConnection().prepareStatement(sql);
 			stat.setInt(1, id);
 			res = stat.executeQuery();
