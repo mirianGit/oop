@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-
-import com.sun.corba.se.impl.oa.poa.AOMEntry;
+import java.util.Random;
 
 public class Dish {
 	private String name;
@@ -273,6 +273,31 @@ public class Dish {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public static Collection<Dish> GetRandomTenDishes(){
+		Collection<Dish> result = new ArrayList<Dish>();
+		try {
+			Connection con = MyDB.getConnection();
+			Statement stat = con.createStatement();
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 LIMIT 10;";
+			ResultSet rows = stat.executeQuery(selectAll);
+			while(rows.next()){
+				Dish tmp = getDish(rows.getString("DISH_NAME"));
+				result.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Collection<Dish> result1 = new ArrayList<Dish>();
+		Random rand = new Random();
+		HashSet<Integer> hs = new HashSet<Integer>();
+		while(result1.size() != result.size()){
+			int a = rand.nextInt(result.size());
+			if(!hs.contains(a))result1.add(((ArrayList<Dish>)result).get(a));
+			hs.add(a);
+		}
+		return result1;
 	}
 		
 	public static String getName(int dish_id) {
