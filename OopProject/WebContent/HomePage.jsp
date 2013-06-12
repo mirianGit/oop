@@ -551,7 +551,7 @@ footer {
              <li><a class="search">
              <div id="tw-form-outer">
 		<form action="SearchServlet" method="get" id="tw-form">
-			<input type="text" id="tw-input-text" name="query" value='search'
+			<input type="text" id="tw-input-text" name="name" value='search'
 				onfocus="if(this.value=='search'){this.value='';}"
 				onblur="if(this.value==''){this.value='search';}" /> <input
 				type="submit" id="tw-input-submit" value="" />
