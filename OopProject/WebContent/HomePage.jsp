@@ -610,14 +610,14 @@ footer {
         <div class="border"></div>
         <%for(int i=0;i<3;i++){
         	if(i==randomDishes.size())break;
-        	 Dish d=randomDishes.get(i);
+        	 Dish d=Dish.getDish("brownie");
         	 String text=d.getReceipt();
-        	 if(text.length()>200)  text=text.substring(0, 200);
+        	 if(text.length()>250)  text=text.substring(0, 250);
         	%> <div class="home-widget">
         		  <h3><%=d.getName() %></h3>
         		    <img src="images/home/3.jpg" width="300" alt="" />
-        		    <p><%=text %> </p>
-        		    <a href= "DishServlet?id=<%=d.getId() %>">  See Full Recipe</a>
+        		    <p><%=text %> 
+        		    <a href= "DishServlet?id=<%=d.getId() %>">  See Full Recipe</a></p>
         		     </div>
         	<% 
         	
