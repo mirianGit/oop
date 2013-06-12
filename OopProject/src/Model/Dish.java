@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -191,9 +192,10 @@ public class Dish {
 		Collection<Dish> result = new ArrayList<Dish>();
 		try {
 			Connection con = MyDB.getConnection();
-			Statement stat = con.createStatement();
-			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 AND DISH_NAME like '%"+ name +"%';";
-			ResultSet rows = stat.executeQuery(selectAll);
+			String selectAll = "SELECT * FROM DISHES WHERE APPROVED = 1 AND DISH_NAME like ?;";
+			PreparedStatement stat = con.prepareStatement(selectAll);
+			stat.setString(1, "%"+name+"%");
+			ResultSet rows = stat.executeQuery();
 			while(rows.next()){
 				Dish tmp = getDish(rows.getString("DISH_NAME"));
 				result.add(tmp);
@@ -209,13 +211,14 @@ public class Dish {
 		MyMap<Dish, Integer> mapping = new MyMap<Dish, Integer>();
 		try {
 			Connection con = MyDB.getConnection();
-			Statement stat = con.createStatement();
 			for(int i=0; i<ingredients.size(); i++){
 				String name = ((ArrayList<Ingredient>)ingredients).get(i).getName();
 				String selectForOne = "SELECT * FROM DISHES WHERE DISH_ID IN " + 
 						"(SELECT DISTINCT DISH_ID FROM INGREDIENTS WHERE INGREDIENT_ID = "+ 
-					"(SELECT INGREDIENT_ID FROM INGREDIENT WHERE INGREDIENT_NAME LIKE '%" + name + "%'))";
-				ResultSet rows = stat.executeQuery(selectForOne);
+					"(SELECT INGREDIENT_ID FROM INGREDIENT WHERE INGREDIENT_NAME = ? ))";
+				PreparedStatement stat = con.prepareStatement(selectForOne);
+				stat.setString(1, name);
+				ResultSet rows = stat.executeQuery();
 				while(rows.next()){
 					Dish tmp = getDish(rows.getString("DISH_NAME"));
 					if(mapping.containsKey(tmp)){
