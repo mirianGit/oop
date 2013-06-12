@@ -3,6 +3,7 @@ package Model;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,10 +70,10 @@ public class User {
 
 	public void makeAdmin() {
 		try {
-			Statement stat = con.createStatement();
-			String sql = "UPDATE User SET role = 1 WHERE User_ID='" + getId()
-					+ "';";
-			stat.executeUpdate(sql);
+			String sql = "UPDATE User SET role = 1 WHERE User_ID = ? ;";
+			PreparedStatement stat = con.prepareStatement(sql);
+			stat.setInt(1, getId());
+			stat.executeUpdate();
 			role = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,10 +81,12 @@ public class User {
 	}
 
 	private int getIdFromDatabase() {
-		String select = "SELECT * FROM USER WHERE USER_NAME = '" + name + "';";
+		String select = "SELECT * FROM USER WHERE USER_NAME = ? ;";
 		int id = -1;
 		try {
-			ResultSet res = stmt.executeQuery(select);
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setString(1, name);
+			ResultSet res = stat.executeQuery();
 			if (res.next())
 				id = res.getInt("USER_ID");
 		} catch (SQLException e) {
@@ -104,9 +107,12 @@ public class User {
 	private void addToDatabase() {
 
 		try {
-			String sql = "INSERT INTO USER VALUES (null , '" + name + "', '"
-					+ password + "'," + role + ");";
-			stmt.executeUpdate(sql);
+			String sql = "INSERT INTO USER VALUES (null , ?, ?, ?);";
+			PreparedStatement stat = con.prepareStatement(sql);
+			stat.setString(1, name);
+			stat.setString(2, password);
+			stat.setInt(3, role);
+			stat.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,9 +122,11 @@ public class User {
 
 	public void addToWishList(int dishId) {
 		try {
-			String sql = "INSERT INTO wish_list VALUES (" + userId + ", "
-					+ dishId + ");";
-			stmt.executeUpdate(sql);
+			String sql = "INSERT INTO wish_list VALUES ( ?, ?);";
+			PreparedStatement stat = con.prepareStatement(sql);
+			stat.setInt(1, userId);
+			stat.setInt(2, dishId);
+			stat.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,11 +135,12 @@ public class User {
 
 	public List<Dish> wishList() {
 		List<Dish> wishList = new ArrayList<Dish>();
-		String select = "SELECT * FROM WISH_LIST WHERE USER_ID = " + userId
-				+ ";";
+		String select = "SELECT * FROM WISH_LIST WHERE USER_ID = ? ;";
 		ResultSet result;
 		try {
-			result = stmt.executeQuery(select);
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setInt(1, userId);
+			result = stat.executeQuery();
 			while (result.next()) {
 				String name = Dish.getName(result.getInt("dish_id"));
 				Dish dish = Dish.getDish(name);
@@ -155,9 +164,11 @@ public class User {
 
 	public List<Dish> uploadedDishes() {
 		List<Dish> dishes = new ArrayList<Dish>();
-		String select = "SELECT * FROM DISHES WHERE AUTHOR = " + userId + ";";
+		String select = "SELECT * FROM DISHES WHERE AUTHOR = ? ;";
 		try {
-			ResultSet result = stmt.executeQuery(select);
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setInt(1, userId);
+			ResultSet result = stat.executeQuery();
 			while (result.next()) {
 				String name = Dish.getName(result.getInt("dish_id"));
 				Dish dish = Dish.getDish(name);
@@ -173,9 +184,10 @@ public class User {
 	private static ResultSet getUserInfo(int id) {
 		ResultSet res = null;
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
 			String sql = "SELECT * FROM USER WHERE USER_ID =" + id + ";";
-			res = stat.executeQuery(sql);
+			PreparedStatement stat = MyDB.getConnection().prepareStatement(sql);
+			stat.setInt(1, id);
+			res = stat.executeQuery();
 		} catch (SQLException e) {
 
 		}
@@ -199,10 +211,10 @@ public class User {
 		int id = -1;
 		ResultSet res = null;
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			String sql = "SELECT USER_ID FROM USER WHERE USER_NAME ='" + name
-					+ "';";
-			res = stat.executeQuery(sql);
+			String sql = "SELECT USER_ID FROM USER WHERE USER_NAME = ? ;";
+			PreparedStatement stat = MyDB.getConnection().prepareStatement(sql);
+			stat.setString(1, name);
+			res = stat.executeQuery();
 			if (res.next())
 				id = Integer.parseInt(res.getString("USER_ID"));
 		} catch (SQLException e) {
@@ -235,10 +247,10 @@ public class User {
 	public static boolean exsistsAccount(String username) {
 		userChecker = null;
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			String sql = "SELECT * FROM USER WHERE USER_NAME ='" + username
-					+ "';";
-			userChecker = stat.executeQuery(sql);
+			String sql = "SELECT * FROM USER WHERE USER_NAME = ? ;";
+			PreparedStatement stat = MyDB.getConnection().prepareStatement(sql);
+			stat.setString(1, username);
+			userChecker = stat.executeQuery();
 			if (userChecker.next())
 				return true;
 		} catch (SQLException e) {
@@ -262,15 +274,17 @@ public class User {
 	public static List<User> allUsers(String name) {
 		List<User> users = new ArrayList<User>();
 		String select;
-		if (name == null)
-			select = "SELECT USER_ID FROM USER WHERE ROLE = 0;";
-		else
-			select = "SELECT USER_ID FROM USER WHERE ROLE = 0 AND USER_NAME like '%"
-					+ name + "%';";
-		ResultSet res = null;
+		PreparedStatement stat;
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			res = stat.executeQuery(select);
+			if (name == null){
+				select = "SELECT USER_ID FROM USER WHERE ROLE = 0;";
+				stat = MyDB.getConnection().prepareStatement(select);
+			}else{
+				select = "SELECT USER_ID FROM USER WHERE ROLE = 0 AND USER_NAME like ? ;";
+				stat = MyDB.getConnection().prepareStatement(select);
+				stat.setString(1, "%" + name + "%");
+			}
+			ResultSet res = stat.executeQuery();
 			while (res.next()) {
 				int user_id = res.getInt("USER_ID");
 				User us = User.getUserById(user_id);
@@ -283,11 +297,11 @@ public class User {
 	}
 
 	public static void deleteUser(int id) {
-		String select = "DELETE FROM user WHERE user_id=" + id + ";";
+		String select = "DELETE FROM user WHERE user_id = ? ;";
 		try {
-			Statement stat = MyDB.getConnection().createStatement();
-			stat.executeUpdate(select);
-
+			PreparedStatement stat = MyDB.getConnection().prepareStatement(select);
+			stat.setInt(1, id);
+			stat.executeUpdate();
 		} catch (SQLException e) {
 
 		}
