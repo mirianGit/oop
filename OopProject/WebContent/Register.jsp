@@ -30,9 +30,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	background: transparent;
 }
 body {
-	background: #DCDDDF url(http://cssdeck.com/uploads/media/items/7/7AF2Qzt.png);
-	color: #000;
-	font: 14px Arial;
+	background: #f5f0e0 url(images/noise.png);
+	font-family: Century Gothic, sans-serif;
+	color: #252525;
+	font-size: 14px;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.10);
 	margin: 0 auto;
 	padding: 0;
 	position: relative;
@@ -43,7 +45,7 @@ h3{ font-size:18px;}
 h4{ font-size:16px;}
 h5{ font-size:14px;}
 h6{ font-size:12px;}
-h1,h2,h3,h4,h5,h6{ color:#563D64;}
+h1,h2,h3,h4,h5,h6{ color:#9c5959;}
 small{ font-size:10px;}
 b, strong{ font-weight:bold;}
 a{ text-decoration: none; }
@@ -83,10 +85,10 @@ form:after {
 	width: 400px;
 }
 #content h1 {
-	color: #FFDBB8;
-	font: bold 25px Helvetica, Arial, sans-serif;
-	letter-spacing: -0.05em;
-	line-height: 20px;
+	color: #9c5959;
+	font-family: 'Lobster13Regular', cursive;
+	letter-spacing: 1px;
+	line-height: 25px;
 	margin: 10px 0 30px;
 }
 #content h1:before,
@@ -189,43 +191,50 @@ form:after {
 }
 #username { background-position: 10px 10px !important }
 #password { background-position: 10px -53px !important }
+@font-face {
+	font-family: 'Lobster13Regular';
+	src: url('styles/Lobster_1.3-webfont.eot');
+	src: url('styles/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'), url('styles/Lobster_1.3-webfont.woff') format('woff'), url('Lobster_1.3-webfont.ttf') format('truetype'), url('Lobster_1.3-webfont.svg#Lobster13Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 #content form input[type="submit"] {
-	background: rgb(254,231,154);
-	background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
-	background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	background: -o-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	background: linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fee79a', endColorstr='#fec151',GradientType=0 );
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	-ms-border-radius: 30px;
-	-o-border-radius: 30px;
-	border-radius: 30px;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	-o-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	border: 1px solid #D69E31;
-	color: #85592e;
-	cursor: pointer;
-	float: left;
-	font: bold 15px Helvetica, Arial, sans-serif;
-	height: 35px;
+	font-family: 'Lobster13Regular', cursive;
+	
+	color: #f5f5f5;
+	padding: 2px 14px 10px;
+	background-color: #9c5959;
+	border: none;
+	position: relative;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-webkit-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
+	box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+	-moz-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+	text-decoration: none;
+	font-size: 22px;
+
+	height: 40px;
 	margin: 20px 0 35px 15px;
 	position: relative;
 	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 	width: 120px;
+	
+	
 }
 #content form input[type="submit"]:hover {
-	background: rgb(254,193,81);
-	background: -moz-linear-gradient(top,  rgba(254,193,81,1) 0%, rgba(254,231,154,1) 100%);
-	background: -webkit-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	background: -o-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	background: linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 );
+	position: relative;
+	top: 3px;
+	-webkit-box-shadow: inset 0px -3px 1px rgba(255, 255, 255, 1), inset 0 0px 3px rgba(0, 0, 0, 0.9);
+	-moz-box-shadow: inset 0px -3px 1px rgba(255, 255, 255, 1), inset 0 0px 3px rgba(0, 0, 0, 0.9);
+	box-shadow: inset 0px -3px 1px rgba(255, 255, 255, 1), inset 0 0px 3px rgba(0, 0, 0, 0.9);
 }
 #content form div a {
 	color: #004a80;
