@@ -65,19 +65,36 @@ blockquote span {
 				type="submit" id="tw-input-submit" value="" />
 		</form>
 	</div>
-	</nav> </header>
+	</nav> 
+	</header>
 	
 	   <hgroup class="intro">
           <h1 class="title2"><%=name%>'s profile</h1>
         </hgroup>
+        
+        
+         <div style="margin-top:20px"> <a class="buttonUser" style="position: absolute; text-align:center; width:100px;right:200px" href="LogOut" title="log out">log out</a> </div> 
+				
     <footer>
      <br>
       <br>
        <br>
     <div class="border"></div>
     <div class="footer-widget">
-      <h4>Wishlist</h4>
-		 <ul class="blog">
+      <h4 style="position: absolute; left:400px">Wishlist </h4>
+		
+       </div>
+  
+     
+    
+    <div class="footer-widget">
+      <h4 style="position: absolute; right:400px">My recipes</h4>
+     </div>
+     
+	<br><br><br>
+     <div class="border2"></div>
+      <div class="footer-widget">
+        <ul class="blog"  style="position: absolute; text-align:centre; width:150px;left:350px">
         <%
 		for (int i = 0; i < wishlist.size(); i++) {
 			Dish d = wishlist.get(i);
@@ -88,12 +105,12 @@ blockquote span {
  	}
 	
  %>
-      </ul>
-    </div>
-    <div class="footer-widget">
-      <h4>My recipes</h4>
-      <ul class="blog">
-      <%
+  </ul>
+  </div>
+   <div class="footer-widget">
+  <ul class="blog"  style="position: absolute; text-align:centre; width:150px;right:350px">
+     
+  <%
       for (int i = 0; i < dishes.size(); i++) {
 			
 			Dish d = dishes.get(i);
@@ -104,20 +121,27 @@ blockquote span {
  	}
 	
  %>
-       
+ 
         
       </ul>
+      </div>
     </div>
     </footer>
-    <br>
-	<div class="border2">
-	<br></div>
-	<br>
-    <br />
-    <br />
-  
     
+    <br>
+	 
+	<br>
 	
+	<br>
+    
+    
+    
+     <div class="border2" style="position: absolute; text-align:left; left:200px; right:200px;bottom:100px"></div>
+  	  <span class="copyright" style="position: absolute; text-align:left; width:500px;left:200px ;bottom:50px"><span class="left"><br />
+     For more information contact us <a href="AboutAs.jsp">see Information</a></span><span class="right"><br />
+    <a href=#></a>  <a href=#></a>
+    
+	</span>
   
    
 
