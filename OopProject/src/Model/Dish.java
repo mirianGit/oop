@@ -53,6 +53,19 @@ public class Dish {
 		return res;
 	}
 	
+	public void rate(int rate){
+		try {
+			String select = "UPDATE DISHES SET RATE = ? WHERE DISH_NAME = ? ;";
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setInt(1, rate);
+			stat.setString(2, name);
+		    stat.executeUpdate();
+		    this.rate = rate;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getPicture(){
 		return picture;
 	}
