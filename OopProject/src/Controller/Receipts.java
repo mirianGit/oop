@@ -35,25 +35,30 @@ public class Receipts extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		int page = 1;
 		if (request.getParameter("page") != null)
-
 			page = Integer.parseInt(request.getParameter("page"));
-
 		request.setAttribute("page", page);
+		
+		
+		
 		ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) request
 				.getAttribute("alldishes");
 		ArrayList<Dish> allApprovedDishesFromSession = (ArrayList<Dish>) request
 				.getSession().getAttribute("alldishes");
+		
+		
 		String pageName = (String) request.getSession()
 				.getAttribute("pageName");
-		if (allApprovedDishes == null
-				&& (allApprovedDishesFromSession == null || !pageName
-						.equals("All"))) {
+		if(pageName==null) pageName="";
+				 if ((allApprovedDishes == null
+				&& allApprovedDishesFromSession == null && !pageName
+						.equals("All")) ||page==1) {
 			allApprovedDishes = (ArrayList<Dish>) Dish.GetDishes(1);
-		} else if (allApprovedDishes == null) {
+		} else if (allApprovedDishes == null && pageName.equals("All")) {
 			allApprovedDishes = allApprovedDishesFromSession;
 		}
 
 		request.getSession().setAttribute("alldishes", null);
+		request.getSession().setAttribute("pageName", null);
 		request.setAttribute("show", "All");
 		request.setAttribute("alldishes", allApprovedDishes);
 		RequestDispatcher dispatch = request

@@ -3,7 +3,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <jsp:include page="Header.jsp" />
+<style>
 
+textarea {
+	width: 400px;
+	height: 200px;
+}
+input[type="text"]:active, input[type="text"]:focus {
+	border: 1px dashed #9C5959;
+}
+textarea:active, textarea:focus {
+	border: 1px dashed #9C5959;
+}
+
+input, textarea, select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+</style>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -76,7 +94,7 @@ function addInput(divName){
 <p> Name: <input type="text" name="name" /> 
 <p> How to prepare:  
 
-<p> <TEXTAREA Name="recipe" ROWS= 4 COLS= 40></TEXTAREA></p>
+<p> <TEXTAREA Name="recipe" ROWS= 3 COLS= 30 style="width: 350px"></TEXTAREA></p>
  Upload image  <input type="text" name="pic" />
 <p>
 
@@ -90,12 +108,19 @@ function addInput(divName){
 							onclick="if(this.value=='amount'){this.value=''}"
 							onblur="if(this.value==''){this.value='amount'}"> 
 </div>
- <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
+ <br><input type="button" class = "button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
 
 
 </div>
 
-<p align="center"><a class="button" href="LogOut" title="log out">Add Recipe</a> </p>
+
+
+<p align="center"><input class="button" type="submit" value="Add Recipe"/></p>
+
+
+
+
+
 
 
 </form>

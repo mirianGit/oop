@@ -54,24 +54,28 @@ public class SearchByIngredientsServlet extends HttpServlet {
 		if (request.getParameter("name") != null) {
 			name = request.getParameter("name");
 		}
+		String pageName = (String) request.getSession()
+				.getAttribute("pageName");
+		if(pageName==null) pageName="";
 
 		ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) request
 				.getAttribute("alldishes");
 		ArrayList<Dish> allApprovedDishesFromSession = (ArrayList<Dish>) request
 				.getSession().getAttribute("alldishes");
-		String pageName = (String) request.getSession()
-				.getAttribute("pageName");
-		if (allApprovedDishes == null
-				&& (allApprovedDishesFromSession == null || !pageName
-						.equals("FoundIng"))) {
+		
+		
+		
+		if ((allApprovedDishes == null
+				&& allApprovedDishesFromSession == null && !pageName
+						.equals("FoundIng"))||page==1) {
 			allApprovedDishes = (ArrayList<Dish>) Dish
 					.getDishesByIngredients(ingredients);
-		} else if (allApprovedDishes == null) {
+		} else if (allApprovedDishes == null &&  pageName.equals("FoundIng")) {
 			allApprovedDishes = allApprovedDishesFromSession;
 		}
 
 		request.getSession().setAttribute("alldishes", null);
-
+		request.getSession().setAttribute("pageName", null);
 		request.setAttribute("page", page);
 		request.setAttribute("show", "FoundIng");
 		request.setAttribute("alldishes", allApprovedDishes);

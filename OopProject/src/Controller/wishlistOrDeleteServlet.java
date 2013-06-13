@@ -35,9 +35,9 @@ public class wishlistOrDeleteServlet extends HttpServlet {
 		User us=User.getUserById(User.getIdByName(name));
 		//int id=Integer.parseInt(request.getParameter("id"));
 		int dishId=Integer.parseInt(request.getParameter("id"));
-		
+		System.out.println(request.getParameter("id"));
 		String button=request.getParameter("button");
-		if(button.equals("add to wishlist")){
+		if(button.equals("add")){
 			us.addToWishList(dishId);
 			RequestDispatcher dispatch = request.getRequestDispatcher("DishServlet"+"?id="+dishId);
 			dispatch.forward(request, response);

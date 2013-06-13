@@ -123,15 +123,13 @@ function addInput(divName){
 <div id="dynamicInput">
      
 </div>
- <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
+ <input type="button" class="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
 
 </div>
 
-
-<input type="hidden" name="editingDishId" value=<%=dish.getId() %> />
-
-<p align="center"><a class="button" href="EditDish" title="log out">Edit Recipe</a> </p>
-
+</div>
+<input type="hidden"  name="editingDishId" value=<%=dish.getId() %> />
+<p align="center"><input class="button" type="submit" value="Edit Recipe"/></p>
 </form>
 
 </body>
