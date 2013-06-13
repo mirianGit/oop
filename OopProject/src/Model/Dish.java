@@ -33,6 +33,10 @@ public class Dish {
 		this.approved = approved;
 	}
 	
+	public int getAuthorId(){
+		return authorId;
+	}
+	
 	private int generateId(){
 		int res = -1;
 		try {
