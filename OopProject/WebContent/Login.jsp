@@ -8,6 +8,8 @@
 <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
+<jsp:include page="Header.jsp" />
+
 <meta charset="utf-8">
 <title>Login</title>
 <style>
@@ -284,6 +286,22 @@ form:after {
 </style>
 </head>
 <body>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	
+	<link href="styles/base.css" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
+	<script type="text/javascript" src="scripts/jquery.pikachoose.js"></script>
+
+	</head>
+	<body>
+    <div id="container">
+      <header>
+        <nav>
+          <ul id="nav">
+            <li><a href="Home" class="other">Home</a></li>
+            </ul></nav></header></div>
 <div class="container">
 	<section id="content">
 		<form action="LoginServlet" method="post">
