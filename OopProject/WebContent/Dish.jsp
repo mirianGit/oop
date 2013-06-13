@@ -63,7 +63,7 @@
 
 		<p align="justify">
 			<a href=EditDish class="other"><font size="2" color="blue">edit</font>
-			<input type=hidden name=dish_id value=<%=id%>>
+			<% request.setAttribute("dish_id", dish_id); %>
 			</a>
 			
 			
