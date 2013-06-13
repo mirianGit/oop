@@ -71,7 +71,7 @@ public class AddNewRecipe extends HttpServlet {
 			newDish = new Dish(dishName, 0, userId, 0, recipeText, "", ingredients);
 		}
 		newDish.add();
-		dispatch = request.getRequestDispatcher("HomePage.jsp");
+		dispatch = request.getRequestDispatcher("/Home");
 		dispatch.forward(request, response);
 	}
 	
