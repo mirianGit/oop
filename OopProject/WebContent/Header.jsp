@@ -1,4 +1,3 @@
-<%@page import="Model.User"%>
 <%@page import="Model.Dish"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -26,6 +25,12 @@ address,caption,cite,code,dfn,em,strong,th,var {
 	font-style: normal;
 	font-weight: normal;
 }
+addr {
+	font-style: normal;
+	font-weight: normal;
+	text-align: ;
+}
+
 
 li {
 	list-style: none;
@@ -477,7 +482,7 @@ p {
 }
 
 article {
-	width: 250px;
+	width: 630px;
 	float: left;
 	padding: 10px;
 	border-right: 1px dashed #9c5959;
@@ -630,3 +635,5 @@ footer {
 
 		</body>
 </html>
+
+<%@page import="Model.User"%>
