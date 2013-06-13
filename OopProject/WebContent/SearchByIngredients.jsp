@@ -6,6 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
+<script>
+var counter = 1;
+var limit = 20;
+
+function addInput(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+    	  var co = counter+1;
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Ingredient " + (counter + 1) + " <br><input type='text' name='INGREDIENT" + co + "'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
+</script>
 
 </head>
 <body bgcolor="#F7F8E0">
@@ -16,30 +33,12 @@
 <h3><a href = "Home"> Homepage </a></h3>
 
 
-<form action="AddMoreIngredients" method="post" >
-<input name="jsp" type="hidden" value= "SearchByIngredients.jsp"/>
-
-<input type = "submit" value= "Add more ingredients" />
-</form>
-
  <form action="SearchByIngredientsServlet" >
-<% for (int i = 0; i < 3; i++){ 
-	String fieldname = "ingredient" + i;%>
-	<p>Ingredient: <input type="text" name= <%=fieldname %>/> 
-<% } %>
 
-
-
-
-<% Integer num = (Integer)request.getSession().getAttribute("numAdded");
-	if(num != null){%>
-		<% for(int j = 0; j < num; j++){
-			String fieldname = "ingredient" + (3 + j);
-		%>
-			<p>Ingredient: <input type="text" name=<%=fieldname %> />
-		<% }
-	}
-%>
+<div id="dynamicInput">
+     Ingredient 1 <br><input type='text' name='INGREDIENT1'>
+</div>
+ <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
 
 
 <p><input type = "submit" value= "Search" /></p>
