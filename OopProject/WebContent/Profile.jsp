@@ -6,9 +6,14 @@
 	pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html style="height: 100%;">
+<html>
+<style>
 
 
+
+
+
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%
@@ -23,22 +28,90 @@
 <title><%=name%>'s profile</title>
 
 </head>
-<body style="height: 100%;width:  100%;" bgcolor="F8F6F7" >
+<body >
+<jsp:include page="Header.jsp" />
 
-<table style="height: 100%;width:  100%;"border="0"  >
-     <tr bgcolor=FF7F50 >
-   <td width="35%" height="5"valign="top">
-      <p><a href = "Home"> <font color="white">Back to Homepage</font> </a></p>
-      </td>
-      <td width="30%" align="center">
-      <img src=cupcakes.jpg  height=54 width=136 >
-      </td>
-      <td width="35%" valign="top">
-      <p><font color="white"><%= name%>'s profile </font></p>
-      </td>
-      </tr >
+ <div id="container">
+      <header>
+        <nav>
+          <ul id="nav">
+            <li><a href="Home" class="other">Home</a></li>
+            <li><a href=Receipts class="other">All Recipes</a></li>
+             <li><a href="SearchByIngredients" class="other">Extended Search</a></li>
+            <li><a href=AddNewRecipe class="other">Add New Recipe</a></li>
+           
+            
+             <li><a class="search">
+             <div id="tw-form-outer">
+		<form action="SearchServlet" method="get" id="tw-form">
+			<input type="text" id="tw-input-text" name="name" value='search'
+				onfocus="if(this.value=='search'){this.value='';}"
+				onblur="if(this.value==''){this.value='search';}" /> <input
+				type="submit" id="tw-input-submit" value="" />
+		</form>
+	</div>
+	</nav> </header>
+	
+	   <hgroup class="intro">
+          <h1 class="title2"><%=name%>'s profile</h1>
+        </hgroup>
+    <footer>
+     <br>
+      <br>
+       <br>
+    <div class="border"></div>
+    <div class="footer-widget">
+      <h4>Wishlist</h4>
+		 <ul class="blog">
+        <%
+		for (int i = 0; i < wishlist.size(); i++) {
+			Dish d = wishlist.get(i);
+			int dishId=d.getId();
+			String dish_name= d.getName();
+			%> <li><a href="DishServlet?id=<%=dishId %>"><%=dish_name %></a><br/></li><% 
+	
+ 	}
+	
+ %>
+      </ul>
+    </div>
+    <div class="footer-widget">
+      <h4>My recipes</h4>
+      <ul class="blog">
+      <%
+      for (int i = 0; i < dishes.size(); i++) {
+			
+			Dish d = dishes.get(i);
+			int dishId=d.getId();
+			String dish_name= d.getName();
+			%> <li><a href="DishServlet?id=<%=dishId %>"><%=dish_name %></a><br/></li><% 
+	
+ 	}
+	
+ %>
+       
+        
+      </ul>
+    </div>
+    </footer>
+    <br>
+	<div class="border2">
+	<br></div>
+	<br>
+    <br />
+    <br />
+  
+    
+	
+  
+   
 
-<tr >
+
+
+
+<!--
+
+
 	
 	<td width="35%" valign="top">
 
@@ -76,10 +149,7 @@
  	}
 	
  %>
- </ul>
- </td >
- 
- </tr>
- </table>
+ </ul>-->
+
 </body>
 </html>
