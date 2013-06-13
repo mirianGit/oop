@@ -90,14 +90,15 @@ function addInput(divName){
 							onclick="if(this.value=='amount'){this.value=''}"
 							onblur="if(this.value==''){this.value='amount'}"> 
 </div>
- <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
+ <input type="button" class = "button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
 
 
 </div>
 
 
 
-<p align="center"><input type="submit" value="Add Recipe"/></p>
+<p align="center"><input class="button" type="submit" value="Add Recipe"/></p>
+
 
 
 

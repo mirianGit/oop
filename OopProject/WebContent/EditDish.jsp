@@ -128,8 +128,8 @@ function addInput(divName){
 </div>
 
 </div>
-<input type="hidden" name="editingDishId" value=<%=dish.getId() %> />
-<p align="center"><input type="submit" value="Edit Recipe"/></p>
+<input type="hidden"  name="editingDishId" value=<%=dish.getId() %> />
+<p align="center"><input class="button" type="submit" value="Edit Recipe"/></p>
 </form>
 
 </body>
