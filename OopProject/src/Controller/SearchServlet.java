@@ -31,10 +31,34 @@ public class SearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		ArrayList<Dish> dishes = (ArrayList<Dish>) Dish.getDishesByName(name);
+		int page=1;
+		if(request.getParameter("page")!=null){
+			
+			page=Integer.parseInt(request.getParameter("page"));
+			
+		
+		}
+		
+		request.setAttribute("page", page);
+		String name="";
+		if( request.getParameter("name")!=null){
+			name=request.getParameter("name");
+		}
+		
+		ArrayList<Dish> allApprovedDishes =(ArrayList<Dish>) request.getAttribute("alldishes");
+		ArrayList<Dish> allApprovedDishesFromSession =(ArrayList<Dish>) request.getSession().getAttribute("alldishes");
+		String pageName=(String) request.getSession().getAttribute("pageName");
+		if(allApprovedDishes == null && (allApprovedDishesFromSession==null ||!pageName.equals("Found")) ) {
+			allApprovedDishes = (ArrayList<Dish>) Dish.getDishesByName(name);;
+		}else if(allApprovedDishes == null){
+			allApprovedDishes=allApprovedDishesFromSession;
+		}
+		
+	
+		
+		request.getSession().setAttribute("alldishes",null);
 		request.setAttribute("show", "Found");
-		request.setAttribute("alldishes", dishes);
+		request.setAttribute("alldishes", allApprovedDishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("AllRecipes.jsp");
 		dispatch.forward(request, response);
 	}

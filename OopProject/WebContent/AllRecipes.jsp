@@ -105,7 +105,7 @@ h2 {
 h3 {
 	font-size: 40px;
 	border-bottom: 0px dotted #9c5959;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 h4 {
@@ -117,7 +117,7 @@ h1,h2,h3,h4 {
 	color: #9c5959;
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 	font-weight: normal;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 a {
@@ -350,7 +350,7 @@ ul#nav li a.search {
 	/* firefox */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #C4C4C4),
 		color-stop(0%, #EAEAEA), color-stop(100%, #D3D3D3) ); /* webkit */
-	filter: progid:DXImageTransform.Microsoft.gradient(     startColorstr='#C4C4C4',
+	filter: progid:DXImageTransform.Microsoft.gradient(      startColorstr='#C4C4C4',
 		endColorstr='#D3D3D3', GradientType=0 ); /* ie */
 	width: 175px;
 	float: left;
@@ -370,7 +370,7 @@ ul#nav li a.search {
 	/* firefox */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #C4C4C4),
 		color-stop(0%, #EAEAEA), color-stop(100%, #D3D3D3) ); /* webkit */
-	filter: progid:DXImageTransform.Microsoft.gradient(     startColorstr='#C4C4C4',
+	filter: progid:DXImageTransform.Microsoft.gradient(      startColorstr='#C4C4C4',
 		endColorstr='#D3D3D3', GradientType=0 ); /* ie */
 	color: #777;
 	line-height: 100%;
@@ -615,6 +615,7 @@ footer {
 	margin: 15px;
 }
 </style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>All Recipes</title>
 
@@ -624,11 +625,18 @@ footer {
 		<header> <nav>
 		<ul id="nav">
 			<li><a href="Home" class="other">Home</a></li>
-			<%if(request.getAttribute("show")==null||request.getAttribute("show").equals("All")){ %>
+			<%
+				if (request.getAttribute("show") == null
+						|| request.getAttribute("show").equals("All")) {
+			%>
 			<li><a href="Receipts" class="current">all recipes</a></li>
-			<%}else{ %>
+			<%
+				} else {
+			%>
 			<li><a href="Receipts" class="other">all recipes</a></li>
-			<%} %>
+			<%
+				}
+			%>
 			<li><a href="SearchByIngredients" class="other">extended
 					Search</a></li>
 			<li><a href=AddNewRecipe class="other">add New recipe</a></li>
@@ -644,14 +652,22 @@ footer {
 						</form>
 					</div>
 		</nav> </header>
-		<hgroup class="intro">
-		<%if(request.getAttribute("show")==null||request.getAttribute("show").equals("All")){ %>
+		<hgroup class="intro"> <%
+ 	if (request.getAttribute("show") == null
+ 			|| request.getAttribute("show").equals("All")) {
+ %>
 		<h1 class="title">All Recipes</h1>
-		<%}else{ %>
-			<h1 class="title">Search Results</h1>
-		<%} %>
-
-		</hgroup>
+		<%
+			} else if (request.getAttribute("show").equals("Found")) {
+		%>
+		<h1 class="title">Search Results</h1>
+		<%
+			} else {
+		%>
+		<h1 class="title">Search Results</h1>
+		<%
+			}
+		%> </hgroup>
 		<div class="reservations">
 			<br />
 
@@ -659,7 +675,7 @@ footer {
 			<div style="margin-top: 20px">
 
 
-				<a > </a>
+				<a> </a>
 			</div>
 		</div>
 		<br /> <br /> <br /> <br /> <br />
@@ -667,59 +683,95 @@ footer {
 		<div class="wrapper">
 			<div class="border"></div>
 
-			 <article class="menu"> 
-			
-			<%
- 			ArrayList <Dish> allApprovedDishes = (ArrayList<Dish>)request.getAttribute("alldishes");
-		
-    		if(allApprovedDishes != null){	
-    			for(int i = 0; i < allApprovedDishes.size(); i++){
-    				Dish d=allApprovedDishes.get(i);
-    				int dish_id=d.getId();
-    				String dish_name=d.getName();
-    				 String text=d.getReceipt();
-    				 if(text.length()>450)  text=text.substring(0, 450);
-   		 		    %>
-   		 		   
-   		 		    <div class="left">
-   		 		    <h3><a href="DishServlet?id=<%=dish_id %>"><%=dish_name %></a></h3>
+			<article class="menu"> <%
+ 	int pageNum = 1;
+
+ 	if (request.getParameter("page") != null)
+ 		pageNum = Integer.parseInt((String) request
+ 				.getParameter("page"));
+ 	ArrayList<Dish> allApprovedDishes = (ArrayList<Dish>) request
+ 			.getAttribute("alldishes");
+ 	request.getSession().setAttribute("alldishes", allApprovedDishes);
+ 	request.getSession().setAttribute("pageName",
+ 			request.getAttribute("show"));
+ 	if (allApprovedDishes != null) {
+
+ 		for (int i = (pageNum - 1) * 10; i < (pageNum - 1) * 10 + 10; i++) {
+
+ 			if (i == allApprovedDishes.size())
+ 				break;
+ 			Dish d = allApprovedDishes.get(i);
+ 			int dish_id = d.getId();
+ 			String dish_name = d.getName();
+ 			String text = d.getReceipt();
+ 			if (text.length() > 450)
+ 				text = text.substring(0, 450);
+ %>
+
+			<div class="left">
+				<h3>
+					<a href="DishServlet?id=<%=dish_id%>"><%=dish_name%></a>
+				</h3>
 			</div>
 
-			<div class="right menu-order">
-				
-			</div>
+			<div class="right menu-order"></div>
 			<img src="images/menu/pizza2.jpeg" class="left clear item"
 				width="150" alt="">
-			<p class="left"><%=text %> <a href= "DishServlet?id=<%=d.getId() %>">  See Full Recipe</a> </p>
-        		   
+			<p class="left"><%=text%>
+				<a href="DishServlet?id=<%=d.getId()%>"> See Full Recipe</a>
+			</p>
 
-			
-   		 		     <div class="border3"></div>
-   		 		    
-			
-   		 		    <% 
-    			}
-    			
-    		}
-    		
- %>
- 
-			
-			</article>
+
+
+			<div class="border3"></div>
+
+
+			<%
+				}
+
+				}
+			%> </article>
 			<div class="border2"></div>
 			<br>
-				
+
 
 		</div>
 
 		<footer>
 		<div class="border2"></div>
+
 		<br />
-		<a> prev</a> <%
- 	for(int i=1;i<10;i++){
- %> <a href="#"><%=i%></a> <%
+		<%
+			String  link;
+
+			
+			if (request.getAttribute("show") == null
+					|| request.getAttribute("show").equals("All")) {
+				link = "Receipts?page=";
+				
+			} else if (request.getAttribute("show").equals("Found")) {
+				link = "SearchServlet?page=";
+				
+			} else {
+				link = "SearchByIngredientsServlet?page=";
+			}
+			if (pageNum == 1) {
+		%> <a href="<%=link%><%=pageNum%>"> prev</a> <%
+ 	} else {
+ %> <a href="<%=link%><%=pageNum-1%>">
+			prev</a> <%
  	}
- %> <a> next</a> <br />
+ 	for (int i = 1; i <= allApprovedDishes.size() / 10 + 1; i++) {
+ %> <a href="<%=link%><%=i%>"><%=i%></a> <%
+ 	}
+
+ 	if (pageNum == allApprovedDishes.size() / 10 + 1) {
+ %> <a href="<%=link%><%=pageNum%>">
+			next</a> <%
+ 	} else {
+ %> <a href="<%=link%><%=pageNum+1%>"> next</a> <%
+ 	}
+ %> <br />
 		<br />
 		</footer>
 
