@@ -463,16 +463,7 @@ aside h3, .footer-widget h4 {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
-.pikachoose img, article img, aside img {
-	background: #9C5959;
-	padding: 1px;
-	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.50);
-	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.50);
-	box-shadow: 0 0 4px rgba(0,0,0,0.50);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
-}
+
 .noeffects {
 	background: none;
 	padding: 0;
@@ -495,28 +486,7 @@ aside h3, .footer-widget h4 {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
-.img-left {
-	float: left;
-	padding: 1px;
-	margin-right: 10px;
-	-webkit-box-shadow: 0 0 5px #000;
-	-moz-box-shadow: 0 0 5px #000;
-	box-shadow: 0 0 5px #000;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
-}
-.img-right {
-	float: right;
-	padding: 1px;
-	margin-left: 10px;
-	-webkit-box-shadow: 0 0 5px #000;
-	-moz-box-shadow: 0 0 5px #000;
-	box-shadow: 0 0 5px #000;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
-}
+
 footer p {
 	font-size: 14px;
 	margin-right: 5px;
@@ -530,28 +500,23 @@ footer {
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Home Page</title>
+	<title>Dish</title>
 	
 	<link href="styles/base.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
 	<script type="text/javascript" src="scripts/jquery.pikachoose.js"></script>
-	<script type="text/javascript">
-				$(document).ready(function() {
-				$("#pikame").PikaChoose();	});
-	</script>
+
 	</head>
 	<body>
     <div id="container">
       <header>
         <nav>
           <ul id="nav">
-            <li><a href="Home" class="current">Home</a></li>
+            <li><a href="Home" class="other">Home</a></li>
             <li><a href=Receipts class="other">all recipes</a></li>
-             <li><a href="SearchByIngredients" class="other">extended Search</a></li>
+            <li><a href="SearchByIngredients" class="other">extended Search</a></li>
             <li><a href=AddNewRecipe class="other">add New recipe</a></li>
-           
-            
-             <li><a class="search">
+           	<li><a class="search"> 
              <div id="tw-form-outer">
 		<form action="SearchServlet" method="get" id="tw-form">
 			<input type="text" id="tw-input-text" name="name" value='search'
@@ -560,46 +525,13 @@ footer {
 				type="submit" id="tw-input-submit" value="" />
 		</form>
 	</div>
-             
-							</a>
-			
-          
-          </ul>
-        </nav>
-        <hgroup class="intro">
-        
+	</a>
+	</ul>
+       </nav>
+       <hgroup class="intro">
         </hgroup>
-        <div class="reservations"><br />
-         				<%
-					if (request.getSession().getAttribute("signed") == null ){
-				%>
-
-				<div style="margin-top:20px"> <a class="button" href="Register.jsp" title="Register">Register</a> </div>
-          <div style="margin-top:20px"> <a class="button" href="Login.jsp" title="sign in">sign in</a> </div> <%
- 	} else {
- %>
-
-				 <div style="margin-top:20px">
-				 <%
-				 String name=(String)request.getSession().getAttribute("name");
-				 int id=User.getIdByName(name);
-						 User us=User.getUserById(id);%>
-						 
-					<a class=hello href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
-				
-				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> <%
-				
- 	}
- %>
-          
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        
+   
       </header>
 <%
 	int signed = (Integer) request.getAttribute("signed");
@@ -608,8 +540,13 @@ footer {
 
 	int isAdmin = (Integer) request.getAttribute("isAdmin");
 	int contains = (Integer) request.getAttribute("contains");
+
+	int dish_id = Integer.parseInt(request.getParameter("id"));
+	String dish_name = Dish.getName(dish_id);
+	Dish curr_dish = Dish.getDish(dish_name);
+	String text = curr_dish.getReceipt();
 %>
-<body style="height: 100%;" bgcolor="#FFF8F0">
+
 	<form action="wishlistOrDeleteServlet" method="get">
 		<input type=hidden name=id value=<%=id%>>
 		<%
@@ -634,20 +571,14 @@ footer {
 			}
 		%>
 	</form>
-	<h4>
-		<a href="Receipts"> All recipes </a>
-	</h4>
+	<h1 align="center">
+		<a href="Receipts"><%=dish_name%></a>
+	</h1>
 	<div
 		class="post-1450 post type-post status-publish format-standard hentry category-59"
 		id="post-1450">
-		<%
-			int dish_id = Integer.parseInt(request.getParameter("id"));
-			String dish_name = Dish.getName(dish_id);
-			Dish curr_dish = Dish.getDish(dish_name);
-			String text = curr_dish.getReceipt();
-		%>
-		<h1 class="entry-title">
-			<%=dish_name%></h1>
+		
+	
 
 		<p align="justify">
 		<% request.getSession().setAttribute("dish_id", dish_id); %>
