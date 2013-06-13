@@ -156,6 +156,16 @@ a {
 	-ms-transition: all .20s ease-out;
 	transition: all .20s ease-out;
 }
+.title2 {
+	font-family: 'Lobster13Regular', cursive;
+	font-size: 50px;
+	float: left;
+	-webkit-transition: all .20s ease-out;
+	-moz-transition: all .20s ease-out;
+	-o-transition: all .20s ease-out;
+	-ms-transition: all .20s ease-out;
+	transition: all .20s ease-out;
+}
 
 p.main {
 width: 500px;
