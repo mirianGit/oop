@@ -146,7 +146,10 @@
 				if (isAdmin == 0 && contains == 0) {
 		%>
 		<p>
-			<input type=submit name="button" value="add to wishlist">
+			
+			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet" type=submit name="button" value="add to wishlist"
+			 class="button"> Add To WishList</a></div>
+			 
 		</p>
 		<%
 			} else if (isAdmin == 0) {
@@ -156,7 +159,9 @@
 			} else {
 		%>
 		<p>
-			<input type=submit name="button" value="Delete recipe">
+			
+			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet" name="button" value ="Delete recipe"
+			 class="button"> Delete Recipe</a></div>
 		</p>
 		<%
 			}
@@ -164,12 +169,14 @@
 		%>
 	</form>
 	
+	
+    
+	
 	<p align="justify">
 		<% 
 		if(isAdmin == 1){
 		request.getSession().setAttribute("dish_id", dish_id); %>
-			<a href=EditDish class="other"><font size="2" color="blue">edit</font></a>
-		<%} %>
+			<div style="margin-top:20px"><a href="EditDish" class="button"> Edit Recipe</a></div>		<%} %>
 			
 		</p>
 	
