@@ -29,7 +29,31 @@
 <body>
 	<div id="container">
 		<jsp:include page="Header.jsp" />
+	<div id="container">
+		<header> <nav>
+		<ul id="nav">
+			<li><a href="Home" class="current">Home</a></li>
+			<li><a href=Receipts class="other">all recipes</a></li>
+			<li><a href="SearchByIngredients" class="other">extended
+					Search</a></li>
+			<li><a href=AddNewRecipe class="other">add New recipe</a></li>
 
+
+			<li><a class="search">
+					<div id="tw-form-outer">
+						<form action="SearchServlet" method="get" id="tw-form">
+							<input type="text" id="tw-input-text" name="name" value='search'
+								onfocus="if(this.value=='search'){this.value='';}"
+								onblur="if(this.value==''){this.value='search';}" /> <input
+								type="submit" id="tw-input-submit" value="" />
+						</form>
+					</div>
+
+			</a>
+		</ul>
+		</nav>
+
+		<head>
 		<p>
 			<img src="we.jpg" alt="Smiley face" height="200" width="240"
 				align="left">
