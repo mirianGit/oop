@@ -127,11 +127,9 @@ function addInput(divName){
 
 </div>
 
-
+</div>
 <input type="hidden" name="editingDishId" value=<%=dish.getId() %> />
-
-<p align="center"><a class="button" href="EditDish" title="log out">Edit Recipe</a> </p>
-
+<p align="center"><input type="submit" value="Edit Recipe"/></p>
 </form>
 
 </body>

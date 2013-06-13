@@ -95,7 +95,13 @@ function addInput(divName){
 
 </div>
 
-<p align="center"><a class="button" href="LogOut" title="log out">Add Recipe</a> </p>
+
+
+<p align="center"><input type="submit" value="Add Recipe"/></p>
+
+
+
+
 
 
 </form>
