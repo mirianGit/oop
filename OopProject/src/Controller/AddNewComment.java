@@ -47,6 +47,7 @@ public class AddNewComment extends HttpServlet {
 			RequestDispatcher dispatch = request.getRequestDispatcher("AddNewComment.jsp");
 			dispatch.forward(request, response);
 		}
+		
 		ArrayList<Comment> dishComments = (ArrayList<Comment>) Comment.getDishComments(dishId);
 		sess.setAttribute("Comments", dishComments);
 		// TODO Auto-generated method stub
