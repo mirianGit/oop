@@ -1,3 +1,4 @@
+<%@page import="Model.User"%>
 <%@page import="Model.Dish"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -95,8 +96,8 @@
  			int dish_id = d.getId();
  			String dish_name = d.getName();
  			String text = d.getReceipt();
- 			if (text.length() > 450)
- 				text = text.substring(0, 450);
+ 			if (text.length() > 50)
+ 				text = text.substring(0, 50);
  %>
 
 			<div class="left">
@@ -109,14 +110,17 @@
 			<img src=<%=d.getPicture() %> class="left clear item"
 				width="150" alt="">
 			<p class="left"><%=text%>
-				<a href="DishServlet?id=<%=d.getId()%>"> See Full Recipe</a>
+				
+				<br>
+				<a href="DishServlet?id=<%=d.getId()%>"><br>See Full Recipe</a>
 			</p>
 
 
-
+<br>
+	<br>
 			<div class="border3"></div>
 
-
+	
 			<%
 				}
 
