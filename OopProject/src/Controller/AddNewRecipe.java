@@ -64,7 +64,12 @@ public class AddNewRecipe extends HttpServlet {
 				}
 			}
 		}
-		Dish newDish = new Dish(dishName, 0, userId, 0, recipeText, "", ingredients);
+		Dish newDish;
+		if(User.getUserById(User.getIdByName((String)curr.getAttribute("name"))).isAdmin()){
+			newDish = new Dish(dishName, 0, userId, 1, recipeText, "", ingredients);
+		}else{
+			newDish = new Dish(dishName, 0, userId, 0, recipeText, "", ingredients);
+		}
 		newDish.add();
 		dispatch = request.getRequestDispatcher("HomePage.jsp");
 		dispatch.forward(request, response);
