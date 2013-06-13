@@ -41,7 +41,7 @@ function addInput(divName){
 <p> How to prepare:  
 
 <p> <TEXTAREA Name="recipe" ROWS= 4 COLS= 40></TEXTAREA></p>
-
+ Upload image  <input type="text" name="pic" />
 <p>
 
 </div>

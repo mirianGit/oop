@@ -53,6 +53,7 @@ public class AddNewRecipe extends HttpServlet {
 		HttpSession curr = request.getSession();
 		String dishName = request.getParameter("name");
 		String recipeText = request.getParameter("recipe");
+		String pic = request.getParameter("pic");
 		int userId = User.getIdByName((String)curr.getAttribute("name"));
 		HashMap<Ingredient, String> ingredients = new HashMap<Ingredient, String>();
 		Iterator<String> it = request.getParameterMap().keySet().iterator();
@@ -66,9 +67,9 @@ public class AddNewRecipe extends HttpServlet {
 		}
 		Dish newDish;
 		if(User.getUserById(User.getIdByName((String)curr.getAttribute("name"))).isAdmin()){
-			newDish = new Dish(dishName, 0, userId, 1, recipeText, "", ingredients);
+			newDish = new Dish(dishName, 0, userId, 1, recipeText, pic, ingredients);
 		}else{
-			newDish = new Dish(dishName, 0, userId, 0, recipeText, "", ingredients);
+			newDish = new Dish(dishName, 0, userId, 0, recipeText, pic, ingredients);
 		}
 		newDish.add();
 		dispatch = request.getRequestDispatcher("/Home");
