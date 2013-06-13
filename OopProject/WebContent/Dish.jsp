@@ -62,8 +62,9 @@
 			<%=dish_name%></h1>
 
 		<p align="justify">
+		<input type=hidden name=dish_id value=<%=(Integer)request.getAttribute("id")%>>
 			<a href=EditDish class="other"><font size="2" color="blue">edit</font>
-			<input type=hidden name=dish_id value=<%=dish_id%>>
+			
 			</a>
 			
 			
