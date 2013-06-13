@@ -63,6 +63,82 @@
 	String text = curr_dish.getReceipt();
 %>
 
+
+	<h1 align="center">
+		<a><%=dish_name%></a>
+	</h1>
+	<br>
+	<div class="border"></div>
+	
+	<div
+		class="post-1450 post type-post status-publish format-standard hentry category-59"
+		id="post-1450">
+		
+		
+		<div id="guan-page-code-top"></div>
+		
+		<article class="menu">
+		
+		<p>
+			<img src=<%=curr_dish.getPicture()%> alt="Smiley face" height="200"
+				width="200" align="left">
+		</p>
+		
+		
+		
+		<h4 align="center">
+			 ingredients 
+		</h4>
+		<blockquote>
+			<p align="center">
+			<table border="0" cellpadding="10"  style="line-height: 2.5; " align="center">
+				<th>
+					
+						<%
+							HashMap<Ingredient, String> ingredients = curr_dish
+									.getIngredients();
+							Iterator<Ingredient> it = ingredients.keySet().iterator();
+							if (ingredients != null) {
+							out.print("<ul>");
+								while (it.hasNext() ) {
+									Ingredient ing = it.next();
+									out.print("<li> <a>&nbsp &nbsp" + ing.getName() 
+											+ "&nbsp &nbsp&nbsp &nbsp</a>");
+								}
+							}
+							
+						%>
+					</th>
+					<th>
+						<%
+							Iterator<String> it2 = ingredients.values().iterator();
+							if (ingredients != null) {
+								while (it2.hasNext()) {
+									out.print("<li> <a  >" + it2.next()
+											+  " </a>  ");
+								}
+							}
+							out.print("</ul>");
+						%>
+					</th>
+			</table>
+			
+		
+	<h4 > recipe: </h4>
+	
+		<p align="left" ><%=text%></p>
+		
+		<% String authorName = User.getUserById(curr_dish.getAuthorId()).getName(); %>
+	
+	<h4>author: <%=authorName %></h4>
+		
+	
+	<jsp:include page="commentBox.jsp" />
+	
+	</blockquote>
+	</div>
+	
+	
 	<form action="wishlistOrDeleteServlet" method="get">
 		<input type=hidden name=id value=<%=id%>>
 		<%
@@ -87,17 +163,8 @@
 			}
 		%>
 	</form>
-	<h1 align="center">
-		<a><%=dish_name%></a>
-	</h1>
-	<br>
-	<div class="border"></div>
 	
-	<div
-		class="post-1450 post type-post status-publish format-standard hentry category-59"
-		id="post-1450">
-		
-		<p align="justify">
+	<p align="justify">
 		<% 
 		if(isAdmin == 1){
 		request.getSession().setAttribute("dish_id", dish_id); %>
@@ -105,69 +172,8 @@
 		<%} %>
 			
 		</p>
-		<div id="guan-page-code-top"></div>
-		
-		<article class="menu">
-		
-		<p>
-			<img src=<%=curr_dish.getPicture()%> alt="Smiley face" height="200"
-				width="200" align="left">
-		</p>
-		
-		</div>
-		</div>
-		<h4 style="border-spacing: 1cm;">
-			 ingredients 
-		</h4>
-		<blockquote>
-			<p align="left">
-			<table border="0" cellpadding="10"  style="line-height: 2.5; ">
-				<tr>
-					
-					<th>
-				</tr>
-				<tr>
-					<th >
-						<%
-							HashMap<Ingredient, String> ingredients = curr_dish
-									.getIngredients();
-							Iterator<Ingredient> it = ingredients.keySet().iterator();
-							if (ingredients != null) {
-							out.print("<ul>");
-								while (it.hasNext() ) {
-									Ingredient ing = it.next();
-									out.print("<li> <a>" + ing.getName() 
-											+ "</a>");
-								}
-							}
-							
-						%>
-					</th>
-					<th>
-						<%
-							Iterator<String> it2 = ingredients.values().iterator();
-							if (ingredients != null) {
-								while (it2.hasNext()) {
-									out.print("<li> <a  >" + it2.next()
-											+ "</a>");
-								}
-							}
-							out.print("</ul>");
-						%>
-					</th>
-					</article>
-					
-				</tr>
-				<tr>
-
-				</tr>
-			</table>
-
-
-		</blockquote>
-
-		<p align="left"><%=text%></p>
-	</div>
-	<jsp:include page="commentBox.jsp" />
+	
+	</article>
+	
 </body>
 </html>
