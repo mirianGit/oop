@@ -57,7 +57,7 @@ function addInput(divName){
 <p> How to prepare:  
 
 <p> <TEXTAREA Name="recipe" ROWS= 4 COLS= 40> <%=text%></TEXTAREA></p>
- Upload image  <input type="file" name="pic" />
+ Upload image  <input type="text" name="pic" />
 <p>
 
 </div>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.FileUpload;
+
 /**
  * Servlet implementation class SearchByIngredients
  */
@@ -37,7 +39,6 @@ public class SearchByIngredients extends HttpServlet {
 		}else{
 			RequestDispatcher dispatch = request.getRequestDispatcher("SearchByIngredients.jsp");
 			dispatch.forward(request, response);
-			
 		}
 		
 	}

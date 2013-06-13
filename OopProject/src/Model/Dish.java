@@ -329,14 +329,15 @@ public class Dish {
 		return res;
 	}
 
-	public static void editDish(int editingDishId, String dishName, String recipeText, HashMap<Ingredient, String> ingredients2) {
+	public static void editDish(int editingDishId, String dishName, String recipeText, String pic, HashMap<Ingredient, String> ingredients2) {
 		try {
 			Connection con = MyDB.getConnection();
-			String update = "UPDATE DISHES SET DISH_NAME = ?, RECEIPT = ? WHERE DISH_ID = ? ;";
+			String update = "UPDATE DISHES SET DISH_NAME = ?, RECEIPT = ?, PICTURE = ? WHERE DISH_ID = ? ;";
 			PreparedStatement stat = con.prepareStatement(update);
 			stat.setString(1, dishName);
 			stat.setString(2, recipeText);
-			stat.setInt(3, editingDishId);
+			stat.setString(3, pic);
+			stat.setInt(4, editingDishId);
 			stat.executeUpdate();
 			
 			String removeFromIngredients = "DELETE FROM INGREDIENTS WHERE DISH_ID = ? ;";
@@ -349,7 +350,7 @@ public class Dish {
 				Ingredient next = it.next();
 				int ingrId = next.getId();
 				String amount = ingredients2.get(next);
-				String insertIntoIngredients = "INSERT INTO INGREDIENTS VALUES ("+editingDishId+", "+ingrId+", '"+amount+"');";
+				String insertIntoIngredients = "INSERT INTO INGREDIENTS VALUES ( ?, ?, ? );";
 				PreparedStatement stat2 = con.prepareStatement(insertIntoIngredients);
 				stat2.setInt(1, editingDishId);
 				stat2.setInt(2, ingrId);

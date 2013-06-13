@@ -35,10 +35,10 @@ public class EditDish extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	int dish_id = (Integer)request.getAttribute("dish_id");
-	//	Dish editingDish = Dish.getDish(Dish.getName(dish_id));
-		Dish a = Dish.getDish("shemwvari kartofili");
-		request.setAttribute("edit?", a);
+		int dish_id = (Integer)request.getSession().getAttribute("dish_id");
+		Dish editingDish = Dish.getDish(Dish.getName(dish_id));
+		request.setAttribute("edit?", editingDish);
+		request.getSession().setAttribute("dish_id", null);
 		RequestDispatcher dispatch = request.getRequestDispatcher("EditDish.jsp");
 		dispatch.forward(request, response);
 	}
@@ -50,6 +50,7 @@ public class EditDish extends HttpServlet {
 		int editingDishId = Integer.parseInt(request.getParameter("editingDishId"));
 		String dishName = request.getParameter("name");
 		String recipeText = request.getParameter("recipe");
+		String pic = request.getParameter("pic");
 		HashMap<Ingredient, String> ingredients = new HashMap<Ingredient, String>();
 		Iterator<String> it = request.getParameterMap().keySet().iterator();
 		while(it.hasNext()){
@@ -60,7 +61,7 @@ public class EditDish extends HttpServlet {
 				}
 			}
 		}
-		Dish.editDish(editingDishId, dishName, recipeText, ingredients);
+		Dish.editDish(editingDishId, dishName, recipeText, pic, ingredients);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/Home");
 		dispatch.forward(request, response);
 	}
