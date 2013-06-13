@@ -529,9 +529,78 @@ footer {
 </style>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Dish</title>
-</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Home Page</title>
+	
+	<link href="styles/base.css" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
+	<script type="text/javascript" src="scripts/jquery.pikachoose.js"></script>
+	<script type="text/javascript">
+				$(document).ready(function() {
+				$("#pikame").PikaChoose();	});
+	</script>
+	</head>
+	<body>
+    <div id="container">
+      <header>
+        <nav>
+          <ul id="nav">
+            <li><a href="Home" class="current">Home</a></li>
+            <li><a href=Receipts class="other">all recipes</a></li>
+             <li><a href="SearchByIngredients" class="other">extended Search</a></li>
+            <li><a href=AddNewRecipe class="other">add New recipe</a></li>
+           
+            
+             <li><a class="search">
+             <div id="tw-form-outer">
+		<form action="SearchServlet" method="get" id="tw-form">
+			<input type="text" id="tw-input-text" name="name" value='search'
+				onfocus="if(this.value=='search'){this.value='';}"
+				onblur="if(this.value==''){this.value='search';}" /> <input
+				type="submit" id="tw-input-submit" value="" />
+		</form>
+	</div>
+             
+							</a>
+			
+          
+          </ul>
+        </nav>
+        <hgroup class="intro">
+        
+        </hgroup>
+        <div class="reservations"><br />
+         				<%
+					if (request.getSession().getAttribute("signed") == null ){
+				%>
+
+				<div style="margin-top:20px"> <a class="button" href="Register.jsp" title="Register">Register</a> </div>
+          <div style="margin-top:20px"> <a class="button" href="Login.jsp" title="sign in">sign in</a> </div> <%
+ 	} else {
+ %>
+
+				 <div style="margin-top:20px">
+				 <%
+				 String name=(String)request.getSession().getAttribute("name");
+				 int id=User.getIdByName(name);
+						 User us=User.getUserById(id);%>
+						 
+					<a class=hello href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
+				
+				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> <%
+				
+ 	}
+ %>
+          
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </header>
 <%
 	int signed = (Integer) request.getAttribute("signed");
 	int id = (Integer) request.getAttribute("id");
@@ -581,7 +650,7 @@ footer {
 			<%=dish_name%></h1>
 
 		<p align="justify">
-		<% request.setAttribute("dish_id", dish_id); %>
+		<% request.getSession().setAttribute("dish_id", dish_id); %>
 			<a href=EditDish class="other"><font size="2" color="blue">edit</font>
 			
 			</a>
