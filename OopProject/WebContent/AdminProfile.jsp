@@ -81,6 +81,8 @@ blockquote span {
 	   <hgroup class="intro">
           <h1 class="title2"><%=name%>'s profile</h1>
         </hgroup>
+        
+         <div style="margin-top:20px"> <a class="buttonUser" style="position: absolute; text-align:center; width:100px;right:200px" href="LogOut" title="log out">log out</a> </div> 
             <footer>
      <br>
       <br>
@@ -91,9 +93,22 @@ blockquote span {
    
     <div class="footer-widget">
       <h4>Non approved Items</h4>
+      
+      
+       </div>
+         <div class="footer-widget">
+      <h4>My recipes</h4>
+       </div>
+        <div class="footer-widget">
+      <h4>Menu</h4>
+      </div>
+      <div class="border2"> </div>
+      <br>
+      
+       <div class="footer-widget">
       	<form id="frm1"  method="get" action="ApproveServlet" >
 		<input type="hidden" name="hidden">
-        <%	if(c.isEmpty()) %> <a>there is nothing to approve</a>
+        <%	if(c.isEmpty()) %> <a Style= "font-size:22px; text-align:center; width:250px; position:absolute;left:230px;top:360px">There is nothing to approve</a>
     	 <ul class="blog">
     	
     	<%	
@@ -115,9 +130,9 @@ blockquote span {
 
       </ul>
       </form>
-    </div>
-    <div class="footer-widget">
-      <h4>My recipes</h4>
+   
+  </div>
+   <div class="footer-widget">
       <ul class="blog">
       <%
       for (int i = 0; i < dishes.size(); i++) {
@@ -129,7 +144,7 @@ blockquote span {
 			String status;
 			if(approved==1) status="approved";
 			else status ="not approved yet";
-			%> <li><a href="DishServlet?id=<%=dishId %>"><%=dish_name %></a> <a><%=status %></a><br/></li><% 
+			%> <li><a href="DishServlet?id=<%=dishId %>"><b><%=dish_name %></b></a> <a><%=status %></a><br/></li><% 
 	
  	}
 	
@@ -137,91 +152,25 @@ blockquote span {
        
         
       </ul>
-      
-    </div>
-       <div class="footer-widget">
-      <h4>Menu</h4>
-      <a href = "allUsersServlet">edit Users</a><br>
-     </div>
+      </div>
+     <div class="footer-widget">
+     <br>
+       <p><a href = "allUsersServlet" Style= "font-size:22px; text-align:center; width:250px; position:absolute;right:230px;top:360px"> Edit Users</a></p>
+     
+</div>
     </footer>
     <br>
-	<div class="border2">
-	<br></div>
+	
 	<br>
     <br />
     <br />
      
-<!--
-
-
- 
-        
-<div id="container" style="width:100%;height:100%;">
-<div id="header" style="background-color:#FF7F50;">
-<p style="margin-bottom:0;"><font size="5"color=white><%=name%>'s profile</font></p>
-<p style="margin-top:0;margin-bottom:0;"><font color=white> admin </font></p>
-</div>
-<div id="menu" style="background-color:#F8F6F7;height:  100%;width:20%;float:left;">
-<b>Menu </b><br>
-<a href = "allUsersServlet">edit Users</a><br>
-<a href = "Home"> Back to Homepage</a>
-</div>
-<div id="content" style="height:100%;width:80%;float:left;">
-<table style="height: 100%;width:  100%;"border="0"  >
-<tr >
-	
-	<td width="30%" valign="top">
-
-	
-	<p ><b><font size="4"color=FF7F50>Non Approved recipes </font></b></p>
-	<form id="frm1"  method="get" action="ApproveServlet" >
-	
-	<%	if(c.isEmpty()) %> <a>there is nothing to approve</a>
-	<ul >
-	
-	<%	
-		for(Dish d:c){
-		
-			String dish_name= d.getName();
-			 dish_id=d.getId();
-			%><li><a href= "DishServlet?id=<%=dish_id %>"><%=dish_name %>&nbsp;</a><input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /><% 
-	
- 	}
-	
- %>
-  </ul>
-</form>
- 
-
-  </td>
- <td width="25%" valign="top">
- 	<p><b><font size="4" color=FF7F50>User Information</font></b></p>
- 	<a><%=name %></a>
- </td>
- <td width="25%" valign="top">
- <p><b><font size="4" color=FF7F50>my recipes</font></b></p>
-	<ul>
-	<%
-		for (int i = 0; i < dishes.size(); i++) {
-			Dish d = dishes.get(i);
-			int dishId= d.getId();
-			String dish_name= d.getName();
-			int approved=d.getApproved();
-			String status;
-			if(approved==1) status="approved";
-			else status ="not approved yet";
-			%><li><a href= "DishServlet?id=<%=dishId %>"><%=dish_name %></a> <a><%=status %></a><% 
-	
- 	}
-	
- %>
- </ul>
- </td >
- 
- </tr>
- </table></div>
--->
-
+ <div class="border2" style="position: absolute; text-align:left; left:200px; right:200px;bottom:100px"></div>
+  	  <span class="copyright" style="position: absolute; text-align:left; width:500px;left:200px ;bottom:50px"><span class="left"><br />
+     For more information contact us <a href="AboutAs.jsp">see Information</a></span><span class="right"><br />
+    <a href=#></a>  <a href=#></a>
+    
+	</span>
 </div>
 </body>
 </html>
