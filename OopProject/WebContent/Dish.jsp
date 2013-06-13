@@ -147,7 +147,7 @@
 		%>
 		<p>
 			
-			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet" type=submit name="button" value="add to wishlist"
+			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet?id=<%=id%>&button=add" type=submit name="button" value="add to wishlist"
 			 class="button"> Add To WishList</a></div>
 			 
 		</p>
@@ -160,7 +160,7 @@
 		%>
 		<p>
 			
-			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet" name="button" value ="Delete recipe"
+			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet?id=<%=id%>&button=delete" name="button" value ="Delete recipe"
 			 class="button"> Delete Recipe</a></div>
 		</p>
 		<%
