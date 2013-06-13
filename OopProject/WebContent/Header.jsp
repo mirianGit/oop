@@ -477,7 +477,7 @@ p {
 }
 
 article {
-	width: 630px;
+	width: 250px;
 	float: left;
 	padding: 10px;
 	border-right: 1px dashed #9c5959;
