@@ -116,18 +116,18 @@
 		
 		</div>
 		</div>
-		<h4 align="center">
+		<h4 style="border-spacing: 1cm;">
 			 ingredients 
 		</h4>
 		<blockquote>
 			<p align="left">
-			<table border="0" cellpadding="10">
+			<table border="0" cellpadding="10"  style="line-height: 2.5; ">
 				<tr>
 					
 					<th>
 				</tr>
 				<tr>
-					<th>
+					<th >
 						<%
 							HashMap<Ingredient, String> ingredients = curr_dish
 									.getIngredients();
