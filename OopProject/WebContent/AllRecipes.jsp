@@ -45,6 +45,29 @@
 								onblur="if(this.value==''){this.value='search';}" /> <input
 								type="submit" id="tw-input-submit" value="" />
 						</form>
+						</li>
+						<div class="reservations"><br />
+         				<%
+					if (request.getSession().getAttribute("signed") == null ){
+				%>
+
+				<div style="margin-top:-70px"> <a class="button" href="Register.jsp" title="Register">Register</a> </div>
+          <div style="margin-top:20px"> <a class="button" href="Login.jsp" title="sign in">sign in</a> </div> <%
+ 	} else {
+ %>
+
+				 <div style="margin-top:-70px">
+				 <%
+				 String name=(String)request.getSession().getAttribute("name");
+				 int id=User.getIdByName(name);
+						 User us=User.getUserById(id);%>
+						 
+					<a class="hello" href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
+				
+				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> <%
+				
+ 	}
+ %>
 					</div>
 		</nav> </header>
 		<hgroup class="intro"> <%

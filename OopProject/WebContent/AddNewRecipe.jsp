@@ -1,3 +1,4 @@
+<%@page import="Model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,6 +50,18 @@ input, textarea, select {
 				onblur="if(this.value==''){this.value='search';}" /> <input
 				type="submit" id="tw-input-submit" value="" />
 		</form>
+		</li>
+		
+         <div class="reservations"><br />
+			<div style="margin-top:-70px">
+				 <%
+				 String name=(String)request.getSession().getAttribute("name");
+				 int id=User.getIdByName(name);
+				 User us=User.getUserById(id);%>
+						 
+					<a class="hello" href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
+				
+				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> 
 	</div>
 	</a>
 	</ul>
