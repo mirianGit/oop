@@ -47,7 +47,7 @@
 		%>
 	</form>
 	<h4>
-		<a href="AllRecipes.jsp"> All recipes </a>
+		<a href="Receipts"> All recipes </a>
 	</h4>
 	<div
 		class="post-1450 post type-post status-publish format-standard hentry category-59"
@@ -62,7 +62,11 @@
 			<%=dish_name%></h1>
 
 		<p align="justify">
-			<a href=EditDish.jsp class="other"><font size="2" color="blue">edit</font></a>
+			<a href=EditDish class="other"><font size="2" color="blue">edit</font>
+			<input type=hidden name=dish_id value=<%=id%>>
+			</a>
+			
+			
 		</p>
 		<div id="guan-page-code-top"></div>
 		<p>
