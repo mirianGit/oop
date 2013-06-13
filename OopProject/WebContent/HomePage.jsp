@@ -614,8 +614,8 @@ footer {
         	 String text=d.getReceipt();
         	 if(text.length()>250)  text=text.substring(0, 250);
         	%> <div class="home-widget">
-        		  <h3><%=d.getName() %></h3>
-        		    <img src="images/home/3.jpg" width="300" alt="" />
+        		  <h3><a href= "DishServlet?id=<%=d.getId() %>"><%=d.getName() %></a></h3>
+        		    <img src="<%=d.getPicture()%>"  width="300" height="200" alt="" />
         		    <p><%=text %> 
         		    <a href= "DishServlet?id=<%=d.getId() %>">  See Full Recipe</a></p>
         		     </div>
@@ -702,10 +702,17 @@ footer {
         
        </footer>
 	</div>
-	<br>
 	<div class="border2">
 	<br></div>
 	<br>
-	
+	<br>
+	<br>
+	 <br />
+    <span class="copyright"><span class="left"><br />
+     For more information contact us <a href="AboutAs.jsp">see Information</a></span><span class="right"><br />
+    <a href=#></a>  <a href=#></a><br />
+    <br />
+    <br />
+    </span></span></footer>
 </body>
 </html>

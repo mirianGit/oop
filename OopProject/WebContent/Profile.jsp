@@ -8,11 +8,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
+blockquote {
+	background: transparent url(../images/blockquote.png) no-repeat 0px 30px;
+	padding: 30px;
+	font-style: italic;
+}
 
-
-
-
-
+blockquote span {
+	font-weight: bold;
+	clear: both;
+	float: right;
+	margin-top: 20px;
+}
+.blog {
+	width: 500px;
+	text-align: left;
+	font-size: 20px;
+	padding: 10px;
+	padding-left:10px;
+	margin-left: 20px;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -109,47 +124,7 @@
 
 
 
-<!--
 
-
-	
-	<td width="35%" valign="top">
-
-	
-	<p>wishlist</p>
-	<ul>
-	<%
-		for (int i = 0; i < wishlist.size(); i++) {
-			Dish d = wishlist.get(i);
-			int dishId=d.getId();
-			String dish_name= d.getName();
-			%><li><a href= "DishServlet?id=<%=dishId %>"><%=dish_name %></a><% 
-	
- 	}
-	
- %>
- 
- </ul>
-  </td>
- <td width="30%" valign="top">
- 	<p>User Information</p>
- 	<a><%=name %></a>
- </td>
- <td width="35%" valign="top">
- <p>my recipes</p>
-	<ul>
-	<%
-		for (int i = 0; i < dishes.size(); i++) {
-			
-			Dish d = dishes.get(i);
-			int dishId=d.getId();
-			String dish_name= d.getName();
-			%><li><a href= "DishServlet?id=<%=dishId %>"><%=dish_name %></a><% 
-	
- 	}
-	
- %>
- </ul>-->
 
 </body>
 </html>
