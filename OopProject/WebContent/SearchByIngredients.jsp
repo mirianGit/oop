@@ -554,9 +554,10 @@ function addInput(divName){
  <form action="SearchByIngredientsServlet" >
 
 <div id="dynamicInput">
-     Ingredient 1 <br><input type='text' name='INGREDIENT1'>
+     Ingredient 1 <br> <input type='text' name='INGREDIENT1'>
 </div>
- <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
+<p> <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
+</p>
 
 
 <p><input type = "submit" value= "Search" /></p>
