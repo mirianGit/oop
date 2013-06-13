@@ -42,21 +42,29 @@ public class LoginServlet extends HttpServlet {
 		HttpSession curr = request.getSession();
 		String name = (String) request.getParameter("name");
 		String pass = (String) request.getParameter("password");
-		if(User.exsistsAccount(name)){
-			if(User.passwordIsCorrect(name, pass)){
-				curr.setAttribute("name", name);
-				curr.setAttribute("signed", "true");
-				dispatch = request.getRequestDispatcher("HomePage.jsp");
-				dispatch.forward(request, response);
-			} else {
-				request.setAttribute("problem", "Password is incorrect. Please, be careful");
+		if(name.equals("Username")||pass.equals("Password")){
+			request.setAttribute("problem", "Please fill all fields");
+		
+			dispatch = request.getRequestDispatcher("Login.jsp");
+			dispatch.forward(request, response);
+		}else{
+			
+			if(User.exsistsAccount(name)){
+				if(User.passwordIsCorrect(name, pass)){
+					curr.setAttribute("name", name);
+					curr.setAttribute("signed", "true");
+					dispatch = request.getRequestDispatcher("HomePage.jsp");
+					dispatch.forward(request, response);
+				} else {
+					request.setAttribute("problem", "Password is incorrect. Please, be careful");
+					dispatch = request.getRequestDispatcher("Login.jsp");
+					dispatch.forward(request, response);
+				}
+			}else{
+				request.setAttribute("problem", "Account doesn't exist. Please register at first ;)");
 				dispatch = request.getRequestDispatcher("Login.jsp");
 				dispatch.forward(request, response);
 			}
-		}else{
-			request.setAttribute("problem", "Account doesn't exist. Please register at first ;)");
-			dispatch = request.getRequestDispatcher("Login.jsp");
-			dispatch.forward(request, response);
 		}
 	}
 

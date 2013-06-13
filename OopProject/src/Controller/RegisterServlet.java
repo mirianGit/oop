@@ -43,22 +43,30 @@ public class RegisterServlet extends HttpServlet {
 		String name = (String) request.getParameter("name");
 		String pass1 = (String) request.getParameter("password1");
 		String pass2 = (String) request.getParameter("password2");
-		if(!User.exsistsAccount(name)){
-			if(pass1.equals(pass2)){
-				curr.setAttribute("signed", "true");
-				curr.setAttribute("name", name);
-				User newone = new User(-1, name, pass1, 0);
-				dispatch = request.getRequestDispatcher("HomePage.jsp");
-				dispatch.forward(request, response);
+		
+		if(name.equals("UserName")||pass1.equals("Password")||pass2.equals("Re-Enter Password")){
+			request.setAttribute("problem", "Please fill all fields");
+		
+			dispatch = request.getRequestDispatcher("Register.jsp");
+			dispatch.forward(request, response);
+		}else{
+			if(!User.exsistsAccount(name)){
+				if(pass1.equals(pass2)){
+					curr.setAttribute("signed", "true");
+					curr.setAttribute("name", name);
+					User newone = new User(-1, name, pass1, 0);
+					dispatch = request.getRequestDispatcher("HomePage.jsp");
+					dispatch.forward(request, response);
+				}else{
+					request.setAttribute("problem", "Passwords must be the same. Try again :> ");
+					dispatch = request.getRequestDispatcher("Register.jsp");
+					dispatch.forward(request, response);
+				}
 			}else{
-				request.setAttribute("problem", "Passwords must be the same. Try again :> ");
+				request.setAttribute("problem", name + " is already used. Choose other one...");
 				dispatch = request.getRequestDispatcher("Register.jsp");
 				dispatch.forward(request, response);
 			}
-		}else{
-			request.setAttribute("problem", name + " is already used. Choose other one...");
-			dispatch = request.getRequestDispatcher("Register.jsp");
-			dispatch.forward(request, response);
 		}
 	}
 
