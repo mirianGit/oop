@@ -44,19 +44,24 @@ public class SearchServlet extends HttpServlet {
 		if( request.getParameter("name")!=null){
 			name=request.getParameter("name");
 		}
-		
+		String pageName = (String) request.getSession()
+				.getAttribute("pageName");
+		if(pageName==null) pageName="";
 		ArrayList<Dish> allApprovedDishes =(ArrayList<Dish>) request.getAttribute("alldishes");
 		ArrayList<Dish> allApprovedDishesFromSession =(ArrayList<Dish>) request.getSession().getAttribute("alldishes");
-		String pageName=(String) request.getSession().getAttribute("pageName");
-		if(allApprovedDishes == null && (allApprovedDishesFromSession==null ||!pageName.equals("Found")) ) {
+		
+		
+		
+		if((allApprovedDishes == null && allApprovedDishesFromSession==null && !pageName.equals("Found"))||page==1 ) {
 			allApprovedDishes = (ArrayList<Dish>) Dish.getDishesByName(name);;
-		}else if(allApprovedDishes == null){
+		}else if(allApprovedDishes == null  && pageName.equals("Found")){
 			allApprovedDishes=allApprovedDishesFromSession;
 		}
 		
 	
 		
 		request.getSession().setAttribute("alldishes",null);
+		request.getSession().setAttribute("pageName",null);
 		request.setAttribute("show", "Found");
 		request.setAttribute("alldishes", allApprovedDishes);
 		RequestDispatcher dispatch = request.getRequestDispatcher("AllRecipes.jsp");
