@@ -6,6 +6,44 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<jsp:include page="Header.jsp" />
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Dish</title>
+	
+	<link href="styles/base.css" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
+	<script type="text/javascript" src="scripts/jquery.pikachoose.js"></script>
+
+	</head>
+	<body>
+    <div id="container">
+      <header>
+        <nav>
+          <ul id="nav">
+            <li><a href="Home" class="other">Home</a></li>
+            <li><a href=Receipts class="other">All Recipes</a></li>
+            <li><a href="SearchByIngredients" class="other">Extended Search</a></li>
+            <li><a href=AddNewRecipe class="other">Add New Recipe</a></li>
+           	<li><a class="search"> 
+             <div id="tw-form-outer">
+		<form action="SearchServlet" method="get" id="tw-form">
+			<input type="text" id="tw-input-text" name="name" value='search'
+				onfocus="if(this.value=='search'){this.value='';}"
+				onblur="if(this.value==''){this.value='search';}" /> <input
+				type="submit" id="tw-input-submit" value="" />
+		</form>
+	</div>
+	</a>
+	</ul>
+       </nav>
+       <hgroup class="intro">
+        </hgroup>
+        
+   
+      </header>
 <head>
 <%
 	Dish dish = (Dish)request.getAttribute("edit?");
@@ -35,14 +73,14 @@ function addInput(divName){
 
 <div id="container" style="width:800px">
 
-<div id="header" style="background-color:#FFA500;">
-<h1 align="left"><a href="Home"> Homepage</a></h1>
+<div id="header">
+
 
 <h1 style="margin-bottom:0;" align="center">  Edit dish </h1></div>
 
 <form action="EditDish" method="post">
 
-<div id="menu" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
+<div id="menu" style="height:400px;width:400px;float:left;">
 
 <%
 	String name = dish.getName();
@@ -62,7 +100,7 @@ function addInput(divName){
 
 </div>
 
-<div id="content" style="background-color:#EEEEEE;height:400px;width:400px;float:left;">
+<div id="content" style="height:400px;width:400px;float:left;">
 <%
 	HashMap<Ingredient, String> map = dish.getIngredients();
 	Iterator<Ingredient> it = map.keySet().iterator();
@@ -89,9 +127,11 @@ function addInput(divName){
 
 </div>
 
-</div>
+
 <input type="hidden" name="editingDishId" value=<%=dish.getId() %> />
-<p align="center"><input type="submit" value="Edit Recipe"/></p>
+
+<p align="center"><a class="button" href="EditDish" title="log out">Edit Recipe</a> </p>
+
 </form>
 
 </body>
