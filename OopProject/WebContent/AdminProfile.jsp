@@ -85,19 +85,25 @@ blockquote span {
      <br>
       <br>
        <br>
+       
     <div class="border"></div>
+    
+   
     <div class="footer-widget">
       <h4>Non approved Items</h4>
-		 <ul class="blog">
+      	<form id="frm1"  method="get" action="ApproveServlet" >
+		<input type="hidden" name="hidden">
         <%	if(c.isEmpty()) %> <a>there is nothing to approve</a>
-    	<ul >
+    	 <ul class="blog">
     	
     	<%	
     		for(Dish d:c){
     		
     			String dish_name= d.getName();
     			 dish_id=d.getId();
-    			%><li><a href= "DishServlet?id=<%=dish_id %>"><%=dish_name %>&nbsp;</a><input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /><% 
+    			%>
+    			
+    			<li><a href= "DishServlet?id=<%=dish_id %>"><%=dish_name %>&nbsp;</a><input type="button" value="Approve" onclick="Approve(<%=dish_id %>)" /></li><% 
     	
      	}
     	
@@ -108,6 +114,7 @@ blockquote span {
 	
 
       </ul>
+      </form>
     </div>
     <div class="footer-widget">
       <h4>My recipes</h4>
@@ -130,7 +137,12 @@ blockquote span {
        
         
       </ul>
+      
     </div>
+       <div class="footer-widget">
+      <h4>Menu</h4>
+      <a href = "allUsersServlet">edit Users</a><br>
+     </div>
     </footer>
     <br>
 	<div class="border2">
@@ -163,7 +175,7 @@ blockquote span {
 	
 	<p ><b><font size="4"color=FF7F50>Non Approved recipes </font></b></p>
 	<form id="frm1"  method="get" action="ApproveServlet" >
-	<input type="hidden" name="hidden">
+	
 	<%	if(c.isEmpty()) %> <a>there is nothing to approve</a>
 	<ul >
 	
