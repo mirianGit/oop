@@ -282,6 +282,23 @@ form:after {
 }
 </style>
 </head>
+<jsp:include page="Header.jsp" />
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	
+	<link href="styles/base.css" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
+	<script type="text/javascript" src="scripts/jquery.pikachoose.js"></script>
+
+	</head>
+	<body>
+    <div id="container">
+      <header>
+        <nav>
+          <ul id="nav">
+            <li><a href="Home" class="other">Home</a></li>
+            </ul></nav></header></div>
 <body>
 <div class="container">
 	<section id="content">
