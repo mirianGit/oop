@@ -578,14 +578,12 @@ footer {
 		class="post-1450 post type-post status-publish format-standard hentry category-59"
 		id="post-1450">
 		
-	
-
 		<p align="justify">
-		<% request.getSession().setAttribute("dish_id", dish_id); %>
-			<a href=EditDish class="other"><font size="2" color="blue">edit</font>
-			
-			</a>
-			
+		<% 
+		if(isAdmin == 1){
+		request.getSession().setAttribute("dish_id", dish_id); %>
+			<a href=EditDish class="other"><font size="2" color="blue">edit</font></a>
+		<%} %>
 			
 		</p>
 		<div id="guan-page-code-top"></div>
