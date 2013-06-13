@@ -38,16 +38,17 @@ public class AddNewComment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sess = request.getSession();
-		ArrayList<Comment> dishComments = (ArrayList<Comment>) Comment.getDishComments();
-		sess.setAttribute("lastApprovedDishes", dishComments);
+		int dishId =Integer.parseInt(request.getParameter("dishId"));
 		if (request.getSession().getAttribute("signed") == null){
-			request.setAttribute("problem", "For commenting you have to log in first:)");
+			request.setAttribute("problem", "For adding your comment you have to log in first:)");
 			RequestDispatcher dispatch = request.getRequestDispatcher("Login.jsp");
 			dispatch.forward(request, response);
 		}else{
-			RequestDispatcher dispatch = request.getRequestDispatcher("CommentBox.jsp");
+			RequestDispatcher dispatch = request.getRequestDispatcher("AddNewComment.jsp");
 			dispatch.forward(request, response);
 		}
+		ArrayList<Comment> dishComments = (ArrayList<Comment>) Comment.getDishComments(dishId);
+		sess.setAttribute("Comments", dishComments);
 		// TODO Auto-generated method stub
 	}
 
@@ -56,22 +57,22 @@ public class AddNewComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		RequestDispatcher dispatch = null;
-		HttpSession curr = request.getSession();
+		String text = (String) request.getParameter("COMMENT_BODY");
 		String dishName = request.getParameter("name");
 		Dish dish = Dish.getDish(dishName);
-		String commentText = request.getParameter("COMMENT_BODY");
-		
-		int userId = User.getIdByName((String)curr.getAttribute("name"));
+		int userId = Integer.parseInt(request.getParameter("userId"));
 		User us = User.getUserById(userId);
-		Comment newComment = new  Comment(dish, us, commentText );
+		String userName = User.getUserById(userId).getName();
+		Comment newComment = new  Comment(dish, us, text);
 		try {
 			newComment.addComment();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// sTODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		dispatch = request.getRequestDispatcher("Dish.jsp");
+		dispatch = request.getRequestDispatcher("CommentBox.jsp");
 		dispatch.forward(request, response);
 	}
 	

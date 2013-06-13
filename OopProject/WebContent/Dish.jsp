@@ -132,8 +132,10 @@
 	
 	<h4>author: <%=authorName %></h4>
 		
-	
-	<jsp:include page="commentBox.jsp" />
+		
+	<jsp:include page="commentBox.jsp" >
+    <jsp:param name="author_id" value=<%=curr_dish.getName() %> />
+	</jsp:include>
 	
 	</blockquote>
 	</div>

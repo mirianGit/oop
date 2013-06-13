@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import Model.MyDB;
 
 public class Comment {
 	private static Connection con = MyDB.getConnection();
@@ -15,28 +16,28 @@ public class Comment {
 	int authorId;
 	public static String text;
 	private static int commentId;
-	
 
 	public Comment(Dish curr, User user, String text) {
 		this.currentDish = curr.getId();
 		this.authorId = user.getId();
 		this.text = text;
-		commentId =generateId();
+		commentId = generateId();
 	}
 
-	//gamoaqvs komentaristvis sachiro vizualuri  informacia	
+	// gamoaqvs komentaristvis sachiro vizualuri informacia
 	public Comment(String userName, String txt) throws SQLException {
 		Statement stat = con.createStatement();
-		String sql = "SELECT * FROM USERS WHERE USER_NAME = '" + userName + "';";
+		String sql = "SELECT * FROM USERS WHERE USER_NAME = '" + userName
+				+ "';";
 		ResultSet d = stat.executeQuery(sql);
-		if(d.next()){
+		if (d.next()) {
 			userName = d.getString("USER_NAME");
 		}
 		text = txt;
 		// TODO Auto-generated constructor stub
 	}
 
-	//amatebs komentars bazashi
+	// amatebs komentars bazashi
 	public void addComment() throws SQLException {
 		Statement stat = con.createStatement();
 		String sql = "INSERT INTO COMMENTS VALUES (COMMENT_ID, Comment_BODY, USER_ID, DISH_ID)"
@@ -45,11 +46,13 @@ public class Comment {
 				+ "',"
 				+ text
 				+ ","
-				+ authorId +  ","+ currentDish + "');";
+				+ authorId
+				+ ","
+				+ currentDish + "');";
 		stat.executeQuery(sql);
 	}
 
-	private int generateId(){
+	private int generateId() {
 		int res = -1;
 		try {
 			String select = "SELECT * FROM COMMENTS WHERE DISH_ID = ? ;";
@@ -62,56 +65,60 @@ public class Comment {
 		}
 		return res;
 	}
-	public int getId(){
+
+	public int getId() {
 		return commentId;
 	}
-	public String getAuthorName(){
+
+	public String getAuthorName() {
 		String name = "";
 		Statement stat;
 		try {
 			stat = con.createStatement();
-			String sql = "DELETE USER_NAME FROM USERS WHERE USER_ID = '" + authorId + "';";
-			ResultSet d = stat.executeQuery(sql);	
-			name =d.getString("USER_NAME");
+			String sql = "SELECT USER_NAME FROM USERS WHERE USER_ID = '"
+					+ authorId + "';";
+			ResultSet d = stat.executeQuery(sql);
+			name = d.getString("USER_NAME");
 			stat.executeQuery(sql);
 			return name;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return name;
-		
+
 	}
-	//abrunebs kerdzis komentars id-is mixedvit
+
+	// abrunebs kerdzis komentars id-is mixedvit
 	public static Comment getComment(int id) {
 		Comment curr = null;
 		try {
 			Statement stat = MyDB.getConnection().createStatement();
-			String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = '" + id + "';";
-			ResultSet d = stat.executeQuery(sql);	
-			
-			if(d.next()){
+			String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = '" + id
+					+ "';";
+			ResultSet d = stat.executeQuery(sql);
+
+			if (d.next()) {
 				int user_id = d.getInt("USER_ID");
 				User us = User.getUserById(user_id);
 				String name = us.getName();
 				curr = new Comment(name, d.getString("COMMENT_BODY"));
 			}
-		
-		} catch (SQLException e) {}
+
+		} catch (SQLException e) {
+		}
 		return curr;
-		
+
 	}
-//abrunebs kerdzis komentarebs
-	public static Collection<Comment> getDishComments (){
+
+	// abrunebs kerdzis komentarebs
+	public static Collection<Comment> getDishComments(int Dish_Id) {
 		Collection<Comment> result = new ArrayList<Comment>();
+		ResultSet r =getComments(Dish_Id);
 		try {
-			Connection con = MyDB.getConnection();
-			String selectAll = "SELECT * FROM COMMENTS WHERE DISH_ID = '" + currentDish + "' ORDER BY COMMENT_ID DESC;";
-			PreparedStatement stat = con.prepareStatement(selectAll);
-			ResultSet rows = stat.executeQuery(selectAll);
-			while(rows.next()){
-				Comment temp = getComment(rows.getInt("COMMENT_ID"));
+			while (r.next()) {
+				Comment temp = getComment(r.getInt("COMMENT_ID"));
 				result.add(temp);
 			}
 		} catch (Exception e) {
@@ -119,15 +126,29 @@ public class Comment {
 		}
 		return result;
 	}
-	
-//shlis komentars 
+
+	// shlis komentars
 	public void deleteComment(User currUser, Comment com) throws SQLException {
-		if( currUser.isAdmin() || currUser.getId() == com.authorId ){
+		if (currUser.isAdmin() || currUser.getId() == com.authorId) {
 			Statement stat = con.createStatement();
-			String sql = "DELETE * FROM COMMENTS WHERE COMMENT_ID = '" + com.getId() + "';";
+			String sql = "DELETE * FROM COMMENTS WHERE COMMENT_ID = '"
+					+ com.getId() + "';";
 			stat.executeQuery(sql);
 		}
 	}
 	
-	
+
+	private static ResultSet getComments(int Dish_id){
+		ResultSet res =null;
+		try {
+			Statement stat = MyDB.getConnection().createStatement();
+			String sql = "SELECT * FROM COMMENTS WHERE DISH_ID =" + Dish_id	+ ";";
+			res = stat.executeQuery(sql);
+		}catch (SQLException e) {
+			
+		}
+		return res;
+	}
+
+
 }
