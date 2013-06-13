@@ -699,7 +699,13 @@ footer {
 		
              </ul>
         </div>
+        
        </footer>
 	</div>
+	<br>
+	<div class="border2">
+	<br></div>
+	<br>
+	
 </body>
 </html>
