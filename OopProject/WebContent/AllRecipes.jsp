@@ -106,7 +106,7 @@
 			</div>
 
 			<div class="right menu-order"></div>
-			<img src="images/menu/pizza2.jpeg" class="left clear item"
+			<img src=<%=d.getPicture() %> class="left clear item"
 				width="150" alt="">
 			<p class="left"><%=text%>
 				<a href="DishServlet?id=<%=d.getId()%>"> See Full Recipe</a>
