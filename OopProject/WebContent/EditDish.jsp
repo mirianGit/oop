@@ -123,7 +123,7 @@ function addInput(divName){
 <div id="dynamicInput">
      
 </div>
- <input type="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
+ <input type="button" class="button" value="Add another text input for another ingredient" onClick="addInput('dynamicInput');">
 
 </div>
 

@@ -609,6 +609,22 @@ aside h3,.footer-widget h4 {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
+textarea {
+	width: 400px;
+	height: 200px;
+}
+input[type="text"]:active, input[type="text"]:focus {
+	border: 1px dashed #9C5959;
+}
+textarea:active, textarea:focus {
+	border: 1px dashed #9C5959;
+}
+
+input, textarea, select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
 
 footer p {
 	font-size: 14px;
