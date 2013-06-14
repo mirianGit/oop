@@ -23,6 +23,7 @@ public class Dish {
 	private HashMap<Ingredient, String> ingredients;
 	private Connection con = MyDB.getConnection();
 
+	
 	public Dish(String name, int rate, int userId, int approved, String text, String image, HashMap<Ingredient, String> ingredients) {
 		this.name = name;
 		receiptText = text;

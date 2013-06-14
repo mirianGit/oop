@@ -24,6 +24,7 @@
 	$(document).ready(function() {
 		$("#pikame").PikaChoose();
 	});
+	
 </script>
 </head>
 <body>

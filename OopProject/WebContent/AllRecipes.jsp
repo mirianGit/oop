@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>All Recipes</title>
 
+
 </head>
 <body>
 <jsp:include page="Header.jsp" />

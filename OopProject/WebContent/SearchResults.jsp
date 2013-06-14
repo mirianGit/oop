@@ -21,6 +21,7 @@
 </form>
 
 
+
 <% ArrayList <Dish> foundDishes = (ArrayList<Dish>)request.getAttribute("foundDishes");
  	if(foundDishes != null){	
  		for(int i = 0; i < foundDishes.size(); i++){

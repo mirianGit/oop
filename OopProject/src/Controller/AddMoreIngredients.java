@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddMoreIngredients")
 public class AddMoreIngredients extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()

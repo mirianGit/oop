@@ -10,6 +10,7 @@
 <head>
 <style >
 
+
 blockquote {
 	background: transparent url(../images/blockquote.png) no-repeat 0px 30px;
 	padding: 30px;

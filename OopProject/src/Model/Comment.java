@@ -23,6 +23,7 @@ public class Comment {
 		this.text = text;
 	}
 
+	
 	// gamoaqvs komentaristvis sachiro vizualuri informacia
 	public Comment(String userName, String txt) throws SQLException {
 		Statement stat = con.createStatement();

@@ -22,6 +22,7 @@ public class User {
 	private Statement stmt;
 	private static ResultSet userChecker;
 
+	
 	public User(int id, String name, String password, int role) {
 		try {
 			stmt = con.createStatement();

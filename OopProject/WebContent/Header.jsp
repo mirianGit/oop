@@ -17,6 +17,7 @@ table {
 	font-size: inherit;
 }
 
+
 fieldset,img {
 	border: 0;
 }

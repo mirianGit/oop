@@ -9,6 +9,7 @@
 textarea {
 	width: 400px;
 	height: 200px;
+	
 }
 input[type="text"]:active, input[type="text"]:focus {
 	border: 1px dashed #9C5959;
