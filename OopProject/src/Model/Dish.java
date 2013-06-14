@@ -145,11 +145,10 @@ public class Dish {
 	public String getName(){
 		return name;
 	}
+	
 	public String getReceipt(){
 		return receiptText;
-	}
-	// returns id or -1 if such dish doesn't exist ot there's problem with database
-	
+	}	
 	
 	public void approve() {
 		try {

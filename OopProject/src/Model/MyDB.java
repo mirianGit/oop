@@ -19,9 +19,9 @@ import java.sql.SQLException;
 public class MyDB {
 	
 	private static final String MYSQL_USERNAME = "root";
-	private static final String MYSQL_PASSWORD = "123456";
+	private static final String MYSQL_PASSWORD = "start";
 	private static final String MYSQL_DATABASE_SERVER = "localhost";
-	private static final String MYSQL_DATABASE_NAME = "OopProject";
+	private static final String MYSQL_DATABASE_NAME = "oopproject";
 	
 	private static Connection con;
 	

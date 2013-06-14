@@ -127,6 +127,7 @@ public class Comment {
 		}
 
 	}
+	
 	public static Comment getCommentByID(int id){
 		Comment res = null;
 		try {
@@ -145,6 +146,8 @@ public class Comment {
 		}
 		return res;
 	}
+	
+	// abrunebs ResultSet-s
 	private static ResultSet getComments(int Dish_id) {
 		ResultSet res = null;
 		try {
@@ -156,11 +159,5 @@ public class Comment {
 
 		}
 		return res;
-	}
-	public static void main(String[] args) {
-		List<Integer> getDish=Comment.getDishComments(51);
-		for(int i=0;i<getDish.size();i++){
-			System.out.println(Comment.getComment(getDish.get(i)).getAuthorName());
-		}
 	}
 }
