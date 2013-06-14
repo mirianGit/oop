@@ -84,8 +84,8 @@ function addInput(divName){
      else {
     	  var co = counter+1;
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "Ingredient " + (counter + 1) + " <br><input type='text' name='INGREDIENT" + co + "'>"+
-                             "  <input type='text' name='amount"+ co +"' "+ "value=amount onclick=if(this.value=='amount'){this.value=''} onblur=if(this.value==''){this.value='amount'}"+">";
+          newdiv.innerHTML = "Ingredient " + (counter + 1) + " <br><input style='width: 200px' type='text' name='INGREDIENT" + co + "'>"+
+                             "  <input type='text'  style='width: 150px' name='amount"+ co +"' "+ "value=amount onclick=if(this.value=='amount'){this.value=''} onblur=if(this.value==''){this.value='amount'}"+">";
           document.getElementById(divName).appendChild(newdiv);
           counter++;
      }
