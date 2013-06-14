@@ -170,19 +170,17 @@
 			}
 			}
 		%>
-		<form action="wishlistOrDeleteServlet" method="get">
-			<input type=hidden name=id value=<%=dish_id%>>
+		
 			<%
 				if (signed == 1) {
 					if (isAdmin == 0 && contains == 0) {
 			%>
 			<p>
-			<div style="margin-top: 20px">
-				<a href="wishlistOrDeleteServlet" type=submit name="button"
-					value="add to wishlist" class="button"> Add To WishList</a>
-			</div>
 
-			</p>
+			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet?id=<%=dish_id%>&button=add" type=submit name="button" value="add to wishlist"
+			 class="button"> Add To WishList</a></div>
+
+		</p>
 			<%
 				} else if (isAdmin == 0) {
 			%>
@@ -191,16 +189,15 @@
 				} else {
 			%>
 			<p>
-			<div style="margin-top: 20px">
-				<a href="wishlistOrDeleteServlet" name="button"
-					value="Delete recipe" class="button"> Delete Recipe</a>
-			</div>
-			</p>
+
+			<div style="margin-top:20px"><a href="wishlistOrDeleteServlet?id=<%=dish_id%>&button=delete" name="button" value ="Delete recipe"
+			 class="button"> Delete Recipe</a></div>
+		</p>
 			<%
 				}
 				}
 			%>
-		</form>
+		
 
 
 
