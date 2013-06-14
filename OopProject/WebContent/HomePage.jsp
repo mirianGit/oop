@@ -105,7 +105,7 @@
       <footer>
         <div class="border"></div>
         <div class="footer-widget">
-          <h4>Top recipes</h4>
+          <h4>Top Recipes</h4>
            <ul class=blog>
             <%  
  	ArrayList <Dish> topTen = (ArrayList<Dish>) request.getSession().getAttribute("topTen"); 
@@ -126,7 +126,7 @@
           </ul>
         </div>
         <div class="footer-widget">
-          <h4>random Recipes</h4>
+          <h4>Random Recipes</h4>
           <ul class="blog">
                	<%
 						
@@ -149,7 +149,7 @@
           </ul>
         </div>
         <div class="footer-widget">
-          <h4>new Recipes</h4>
+          <h4>New Recipes</h4>
            <ul class="blog">
            
            	<%
