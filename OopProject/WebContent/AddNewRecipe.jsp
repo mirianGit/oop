@@ -117,8 +117,8 @@ function addInput(divName){
 <div id="content" style="height:300px;width:400px;float:left;">
 
 <div id="dynamicInput">
-     Ingredient 1<br><input type="text" name="INGREDIENT1">
-     <input type="text" name="amount1" value="amount"
+     Ingredient 1<br><input type="text" name="INGREDIENT1" style="width: 200px">
+     <input type="text" style="width: 150px" name="amount1" value="amount"
 							onclick="if(this.value=='amount'){this.value=''}"
 							onblur="if(this.value==''){this.value='amount'}"> 
 </div>
