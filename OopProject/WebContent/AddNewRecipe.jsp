@@ -27,7 +27,7 @@ input, textarea, select {
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Dish</title>
+	<title>Add New Recipe</title>
 	
 	<link href="styles/base.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js"></script>
@@ -62,7 +62,7 @@ input, textarea, select {
 						 
 					<a class="hello" href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
 				
-				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> 
+				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">Log Out</a> </div> 
 	</div>
 	</a>
 	</ul>
