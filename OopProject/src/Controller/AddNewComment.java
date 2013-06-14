@@ -60,23 +60,21 @@ public class AddNewComment extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		RequestDispatcher dispatch = null;
-		String text = (String) request.getParameter("COMMENT_BODY");
-		String dishName = request.getParameter("name");
+		String text = (String) request.getParameter("comment");
+		String dishName = Dish.getName(Integer.parseInt(request.getParameter("dish_id")));
 		Dish dish = Dish.getDish(dishName);
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		User us = User.getUserById(userId);
-		String userName = User.getUserById(userId).getName();
+		String userName = us.getName();
 		Comment newComment = new  Comment(dish, us, text);
 		try {
 			newComment.addComment();
 		} catch (SQLException e) {
-			// sTODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		dispatch = request.getRequestDispatcher("CommentBox.jsp");
+		request.setAttribute("dish_id", dish.getId());
+		dispatch = request.getRequestDispatcher("DishServlet");
 		dispatch.forward(request, response);
 	}
 	
 	}
-
-
