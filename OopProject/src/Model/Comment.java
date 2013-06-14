@@ -100,14 +100,14 @@ public class Comment {
 	}
 
 	// abrunebs kerdzis komentarebs
-	public static List<Comment> getDishComments(int Dish_Id) {
-		List<Comment> result = new ArrayList<Comment>();
+	public static List<Integer> getDishComments(int Dish_Id) {
+		List<Integer> result = new ArrayList<Integer>();
 		ResultSet r = getComments(Dish_Id);
 		try {
 			while (r.next()) {
 				Comment temp = getComment(r.getInt("COMMENT_ID"));
 				System.out.println("+++ " + temp.getId());
-				result.add(temp);
+				result.add(temp.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,7 +127,24 @@ public class Comment {
 		}
 
 	}
-
+	public static Comment getCommentByID(int id){
+		Comment res = null;
+		try {
+			String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = ?;";
+			PreparedStatement stat = con.prepareStatement(sql);
+			stat.setInt(1, id);
+			ResultSet set = stat.executeQuery();
+			set.next();
+			User us = User.getUserById(set.getInt("USER_ID"));
+			Dish d = Dish.getDish(Dish.getName(set.getInt("DISH_ID")));
+			System.out.println(us.getName());
+			res = new Comment(d, us, set.getString("COMMENT_BODY"));
+			res.setId(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	private static ResultSet getComments(int Dish_id) {
 		ResultSet res = null;
 		try {
@@ -139,5 +156,11 @@ public class Comment {
 
 		}
 		return res;
+	}
+	public static void main(String[] args) {
+		List<Integer> getDish=Comment.getDishComments(51);
+		for(int i=0;i<getDish.size();i++){
+			System.out.println(Comment.getComment(getDish.get(i)).getAuthorName());
+		}
 	}
 }

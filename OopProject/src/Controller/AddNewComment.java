@@ -38,20 +38,7 @@ public class AddNewComment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sess = request.getSession();
-		int dishId =Integer.parseInt(request.getParameter("dishId"));
-		if (request.getSession().getAttribute("signed") == null){
-			request.setAttribute("problem", "For adding your comment you have to log in first:)");
-			RequestDispatcher dispatch = request.getRequestDispatcher("Login.jsp");
-			dispatch.forward(request, response);
-		}else{
-			RequestDispatcher dispatch = request.getRequestDispatcher("AddNewComment.jsp");
-			dispatch.forward(request, response);
-		}
 		
-		ArrayList<Comment> dishComments = (ArrayList<Comment>) Comment.getDishComments(dishId);
-		sess.setAttribute("Comments", dishComments);
-		// TODO Auto-generated method stub
 	}
 
 	/**

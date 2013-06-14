@@ -26,10 +26,7 @@ if(request.getSession().getAttribute("signed") != null){
 }
 System.out.println(userId);
 int dish_id = (Integer)request.getSession().getAttribute("dish_id");
-ArrayList<Comment> comments = (ArrayList)Comment.getDishComments(dish_id);
-for(int i=0;i<comments.size();i++){
-	System.out.println("bla  " + comments.get(i).getId());
-}
+ArrayList<Integer> comments = (ArrayList)Comment.getDishComments(dish_id);
 %>
 
 
@@ -54,15 +51,15 @@ for(int i=0;i<comments.size();i++){
 			for (int i=0;i<comments.size();i++) {
 				if(us != null){
 					if(us.isAdmin()){
-						System.out.println(comments.get(i).getId());
 						out.println("<form action='DeleteComment'>");
-						out.println("<input type='hidden' name='comment_id' value="+ comments.get(i).getId() +">");
+						out.println("<input type='hidden' name='comment_id' value="+ comments.get(i) +">");
 						out.println("<input type='hidden' name='dish_id' value="+ dish_id +">");
 						out.println("<input type='submit' value='x'>");
 						out.println("</form>");
 					}
 				}
-				out.println(comments.get(i).getAuthorName() + " : <p>" + comments.get(i).getText() + "</p>");
+				System.out.println(comments.get(i));
+				out.println(Comment.getCommentByID(comments.get(i)).getAuthorName() + " : <p>" + Comment.getCommentByID(comments.get(i)).getText() + "</p>");
 			}
 		}
 	%>
