@@ -108,24 +108,25 @@ function addInput(divName){
 						 	while(it.hasNext()){
 						 		i++;
 						 		Ingredient in = it.next();
-						    	out.println("Ingredient" + i + "<br><input type='text' name='INGREDIENT" + i + "' value='" + in.getName() + "'>");
+						    	out.println("Ingredient" + i + "<br><input style='width:200px' type='text' name='INGREDIENT" + i + "' value='" + in.getName() + "'>");
 						%>
 						<script type="text/javascript">
      document.getElementByName('INGREDIENT' + i).value = "<%=in.getName()%>";
 	</script>
 						<%
-							out.println(" <input type='text' name='amount"+ i +"' value='" + map.get(in) + "'><br>");
+							out.println(" <input type='text' style='width:150px'  name='amount"
+						+ i +"' value='" + map.get(in) + "'><br>");
 						%>
 						<script type="text/javascript">
-    	document.getElementByName('amount'+i).value = "<%=map.get(in)%>
-							";
+    	document.getElementByName('amount'+i).value = "<%=map.get(in)%>";
 						</script>
 						<%
 							}
 						%>
 
 						<div id="dynamicInput"></div>
-						<input type="button" class="button"
+						
+						<br/><input type="button" class="button"
 							value="Add another text input for another ingredient"
 							onClick="addInput('dynamicInput');">
 
@@ -133,7 +134,7 @@ function addInput(divName){
 			</div>
 			<input type="hidden" name="editingDishId" value=<%=dish.getId()%> />
 			<p align="center">
-				<input class="button" type="submit" value="Edit Recipe" />
+				<input  class="button" type="submit" value="Edit Recipe" />
 			</p>
 			</form>
 
