@@ -64,20 +64,11 @@
 		<p></p>
 
 		<div class="p.main">
-			<p>If you are unfamiliar with Simply Recipes, please allow me to
-				take a moment to introduce you to the site. The first thing you
-				should know is that Simply Recipes is a blog or a personal website,
-				created and maintained by me, Elise Bauer. Unlike most of the large
-				recipe sites that you might find on the Internet with tens of
-				thousands of recipes, Simply Recipes is my personal website, with
-				only a few hundred recipes, all tested by me, my family or my
-				friends. We invite you to try the recipes, and if you would like,
-				leave constructive feedback in the comments. Do you have a recipe
-				binder or box of recipe index cards? Think of this site as our
-				family sharing the recipes in our recipe binder with you. As we cook
-				the recipes multiple times, we often think of improvements and
-				update the recipes. So keep in mind that what you see here is a work
-				in progress.</p>
+			<p>We are students of Macs  and this site is made by as.  </p>
+			<p>Mirian Kapanadze</p>
+			<p>Elene Akhvlediani</p>
+			<p>Salome Tsiramua</p>
+			<p>Mariam Jikia</p>
 		</div>
 		
 		 <footer>
