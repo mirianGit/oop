@@ -50,7 +50,7 @@
 				%>
 
 				<div style="margin-top:20px"> <a class="button" href="Register.jsp" title="Register">Register</a> </div>
-          <div style="margin-top:20px"> <a class="button" href="Login.jsp" title="sign in">sign in</a> </div> <%
+          <div style="margin-top:20px"> <a class="button" href="Login.jsp" title="sign in">Sign In</a> </div> <%
  	} else {
  %>
 
@@ -62,7 +62,7 @@
 						 
 					<a class=hello href="userServlet?id=<%=us.getId() %>"> Hello, <%=us.getName()%></a></div>
 				
-				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">log out</a> </div> <%
+				 <div style="margin-top:20px"> <a class="button" href="LogOut" title="log out">Log Out</a> </div> <%
 				
  	}
  %>
