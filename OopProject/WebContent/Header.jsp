@@ -611,8 +611,8 @@ aside h3,.footer-widget h4 {
 	border-radius: 2px;
 }
 textarea {
-	width: 400px;
-	height: 200px;
+	width: 200px;
+	height: 150px;
 }
 input[type="text"]:active, input[type="text"]:focus {
 	border: 1px dashed #9C5959;
@@ -686,8 +686,8 @@ font-size:18px;
 textarea {
 font-size:18px;
 	font-family: Century Gothic, sans-serif;
-	width: 400px;
-	height: 200px;
+	width: 500px;
+	height: 60px;
 }
 input[type="text"]:active, input[type="text"]:focus {
 	font-size:18px;

@@ -42,7 +42,7 @@ ArrayList<Integer> comments = (ArrayList)Comment.getDishComments(dish_id);
 		<textarea name="comment" id="comments" rows="3" cols="50"></textarea>
 		<input type="hidden" name="dish_id" value="<%=dish_id%>">
 		<input type="hidden" name=userId value=<%=userId%>> <input
-			type="submit" value="Submit" /> <br />
+			type="submit" value="Submit" Style= "text-align:center; width:100px;height:25px;padding-top: 2px;"  /> <br />
 	</form>
 	<br />
 	<%} %>
@@ -54,7 +54,7 @@ ArrayList<Integer> comments = (ArrayList)Comment.getDishComments(dish_id);
 						out.println("<form action='DeleteComment'>");
 						out.println("<input type='hidden' name='comment_id' value="+ comments.get(i) +">");
 						out.println("<input type='hidden' name='dish_id' value="+ dish_id +">");
-						out.println("<input type='submit' value='x'>");
+						out.println("<a class='buttonUser' href=DeleteComment?comment_id="+comments.get(i)+"&dish_id="+dish_id+" Style='text-align:center; font_size:10px; width:80px;height:20px;padding-top: 2px;position:absolute;right:710px;' type='submit' value='x'<a> Delete </a>");
 						out.println("</form>");
 					}
 				}
@@ -63,5 +63,19 @@ ArrayList<Integer> comments = (ArrayList)Comment.getDishComments(dish_id);
 			}
 		}
 	%>
+	<br>
+	<br>
+	<div class="border2">
+	<br></div>
+	<br>
+	<br>
+	<br>
+	 <br />
+    <span class="copyright"><span class="left"><br />
+     For more information contact us <a href="AboutAs.jsp">see Information</a></span><span class="right"><br />
+    <a href=#></a>  <a href=#></a><br />
+    <br />
+    <br />
+    </span></span></footer>
 </body>
 </html>
