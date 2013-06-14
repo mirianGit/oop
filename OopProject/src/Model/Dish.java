@@ -53,17 +53,67 @@ public class Dish {
 		return res;
 	}
 	
-	public void rate(int rate){
+	
+	public void rate(int rate, User user){
 		try {
-			String select = "UPDATE DISHES SET RATE = ? WHERE DISH_NAME = ? ;";
-			PreparedStatement stat = con.prepareStatement(select);
-			stat.setInt(1, rate);
+			int oldRate = 0;
+			String select = "SELECT * FROM DISHES WHERE DISH_NAME = ?";
+			PreparedStatement stat1 = con.prepareStatement(select);
+			stat1.setString(1, name);
+		    ResultSet res = stat1.executeQuery();
+		    res.next();
+		    oldRate = res.getInt("RATE");
+			
+			String update = "UPDATE DISHES SET RATE = ? WHERE DISH_NAME = ? ;";
+			PreparedStatement stat = con.prepareStatement(update);
+			stat.setInt(1, rate+oldRate);
 			stat.setString(2, name);
 		    stat.executeUpdate();
-		    this.rate = rate;
+		    this.rate = rate+oldRate;
+		    
+		    String insert = "INSERT INTO RATING VALUES (?, ?, ?);";
+			PreparedStatement stat2 = con.prepareStatement(insert);
+			stat2.setInt(1, user.getId());
+			stat2.setInt(2, getId());
+			stat2.setInt(3, rate);
+		    stat2.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean isRatedBy(User user){
+		boolean res = false;
+		try {
+			String select = "SELECT * FROM RATING WHERE USER_ID = ? AND DISH_ID = ?;";
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setInt(1, user.getId());
+			stat.setInt(2, this.getId());
+			ResultSet set = stat.executeQuery();
+			if(set.next()){
+				res = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int getRateBy(User user){
+		int r = 0;
+		try {
+			String select = "SELECT * FROM RATING WHERE USER_ID = ? AND DISH_ID = ?;";
+			PreparedStatement stat = con.prepareStatement(select);
+			stat.setInt(1, user.getId());
+			stat.setInt(2, this.getId());
+			ResultSet set = stat.executeQuery();
+			if(set.next()){
+				r = set.getInt("RATE");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return r;
 	}
 	
 	public String getPicture(){
@@ -376,7 +426,7 @@ public class Dish {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 	}
 }
-
